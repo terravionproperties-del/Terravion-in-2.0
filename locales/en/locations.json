@@ -1,0 +1,14 @@
+{
+  "eyebrow": "Location intelligence",
+  "headlineLead": "Know the corridor",
+  "headlineEmphasis": "street by street.",
+  "intro": "Independent micro-market notes on every locality that matters to a West Hyderabad plot buyer — ordered by distance from Shankarpally, our home ground.",
+  "allLocations": "All localities",
+  "locationsCount": "{count} localities",
+  "homeGround": "Home ground",
+  "distanceKm": "{distance} km",
+  "driveMinutes": "{minutes} min",
+  "driveApprox": "≈ {minutes} min",
+  "readNote": "Read the note",
+  "listAria": "West Hyderabad localities, nearest first"
+}

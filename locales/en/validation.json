@@ -1,0 +1,17 @@
+{
+  "name": {
+    "required": "Please tell us your name.",
+    "tooShort": "That looks too short to be a name.",
+    "tooLong": "That name is longer than we can store."
+  },
+  "phone": {
+    "required": "Please enter a phone number.",
+    "invalid": "Please enter a valid phone number.",
+    "tooShort": "A phone number needs at least 8 digits."
+  },
+  "email": { "invalid": "Please check the email address.", "tooLong": "That email address is too long." },
+  "date": { "invalid": "Please choose a valid date.", "past": "Please choose a date in the future." },
+  "message": { "tooLong": "Please keep this under 4,000 characters." },
+  "consent": { "required": "Please tick the consent box so we can contact you." },
+  "generic": { "fixErrors": "Please correct the highlighted fields.", "errorSummary": "{count} fields need attention" }
+}

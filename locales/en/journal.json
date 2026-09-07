@@ -1,0 +1,41 @@
+{
+  "indexTitle": "Journal",
+  "indexEyebrow": "Writing",
+  "indexIntro": "Essays on plot investment, Telangana property law, infrastructure and villa living in West Hyderabad — written to be useful whether or not you buy from us.",
+  "eyebrow": "The Terravion Journal",
+  "essayCount": "{count} cinematic essays designed to make complex Telangana land records, corridor economics and villa development clear and rigorous.",
+  "categories": {
+    "all": "All writing",
+    "Investment": "Investment",
+    "Locations": "Locations",
+    "Guides": "Guides",
+    "Market Trends": "Market trends",
+    "Lifestyle": "Lifestyle",
+    "Infrastructure": "Infrastructure",
+    "Legal & Tax": "Legal & tax"
+  },
+  "keepReading": "Keep reading",
+  "relatedHeading": "Related reading",
+  "faqHeading": "Frequently asked",
+  "minRead": "{minutes} min read",
+  "headline": {
+    "lead": "Visual stories on land,",
+    "emphasis": "law & the western arc."
+  },
+  "featuredLabel": "Featured Visual Story",
+  "allStories": "All Visual Stories",
+  "readStory": "Read Visual Story",
+  "difficulty": {
+    "essential": "Essential",
+    "deepDive": "Deep Dive",
+    "masterclass": "Masterclass"
+  },
+  "empty": {
+    "title": "The Telugu journal is still being written.",
+    "body": "Essays are translated one at a time, and only published here once the whole piece is in {language} — we would rather show you nothing than show you English under a {language} heading.",
+    "action": "Read the journal in English"
+  },
+  "storiesCount": "{count} stories",
+  "featuredAria": "Featured visual story",
+  "libraryAria": "Visual stories library"
+}

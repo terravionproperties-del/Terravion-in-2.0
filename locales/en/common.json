@@ -1,0 +1,127 @@
+{
+  "brand": {
+    "name": "Terravion",
+    "suffix": "Properties",
+    "tagline": "Villa plots in Shankarpally, West Hyderabad"
+  },
+  "units": {
+    "sqft": "Sq Ft",
+    "sqyd": "Sq Yd",
+    "acre": "Acres",
+    "guntha": "Guntha",
+    "lakh": "L",
+    "crore": "Cr",
+    "km": "km",
+    "min": "min"
+  },
+  "readingTime": "{minutes} min read",
+  "updatedOn": "Updated {date}",
+  "publishedOn": "Published {date}",
+  "onThisPage": "On this page",
+  "readMore": "Read more",
+  "viewAll": "View all",
+  "back": "Back",
+  "next": "Next",
+  "previous": "Previous",
+  "close": "Close",
+  "loading": "Loading",
+  "search": {
+    "label": "Search",
+    "placeholder": "Search Terravion",
+    "noResults": "Nothing matched \"{query}\"",
+    "noResultsHint": "Try a shorter phrase, or browse the guides instead.",
+    "resultCount": "{count} results",
+    "resultCountOne": "1 result",
+    "clear": "Clear search"
+  },
+  "filters": {
+    "label": "Filter",
+    "all": "All",
+    "category": "Category",
+    "status": "Status",
+    "location": "Location",
+    "priceRange": "Price range",
+    "plotSize": "Plot size",
+    "sortBy": "Sort by",
+    "newest": "Newest first",
+    "oldest": "Oldest first",
+    "clear": "Clear filters",
+    "applied": "{count} filters applied",
+    "showResults": "Show results"
+  },
+  "empty": {
+    "title": "Nothing here yet",
+    "body": "This section is being written. In the meantime, the guides cover the same ground."
+  },
+  "language": {
+    "label": "Language",
+    "change": "Change language",
+    "current": "Current language: {language}",
+    "select": "Select a language",
+    "searchPlaceholder": "Search languages",
+    "chooseHint": "The page you are reading will reload in your chosen language."
+  },
+  "consent": {
+    "eyebrow": "Your privacy",
+    "body": "We use cookies to understand how this site is used. Nothing is measured until you agree, and you can decline without losing anything.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "privacy": "Privacy policy",
+    "ariaLabel": "Cookie and analytics consent"
+  },
+  "translation": {
+    "notAvailableTitle": "This article has not been translated yet",
+    "notAvailableBody": "You are reading the English original. A {language} translation is being prepared.",
+    "readInEnglish": "Read in English"
+  },
+  "translationStatus": {
+    "label": "Translation status",
+    "translated": "Translated",
+    "pending": "Translation coming soon",
+    "missing": "Available in English",
+    "readInEnglish": "Read in English",
+    "cardNote": "This story has not been translated yet. The English original is complete.",
+    "englishOnly": "English only",
+    "comingSoon": "Translation coming soon",
+    "openEnglish": "Open English article"
+  },
+  "placeholder": {
+    "cardTitle": "This article will be available soon",
+    "cardSummary": "This piece is currently available in English only. It will appear here as soon as the translation is ready.",
+    "cardCta": "Read the English version",
+    "pageTitle": "This article will be available soon",
+    "pageBody": "This piece is currently available in English only. It will be published here as soon as the translation is ready.",
+    "pageCta": "Read the English version",
+    "eyebrow": "Translation in progress"
+  },
+  "article": {
+    "chapter": "Chapter",
+    "chapterNav": "Chapter navigation",
+    "storyNav": "Story navigation",
+    "playbookNav": "Playbook navigation",
+    "storybookFormat": "Visual storybook format",
+    "todaysStory": "Today's visual story",
+    "storySummaryAria": "Today's story summary",
+    "verifiedData": "Verified land data",
+    "timeline": "Step-by-step timeline",
+    "conclusion": "Story conclusion",
+    "expertInsight": "Expert insight",
+    "conceptBreakdown": "Visual concept breakdown",
+    "faqHeading": "Frequently asked questions",
+    "faqAria": "Frequently asked questions",
+    "relatedAria": "Related visual stories",
+    "exploreNext": "Explore next",
+    "onThisPage": "On this page",
+    "masterPlaybook": "Master playbook",
+    "expertAssistance": "Expert assistance",
+    "speakToTeam": "Speak to our team",
+    "enquireAria": "Enquire",
+    "experienceCentre": "Experience centre",
+    "byline": "By Terravion Editorial",
+    "chapterCount": "{count} visual chapters",
+    "summaryLabel": "In short",
+    "takeawaysLabel": "Key takeaways",
+    "writtenBy": "Written by",
+    "reviewedBy": "Reviewed by"
+  }
+}

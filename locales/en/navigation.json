@@ -1,0 +1,77 @@
+{
+  "primaryLabel": "Primary",
+  "mobileLabel": "Mobile",
+  "skipToContent": "Skip to content",
+  "openMenu": "Open menu",
+  "closeMenu": "Close menu",
+  "home": "Home",
+  "projects": "Projects",
+  "gis": "GIS Master Plan",
+  "locations": "Locations",
+  "guides": "Guides",
+  "journal": "Journal",
+  "investment": "Investment",
+  "about": "About",
+  "amenities": "Amenities",
+  "gallery": "Gallery",
+  "testimonials": "Testimonials",
+  "contact": "Contact",
+  "privacy": "Privacy policy",
+  "terms": "Terms of use",
+  "founder": "Founder",
+  "tools": "Tools",
+  "emiCalculator": "EMI calculator",
+  "roiCalculator": "ROI calculator",
+  "bookVisit": "Book Site Visit",
+  "megaMenu": {
+    "projectsHeading": "Our communities",
+    "locationsHeading": "West Hyderabad",
+    "guidesHeading": "Before you buy",
+    "viewAllProjects": "All projects",
+    "viewAllLocations": "All locations",
+    "viewAllGuides": "All guides",
+    "latest": "Latest",
+    "allEssays": "All essays",
+    "bookVisit": "Book a visit",
+    "featuredCaption": "45 acres · 475 plots · clubhouse",
+    "latestArticle": {
+      "title": "Shankarpally’s growth story",
+      "excerpt": "From rail town to villa corridor — what changed, and what it means for land west of the ORR."
+    },
+    "places": {
+      "shankarpally": "Shankarpally",
+      "mokila": "Mokila",
+      "kokapet": "Kokapet",
+      "tellapur": "Tellapur",
+      "financial-district": "Financial District",
+      "orr-corridor": "ORR Corridor"
+    },
+    "destinationNotes": {
+      "shankarpally": "Home ground",
+      "mokila": "10 km east",
+      "kokapet": "Neopolis",
+      "tellapur": "Family belt",
+      "financial-district": "The workplace",
+      "orr-corridor": "The ring"
+    },
+    "readingLabels": {
+      "hmda-guide": "HMDA approval, explained",
+      "legal-verification": "Legal verification",
+      "registration-process": "Registration in Telangana",
+      "investment-checklist": "The 25-point checklist"
+    }
+  },
+  "breadcrumb": {
+    "label": "Breadcrumb",
+    "home": "Home"
+  },
+  "dock": {
+    "ariaLabel": "Mobile navigation",
+    "homes": "Homes",
+    "places": "Places",
+    "journal": "Journal",
+    "chat": "Chat",
+    "chatAria": "Chat on WhatsApp",
+    "visit": "Visit"
+  }
+}

@@ -1,0 +1,268 @@
+// prisma/schema.prisma
+// Terravion GIS Platform — PostgreSQL schema for Hostinger
+// Run: npx prisma migrate dev
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_DATABASE_URL")
+  extensions = [postgis, uuid_ossp(map: "uuid-ossp")]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Projects
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Project {
+  id          String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  slug        String   @unique
+  name        String
+  tagline     String?
+  city        String
+  location    String
+  totalPlots  Int
+  totalAcres  Float
+  
+  // Coordinates
+  centerLat   Float
+  centerLng   Float
+  
+  // Pricing
+  pricePerSqYard    Int
+  priceRangeMin     Int
+  priceRangeMax     Int
+  
+  // Approvals
+  hmda          Boolean  @default(false)
+  dtcpNumber    String?
+  reraNumber    String?
+  
+  // Media
+  masterLayoutUrl   String?
+  heroImageUrl      String?
+  
+  // Flags
+  isActive      Boolean  @default(true)
+  launchDate    DateTime?
+  completionDate DateTime?
+  
+  plots         Plot[]
+  amenities     Amenity[]
+  constructionUpdates ConstructionUpdate[]
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([slug])
+  @@map("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Plots — every single plot is a row
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum PlotStatus {
+  AVAILABLE
+  BOOKED
+  SOLD
+  RESERVED
+  PREMIUM
+  COMMERCIAL
+}
+
+enum PlotFacing {
+  EAST
+  NORTH
+  WEST
+  SOUTH
+  NORTH_EAST
+  NORTH_WEST
+  SOUTH_EAST
+  SOUTH_WEST
+}
+
+model Plot {
+  id            String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  projectId     String     @db.Uuid
+  project       Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  plotNumber    String
+  
+  // Layout position (for 3D rendering)
+  gridRow       Int
+  gridCol       Int
+  positionX     Float
+  positionZ     Float
+  
+  // Dimensions
+  areaSqYards   Float
+  areaSqFt      Float
+  length        Float
+  breadth       Float
+  
+  // Status & pricing
+  status        PlotStatus @default(AVAILABLE)
+  price         Int        // ₹ per sq yard
+  totalPrice    Int        // = price * areaSqYards
+  
+  // Characteristics
+  facing        PlotFacing
+  roadWidth     Int        // in feet
+  isCorner      Boolean    @default(false)
+  isPremium     Boolean    @default(false)
+  isParkFacing  Boolean    @default(false)
+  isMainRoadFacing Boolean @default(false)
+  
+  // Buyer / booking info
+  ownerName     String?
+  customerPhone String?
+  salesExecutive String?
+  bookingDate   DateTime?
+  registrationDate DateTime?
+  notes         String?
+  
+  // Realtime broadcast channel
+  broadcastChannel String?
+  
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  
+  @@unique([projectId, plotNumber])
+  @@index([projectId, status])
+  @@index([projectId, facing])
+  @@map("plots")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Amenities
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum AmenityType {
+  PARK
+  CLUBHOUSE
+  ENTRANCE
+  ROAD
+  COMMERCIAL
+  TEMPLE
+  SCHOOL
+  PLAYGROUND
+  WATER_BODY
+  GYM
+  SWIMMING_POOL
+}
+
+model Amenity {
+  id          String      @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  projectId   String      @db.Uuid
+  project     Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  name        String
+  type        AmenityType
+  description String?
+  
+  positionX   Float
+  positionZ   Float
+  width       Float?
+  depth       Float?
+  
+  iconUrl     String?
+  imageUrl    String?
+  
+  createdAt   DateTime    @default(now())
+  
+  @@map("amenities")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Construction Updates
+// ─────────────────────────────────────────────────────────────────────────────
+
+model ConstructionUpdate {
+  id              String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  projectId       String   @db.Uuid
+  project         Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  month           String   // "Aug 2025"
+  title           String
+  description     String
+  progressPercent Int      // 0-100
+  images          String[] // Cloudinary URLs
+  
+  publishedAt     DateTime @default(now())
+  createdAt       DateTime @default(now())
+  
+  @@index([projectId])
+  @@map("construction_updates")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Leads (shared with CRM)
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum LeadSource {
+  WEBSITE
+  WHATSAPP
+  PHONE
+  WALK_IN
+  REFERENCE
+  META_ADS
+  GOOGLE_ADS
+  YOUTUBE
+  BROKER
+  SITE_VISIT
+}
+
+enum LeadStage {
+  NEW
+  CONTACTED
+  SITE_VISIT_SCHEDULED
+  SITE_VISIT_DONE
+  NEGOTIATING
+  BOOKED
+  REGISTERED
+  LOST
+}
+
+model Lead {
+  id          String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  
+  name        String
+  phone       String
+  email       String?
+  location    String?
+  
+  source      LeadSource @default(WEBSITE)
+  stage       LeadStage  @default(NEW)
+  
+  // Interest
+  interestedInProject String?
+  budgetMin   Int?
+  budgetMax   Int?
+  preferredFacing String?
+  areaMin     Float?
+  areaMax     Float?
+  
+  // Assignment
+  assignedTo  String?    // User ID
+  
+  // Follow-up
+  nextFollowUp DateTime?
+  notes       String?
+  
+  // UTM tracking
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  @@index([stage])
+  @@index([assignedTo])
+  @@map("leads")
+}

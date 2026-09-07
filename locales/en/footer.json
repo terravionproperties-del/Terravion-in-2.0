@@ -1,0 +1,21 @@
+{
+  "heading": "Terravion Properties",
+  "tagline": "Villa plots in Shankarpally, West Hyderabad.",
+  "columns": {
+    "explore": "Explore",
+    "learn": "Learn",
+    "company": "Company",
+    "contact": "Contact"
+  },
+  "legal": {
+    "rights": "© {year} Terravion Properties. All rights reserved.",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "disclaimer": "Images are indicative. Plot dimensions, approvals and pricing are as per the sanctioned layout, which is available on request."
+  },
+  "social": { "heading": "Follow", "instagram": "Instagram", "youtube": "YouTube", "facebook": "Facebook", "linkedin": "LinkedIn" },
+  "office": "Office",
+  "callUs": "Call",
+  "emailUs": "Email",
+  "hours": "Open daily, 9am to 7pm"
+}

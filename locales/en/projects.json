@@ -1,0 +1,51 @@
+{
+  "indexTitle": "Communities",
+  "indexEyebrow": "Our projects",
+  "indexPortfolioEyebrow": "The portfolio",
+  "indexHeadlineLead": "Three communities,",
+  "indexHeadlineEmphasis": "one discipline.",
+  "indexApprovalNote": "Every Terravion project is statutorily approved before launch, gated before handover, and planned around long-term living — not short-term selling.",
+  "amenitiesPage": {
+    "eyebrow": "Amenities",
+    "headlineLead": "Everything but",
+    "headlineEmphasis": "the house.",
+    "intro": "A plot is a beginning; a community is what surrounds it. This is the complete amenity register for each Terravion community — no renders of things that don't exist, just what is built or contractually committed.",
+    "explore": "Explore {project} →",
+    "clubhouseTitle": "The clubhouse is the point.",
+    "clubhouseBody": "25,000 sq. ft. at the heart of Sanctuary: banquet hall, restaurant and café, pool complex, two indoor badminton courts, gymnasium, games lounge, business centre with co-working, and three guest suites. It opens with the community — not years after it.",
+    "clubhouseCta": "Tour it in person"
+  },
+  "indexIntro": "Two approved communities on the Shankarpally belt, and a third registering interest. Each one is sold with its sanctioned layout plan attached.",
+  "card": {
+    "extent": "Extent",
+    "plotSizes": "Plot sizes",
+    "availability": "Availability",
+    "priceFrom": "From",
+    "explore": "Explore",
+    "register": "Register",
+    "nowSelling": "Now selling",
+    "registeringInterest": "Registering interest"
+  },
+  "detail": {
+    "overview": "Overview",
+    "highlights": "Highlights",
+    "amenities": "Amenities",
+    "masterPlan": "Master plan",
+    "gallery": "Gallery",
+    "film": "Film",
+    "documents": "Documents",
+    "connectivity": "Connectivity",
+    "distances": "Distances",
+    "distanceFrom": "From {place}",
+    "driveTime": "{time} by road",
+    "faqs": "Frequently asked",
+    "enquire": "Enquire about {project}",
+    "enquireBody": "Ask for the sanctioned plan, the price list, or a drive out to the site. All three are available without obligation.",
+    "specSheet": "Specifications",
+    "approval": "Approval",
+    "status": "Status",
+    "roads": "Roads",
+    "location": "Location"
+  },
+  "status": { "ready": "Now selling", "upcoming": "Registering interest" }
+}

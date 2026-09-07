@@ -1,0 +1,49 @@
+{
+  "primary": {
+    "eyebrow": "Visit in person",
+    "title": "Reading about land is good. Standing on it is better.",
+    "body": "One drive covers the layout, the approvals and the price logic. No obligation, no pressure.",
+    "action": "Book a site visit"
+  },
+  "guideFollowUp": {
+    "title": "Put this guide to work",
+    "body": "Visit an approved, titled community and walk through every document this guide describes — in person, no obligation."
+  },
+  "locationCompare": {
+    "title": "Compare {location} with Shankarpally, on the ground",
+    "body": "One drive covers both. We will show you the corridors, the approvals and the price logic — you draw your own conclusions."
+  },
+  "guideQuestions": {
+    "title": "Questions this guide did not answer?"
+  },
+  "locationConsidering": {
+    "title": "Considering plots near {location}?"
+  },
+  "journalStanding": {
+    "title": "Reading about land is good. Standing on it is better."
+  },
+  "phoneInvite": "Prefer to talk? Call {phone}.",
+  "ending": {
+    "ariaLabel": "Visit Terravion",
+    "eyebrow": "The invitation",
+    "titleLines": [
+      "Walk the plot",
+      "before you believe us."
+    ],
+    "body": "Late afternoon is best. Bring your advocate if you have one — the documents are on the table either way.",
+    "hours": "Shankarpally · daily, 9–7",
+    "bookVisit": "Book a site visit",
+    "whatsapp": "WhatsApp",
+    "call": "Call",
+    "legalLabel": "Legal",
+    "disclaimer": "Details are indicative and subject to statutory approval. Verify title and sanction independently before purchase."
+  },
+  "whatsapp": {
+    "openAria": "Chat with us on WhatsApp",
+    "closeAria": "Close WhatsApp panel",
+    "title": "Talk to us on WhatsApp",
+    "body": "Someone from the Shankarpally office replies during working hours — not a bot.",
+    "cta": "Start WhatsApp chat",
+    "message": "Hello Terravion — I have a question about your plots."
+  }
+}

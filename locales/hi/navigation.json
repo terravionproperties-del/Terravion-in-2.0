@@ -1,0 +1,77 @@
+{
+  "primaryLabel": "मुख्य नेविगेशन",
+  "mobileLabel": "मोबाइल नेविगेशन",
+  "skipToContent": "सीधे सामग्री पर जाएँ",
+  "openMenu": "मेन्यू खोलें",
+  "closeMenu": "मेन्यू बंद करें",
+  "home": "होम",
+  "projects": "परियोजनाएँ",
+  "gis": "जीआईएस मास्टर प्लान",
+  "locations": "स्थान",
+  "guides": "गाइड",
+  "journal": "जर्नल",
+  "investment": "निवेश",
+  "about": "हमारे बारे में",
+  "amenities": "सुविधाएँ",
+  "gallery": "गैलरी",
+  "testimonials": "खरीदारों की राय",
+  "contact": "संपर्क",
+  "privacy": "गोपनीयता नीति",
+  "terms": "उपयोग की शर्तें",
+  "founder": "संस्थापक",
+  "tools": "उपकरण",
+  "emiCalculator": "EMI कैलकुलेटर",
+  "roiCalculator": "ROI कैलकुलेटर",
+  "bookVisit": "साइट विज़िट बुक करें",
+  "megaMenu": {
+    "projectsHeading": "हमारी कम्युनिटी",
+    "locationsHeading": "पश्चिम हैदराबाद",
+    "guidesHeading": "खरीदने से पहले",
+    "viewAllProjects": "सभी परियोजनाएँ",
+    "viewAllLocations": "सभी स्थान",
+    "viewAllGuides": "सभी गाइड",
+    "latest": "नवीनतम",
+    "allEssays": "सभी निबंध",
+    "bookVisit": "विज़िट बुक करें",
+    "featuredCaption": "45 एकड़ · 475 प्लॉट · क्लबहाउस",
+    "latestArticle": {
+      "title": "शंकरपल्ली की विकास कहानी",
+      "excerpt": "रेल कस्बे से विला कॉरिडोर तक — क्या बदला, और ORR के पश्चिम की ज़मीन के लिए इसका क्या अर्थ है."
+    },
+    "places": {
+      "shankarpally": "शंकरपल्ली",
+      "mokila": "मोकिला",
+      "kokapet": "कोकापेट",
+      "tellapur": "तेल्लापुर",
+      "financial-district": "फ़ाइनेंशियल डिस्ट्रिक्ट",
+      "orr-corridor": "ORR कॉरिडोर"
+    },
+    "destinationNotes": {
+      "shankarpally": "हमारा गढ़",
+      "mokila": "10 कि.मी. पूर्व",
+      "kokapet": "नियोपोलिस",
+      "tellapur": "पारिवारिक बेल्ट",
+      "financial-district": "कार्यस्थल",
+      "orr-corridor": "रिंग रोड"
+    },
+    "readingLabels": {
+      "hmda-guide": "HMDA स्वीकृति, समझाई गई",
+      "legal-verification": "कानूनी सत्यापन",
+      "registration-process": "तेलंगाना में रजिस्ट्रेशन",
+      "investment-checklist": "25-सूत्री चेकलिस्ट"
+    }
+  },
+  "breadcrumb": {
+    "label": "ब्रेडक्रम्ब",
+    "home": "होम"
+  },
+  "dock": {
+    "ariaLabel": "मोबाइल नेविगेशन",
+    "homes": "घर",
+    "places": "स्थान",
+    "journal": "जर्नल",
+    "chat": "चैट",
+    "chatAria": "व्हाट्सएप पर चैट करें",
+    "visit": "विज़िट"
+  }
+}

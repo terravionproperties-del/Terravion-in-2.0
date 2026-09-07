@@ -1,0 +1,29 @@
+{
+  "lead": {
+    "ariaLabel": "{intent} form",
+    "title": "Arrange your visit",
+    "subtitle": "Tell us when suits you. We will confirm by phone and send the sanctioned layout ahead of the drive.",
+    "sectionLabel": "Your details",
+    "name": { "label": "Name", "placeholder": "Your full name", "autocomplete": "name" },
+    "phone": { "label": "Phone", "placeholder": "+91 …", "autocomplete": "tel" },
+    "email": { "label": "Email", "placeholder": "you@example.com", "autocomplete": "email", "optional": "Optional" },
+    "project": { "label": "Project", "placeholder": "Which community interests you?" },
+    "date": { "label": "Preferred date", "placeholder": "Pick a date" },
+    "message": { "label": "Anything we should know?", "placeholder": "Plot size, budget, timeline…" },
+    "submit": "Request a visit",
+    "submitting": "Sending…",
+    "footnote": "We call once, and only about this enquiry. No lists, no forwarding.",
+    "consent": {
+      "label": "I agree that Terravion Properties may use these details to contact me about this enquiry, as described in the",
+      "linkLabel": "Privacy Policy"
+    },
+    "phonePrompt": "Prefer to talk now? Call {phone}."
+  },
+  "success": {
+    "title": "We have your enquiry",
+    "body": "Someone from the team will call you within one working day. If you would rather not wait, message us on WhatsApp.",
+    "reference": "Reference {reference}"
+  },
+  "required": "Required",
+  "optional": "Optional"
+}

@@ -1,0 +1,17 @@
+{
+  "title": "Contact",
+  "eyebrow": "Talk to us",
+  "intro": "A phone call is usually faster than a form. Both reach the same people.",
+  "office": { "heading": "Office", "hours": "Open daily, 9am to 7pm" },
+  "phone": { "heading": "Phone" },
+  "email": { "heading": "Email" },
+  "whatsapp": { "heading": "WhatsApp", "body": "Message us for the price list or the sanctioned plan." },
+  "map": { "heading": "Find us", "directions": "Get directions" },
+  "form": { "heading": "Send an enquiry", "intent": "Contact" },
+  "siteVisit": {
+    "title": "Book a site visit",
+    "eyebrow": "See it for yourself",
+    "intro": "We will show you the corridors, the approvals and the price logic. You draw your own conclusions.",
+    "intent": "Site visit"
+  }
+}

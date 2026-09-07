@@ -1,0 +1,84 @@
+{
+  "titleTemplate": "%s | Terravion Properties",
+  "defaultTitle": "Terravion Properties — Premium Villa Plots in Shankarpally, Hyderabad",
+  "defaultDescription": "HMDA and DTCP approved villa plots in Shankarpally, West Hyderabad. Sanctioned layouts, clean title, and the documents in your hands before the price.",
+  "keywords": [
+    "villa plots Shankarpally",
+    "HMDA approved plots Hyderabad",
+    "DTCP approved plots",
+    "premium plots West Hyderabad",
+    "Terravion Properties"
+  ],
+  "home": {
+    "title": "Premium Villa Plots in Shankarpally, Hyderabad",
+    "description": "HMDA and DTCP approved villa plots on the ORR Exit 3 corridor. Sanctioned layouts and clean title, shown before the price."
+  },
+  "projects": {
+    "title": "Our Communities",
+    "description": "Approved villa plot communities in Shankarpally, West Hyderabad — extent, plot sizes, availability and pricing for each."
+  },
+  "guides": {
+    "title": "Buyer Guides",
+    "description": "Approvals, paperwork, loans, taxes and construction for plot buyers in Telangana — explained without a sales pitch."
+  },
+  "journal": {
+    "title": "Journal",
+    "description": "Essays on plot investment, Telangana property law, infrastructure and villa living in West Hyderabad."
+  },
+  "locations": {
+    "title": "West Hyderabad Locations",
+    "description": "Shankarpally, Mokila, Kollur, Tellapur and the ORR corridor — what sets price in each."
+  },
+  "investment": {
+    "title": "Investment",
+    "description": "Why land moves in West Hyderabad, what drives price, and what could go wrong. With calculators to run your own numbers."
+  },
+  "about": {
+    "title": "About",
+    "description": "Who Terravion Properties is, how we work, and why every plot is sold with its sanctioned layout attached."
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Call, WhatsApp or visit the Terravion office in Shankarpally, West Hyderabad."
+  },
+  "siteVisit": {
+    "title": "Book a Site Visit",
+    "description": "Walk an approved layout with the sanctioned plan in hand. No obligation."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "description": "What personal data Terravion Properties collects, why, and your rights under India's DPDP Act, 2023."
+  },
+  "terms": {
+    "title": "Terms of Use",
+    "description": "The terms governing this website — project information, GIS visualisations, articles, and your use of them."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "This page does not exist. The projects and the guides are the two places most people are looking for."
+  },
+  "amenities": {
+    "title": "Amenities",
+    "description": "Clubhouse, avenue planting, lit roads and underground services — what is actually built inside a Terravion community."
+  },
+  "gallery": {
+    "title": "Gallery",
+    "description": "The site as it stands today: roads formed, plots pegged, avenue trees in. Photographs, not renders."
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "description": "What buyers say after registration — including the parts that were slower than they expected."
+  },
+  "founder": {
+    "title": "Founder",
+    "description": "The person behind Terravion Properties, and why the paperwork comes before the price."
+  },
+  "emiCalculator": {
+    "title": "EMI Calculator",
+    "description": "Work out the monthly instalment on a plot loan — amount, rate and tenure, with the total interest shown."
+  },
+  "roiCalculator": {
+    "title": "ROI Calculator",
+    "description": "Project what a plot could be worth at your own growth assumption. Illustrative, never a promise."
+  }
+}

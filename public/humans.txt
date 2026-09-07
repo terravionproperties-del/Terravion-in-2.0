@@ -1,0 +1,12 @@
+/* TEAM */
+Company: Terravion Properties
+Location: Shankarpally, Telangana, India
+Contact: +91 93472 59638
+
+/* SITE */
+Standards: HTML5, CSS3, TypeScript
+Framework: Next.js (App Router)
+Motion: GSAP ScrollTrigger, Lenis, Three.js
+Typeface: Fraunces, Instrument Sans
+Doctype: HTML5
+Language: English (en-IN)

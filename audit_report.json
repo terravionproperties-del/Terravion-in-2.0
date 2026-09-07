@@ -1,0 +1,467 @@
+{
+  "totalImages": 84,
+  "http200Images": 84,
+  "duplicateImages": 0,
+  "placeholderImages": 0,
+  "articleFailures": [],
+  "sampleArticles": [
+    {
+      "type": "Guide",
+      "slug": "construction-guide",
+      "path": "/guides/construction-guide",
+      "statusCode": 200,
+      "hasHeroImg": true,
+      "hasTodayStory": true,
+      "hasChapterScene": true,
+      "hasTimeline": true,
+      "hasCallout": true,
+      "hasConclusion": true
+    },
+    {
+      "type": "Guide",
+      "slug": "dtcp-guide",
+      "path": "/guides/dtcp-guide",
+      "statusCode": 200,
+      "hasHeroImg": true,
+      "hasTodayStory": true,
+      "hasChapterScene": true,
+      "hasTimeline": true,
+      "hasCallout": true,
+      "hasConclusion": true
+    },
+    {
+      "type": "Guide",
+      "slug": "how-to-buy-villa-plots",
+      "path": "/guides/how-to-buy-villa-plots",
+      "statusCode": 200,
+      "hasHeroImg": true,
+      "hasTodayStory": true,
+      "hasChapterScene": true,
+      "hasTimeline": true,
+      "hasCallout": true,
+      "hasConclusion": true
+    },
+    {
+      "type": "Guide",
+      "slug": "loan-process",
+      "path": "/guides/loan-process",
+      "statusCode": 200,
+      "hasHeroImg": true,
+      "hasTodayStory": true,
+      "hasChapterScene": true,
+      "hasTimeline": true,
+      "hasCallout": true,
+      "hasConclusion": true
+    },
+    {
+      "type": "Guide",
+      "slug": "rera-guide",
+      "path": "/guides/rera-guide",
+      "statusCode": 200,
+      "hasHeroImg": true,
+      "hasTodayStory": true,
+      "hasChapterScene": true,
+      "hasTimeline": true,
+      "hasCallout": true,
+      "hasConclusion": true
+    },
+    {
+      "type": "Journal",
+      "slug": "future-of-hyderabad-west",
+      "path": "/blog/future-of-hyderabad-west",
+      "statusCode": 200,
+      "hasHeroImg": true,
+      "hasTodayStory": true,
+      "hasChapterScene": true,
+      "hasTimeline": true,
+      "hasCallout": true,
+      "hasConclusion": true
+    },
+    {
+      "type": "Journal",
+      "slug": "negotiating-plot-purchase",
+      "path": "/blog/negotiating-plot-purchase",
+      "statusCode": 200,
+      "hasHeroImg": true,
+      "hasTodayStory": true,
+      "hasChapterScene": true,
+      "hasTimeline": true,
+      "hasCallout": true,
+      "hasConclusion": true
+    },
+    {
+      "type": "Journal",
+      "slug": "reading-layout-plans",
+      "path": "/blog/reading-layout-plans",
+      "statusCode": 200,
+      "hasHeroImg": true,
+      "hasTodayStory": true,
+      "hasChapterScene": true,
+      "hasTimeline": true,
+      "hasCallout": true,
+      "hasConclusion": true
+    },
+    {
+      "type": "Journal",
+      "slug": "shankarpally-growth-story",
+      "path": "/blog/shankarpally-growth-story",
+      "statusCode": 200,
+      "hasHeroImg": true,
+      "hasTodayStory": true,
+      "hasChapterScene": true,
+      "hasTimeline": false,
+      "hasCallout": true,
+      "hasConclusion": true
+    },
+    {
+      "type": "Journal",
+      "slug": "site-visit-checklist",
+      "path": "/blog/site-visit-checklist",
+      "statusCode": 200,
+      "hasHeroImg": true,
+      "hasTodayStory": true,
+      "hasChapterScene": true,
+      "hasTimeline": true,
+      "hasCallout": true,
+      "hasConclusion": true
+    }
+  ],
+  "imageResults": [
+    {
+      "path": "/illustrations/guide-construction-guide.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/guide-documentation-guide.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/guide-dtcp-guide.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/guide-hmda-guide.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/guide-how-to-buy-villa-plots.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/guide-investment-checklist.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/guide-legal-verification.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/guide-loan-process.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/guide-plot-buying-mistakes.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/guide-registration-process.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/guide-rera-guide.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/guide-tax-benefits.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-affordability-migration-west.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-agricultural-vs-residential-land.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-airport-connectivity-west.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-best-investment-locations-hyderabad.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-building-villa-on-plot.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-capital-gains-tax-land.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-chevella-moinabad-belt.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-clubhouse-lifestyle.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-construction-cost-planning.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-down-payment-planning.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-east-vs-west-hyderabad.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-encumbrance-certificate-guide.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-financial-district-spillover.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-first-time-plot-buyer.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-future-city-vision.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-future-of-hyderabad-west.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-gated-community-living.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-gst-real-estate.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-hmda-vs-dtcp.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-hyderabad-real-estate-trends.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-hyderabad-vs-bangalore-realty.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-hyderabad-west-schools.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-iit-hyderabad-kandi-effect.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-industrial-corridors-hyderabad.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-infrastructure-projects-hyderabad.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-it-sector-hyderabad-realty.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-joint-family-property-investment.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-kokapet-neopolis-effect.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-land-appreciation-hyderabad-west.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-land-banking-strategy.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-land-price-drivers.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-luxury-living-west-hyderabad.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-market-cycles-land.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-metro-expansion-west.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-mmts-shankarpally-connectivity.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-mokila-villa-corridor.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-negotiating-plot-purchase.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-nri-guide-plot-investment.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-orr-exit3-corridor.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-orr-growth-story.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-patancheru-industrial-corridor.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-plot-buying-mistakes-stories.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-plot-loan-vs-home-loan.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-plots-vs-apartments.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-plotted-development-boom.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-portfolio-diversification-real-estate.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-property-mutation-telangana.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-reading-layout-plans.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-real-estate-vs-gold-vs-equity.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-regional-ring-road-progress.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-rental-yield-vs-appreciation.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-rera-plotted-developments.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-retirement-investment-villa-plots.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-rrr-hyderabad-impact.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-second-property-investment.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-shankarpally-growth-story.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-shankarpally-vs-kokapet.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-shankarpally-vs-mokila.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-site-visit-checklist.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-small-budget-plot-investment.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-stamp-duty-registration-telangana.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-sustainable-villa-design.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-tax-benefits-property.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-tellapur-kollur-emerging.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-vaastu-villa-plots.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-verify-land-titles.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-villa-design-trends.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-villa-plot-investment-guide.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-weekend-homes-hyderabad.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-why-invest-in-shankarpally.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-women-property-ownership.png",
+      "status": 200
+    },
+    {
+      "path": "/illustrations/blog-young-professionals-land-investment.png",
+      "status": 200
+    }
+  ]
+}

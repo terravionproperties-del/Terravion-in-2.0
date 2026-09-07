@@ -1,0 +1,32 @@
+node_modules/
+.next/
+out/
+build/
+.DS_Store
+*.pem
+npm-debug.log*
+.env*
+!.env.example
+*.tsbuildinfo
+next-env.d.ts
+
+# Master reel + 4K PNG extraction (~8 GB). Not needed to run the site —
+# public/film/ is generated from it by scripts/build-film.mjs.
+frames/
+
+# Playwright MCP capture output
+.playwright-mcp/
+
+# Media assets (to be hosted on Cloudflare R2)
+public/assets/
+public/film/
+public/illustrations/
+public/projects/
+crm/public/assets/
+crm/public/uploads/
+*.mp4
+*.mov
+*.pdf
+
+# release audit output
+reports/

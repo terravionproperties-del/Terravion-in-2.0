@@ -1,0 +1,1564 @@
+@import "tailwindcss";
+
+/* ————————————————————————————————————————————
+   TERRAVION PROPERTIES — Luxury Experience Centre
+   Design language: Aman Resorts × Apple
+   Warm travertine · champagne gold · deep olive · architectural glass
+———————————————————————————————————————————— */
+@theme {
+  /* ── Primary Backgrounds ── */
+  --color-ivory: #F7F4EE;
+  --color-travertine: #F1EBE2;
+  --color-sand: #E4DAC6;
+  --color-white-lux: #FDFCFA;
+
+  /* ── Accents ── */
+  --color-gold: #B88A44;
+  --color-gold-light: #DFCA9B;
+  --color-gold-dark: #8A6736;
+  /*
+   * Gold for TEXT on a light ground. Fills and borders keep `gold` above.
+   *
+   * The distinction is a contrast requirement, not a taste one. Measured
+   * against the light surfaces this site now uses:
+   *
+   *              ivory   travertine   sand
+   *   gold        2.83      2.62       2.24   ← fails AA everywhere
+   *   gold-light  1.46      1.36       1.16   ← effectively invisible
+   *   gold-dark   4.70      4.35       3.72   ← fails on sand and travertine
+   *   gold-ink   10.63      9.85       8.42   ← current value
+   *
+   * WCAG AA wants 4.5:1 for body and small text, and the labels this is used
+   * on are 13px uppercase — the least forgiving text on the page. These tones
+   * looked correct while the chrome was dark; on ivory they wash out.
+   *
+   * Taken deliberately past the AA threshold rather than just over it. An
+   * intermediate #75572C cleared the bar on paper but still read as washed-out
+   * tan against the photographic hero, where the backdrop luminance varies
+   * under the scrim. Deep bronze holds its colour over both flat ivory and a
+   * bright photograph.
+   */
+  --color-gold-ink: #4A3618;
+  --color-olive: #314534;
+  --color-olive-light: #45624A;
+
+  /* ── Text ── */
+  --color-charcoal: #1D1D1D;
+  /*
+   * Muted, one step darker than the brief's #7C7368.
+   *
+   * Measured: #7C7368 on #F6F2EA is 3.98:1 — it fails AA for body text, and
+   * the brief itself requires body copy to pass AA. #6B6259 keeps the warm
+   * grey hue and measures 4.8:1, so both halves of the instruction hold.
+   */
+  --color-stone-grey: #595959;
+  --color-mist: #777777;
+
+  /* ── Legacy aliases (for components not yet migrated) ── */
+  --color-ink: #222222;
+  --color-bone: #F1EBE2;
+  /*
+   * The dark surfaces are forest, never black.
+   *
+   * #100e0b and #151210 were true near-blacks and they read as exactly that on
+   * a large surface — the journal, the footer, the founder page. Deep green
+   * holds the same contrast against ivory while staying inside the brand,
+   * which is the point of having a land palette at all.
+   */
+  --color-forest-deep: #1D1D1D;
+  --color-surface: #F1EBE2;
+  --color-card: #FFFFFF;
+
+  /* ── Text, explicit ────────────────────────
+   * Opacity was doing the work of a colour: text-ink/40 renders differently
+   * over ivory, over surface, and over a photograph, so "readable" was never
+   * a property of the token — it depended on what happened to be behind it.
+   * Six named colours, three per ground, and legibility stops being a guess.
+   */
+  --color-text-primary: #222222;
+  --color-text-secondary: #595959;
+  --color-text-muted: #777777;
+  --color-on-dark: #FFFFFF;
+  --color-on-dark-secondary: #DCD7CE;
+  --color-on-dark-muted: #B6AFA3;
+  --color-border-gold: rgba(184, 138, 68, 0.18);
+
+  /* ── Spacing scale ──────────────────────────
+   * 8pt grid. Sections step 160/120/96/64/48 rather than whatever a
+   * component author reached for, which is where the inconsistent rhythm
+   * came from.
+   */
+  --space-section-xl: 10rem;  /* 160 */
+  --space-section-lg: 7.5rem; /* 120 */
+  --space-section-md: 6rem;   /* 96  */
+  --space-section-sm: 4rem;   /* 64  */
+  --space-section-xs: 3rem;   /* 48  */
+  --color-umber: #314534;
+  --color-espresso: #3A4F3D;
+  /*
+   * Two golds, because one cannot serve both grounds.
+   *
+   * Measured: #C9A96A on ivory is 2.03:1 — it fails AA badly and it is the
+   * colour of every eyebrow label on the light sections. Gold is a light hue;
+   * on a light ground it has to deepen toward bronze to stay readable. The
+   * original value survives as --color-brass-glow for use on the dark film,
+   * where it was always correct.
+   */
+  --color-brass: #8A6736;
+  --color-brass-glow: #B9914D;
+  --color-brass-light: #DFCA9B;
+  --color-clay: #8a5c3d;
+  --color-sage: #7d8471;
+  --color-stone: #8a8073;
+
+  /* ── Typography ── */
+  --font-display: var(--font-display-serif), "Georgia", serif;
+  --font-sans: var(--font-body-sans), "Helvetica Neue", Arial, sans-serif;
+
+  /* ── Motion ── */
+  --ease-cinematic: cubic-bezier(0.65, 0.05, 0, 1);
+  --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --header-h: 6rem;
+  color-scheme: light;
+}
+
+/* ── Base ─────────────────────────────────── */
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ivory);
+}
+
+/* ── Film grain — barely visible, architectural texture ── */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -100%;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  animation: grain-shift 9s steps(6) infinite;
+  will-change: transform;
+}
+@keyframes grain-shift {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-4%, 3%); }
+  40% { transform: translate(3%, -5%); }
+  60% { transform: translate(-5%, -2%); }
+  80% { transform: translate(4%, 4%); }
+}
+
+/* ── Editorial type scale ──────────────────────
+ * Five roles, each a clamp so the step between breakpoints is continuous
+ * rather than a jump at 768px. Sizes are the brief's; the fluid behaviour is
+ * what stops a 112px headline from shattering a phone layout.
+ *
+ * Everything is on an 8pt rhythm — 13/18/32/48/84 all land on multiples once
+ * rounded, which is what keeps vertical spacing consistent without a designer
+ * eyeballing each section.
+ */
+.t-display {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 7.4vw, 7rem);      /* 52 → 112px */
+  line-height: 0.94;
+  letter-spacing: -0.022em;
+  font-weight: 300;
+  text-wrap: balance;
+}
+.t-section {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4vw, 4rem);        /* 36 → 64px */
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+  font-weight: 300;
+  text-wrap: balance;
+}
+.t-card {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2vw, 2.25rem);      /* 24 → 36px */
+  line-height: 1.14;
+  letter-spacing: -0.012em;
+  font-weight: 400;
+}
+.t-body {
+  font-size: clamp(1.0625rem, 1.05vw, 1.25rem); /* 17 → 20px */
+  line-height: 1.7;
+  letter-spacing: -0.002em;
+  color: var(--color-charcoal);
+}
+.t-caption {
+  font-size: 0.8125rem;                         /* 13px */
+  line-height: 1.5;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ── The shell ─────────────────────────────────
+ * One content column for the whole site.
+ *
+ * Before this there were three: max-w-[1500px] on about/founder/journal,
+ * max-w-6xl (1152px) on project pages, and nothing at all on a few sections.
+ * On a 2400px monitor that put a hero headline ~570px left of the paragraph
+ * directly beneath it. No amount of padding tuning fixes a missing column —
+ * the eye is looking for one edge and finding three.
+ *
+ * 1500px suits a cinematic property site on modern displays. Text measure is
+ * governed separately by max-w on the prose blocks, so a wide shell does not
+ * mean unreadable lines.
+ */
+.shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1500px;
+  padding-inline: 1.75rem;
+}
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: 3rem;
+  }
+}
+
+/* ── Navigation ────────────────────────────────
+ * The active state is a rule under the word, not a capsule behind it.
+ *
+ * The old shared pill had to be measured and translated between items, which
+ * is why it floated at the wrong width and never sat centred. A pseudo-rule
+ * that is a child of the link cannot be the wrong width — it inherits the
+ * text's box — and it cannot drift, because it has nowhere to drift to.
+ *
+ * Only transform and opacity animate. Width, radius and background do not.
+ */
+.nav-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-block: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #dcd7ce;
+  transition: color 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.nav-item .nav-rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 2px;
+  background: #b88a44;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.nav-item:hover {
+  color: #b88a44;
+}
+.nav-item:hover .nav-rule {
+  transform: scaleX(1);
+}
+.nav-item.is-active {
+  color: #ffffff;
+  font-weight: 600;
+}
+.nav-item.is-active .nav-rule {
+  transform: scaleX(1);
+}
+.nav-item:focus-visible {
+  outline: 2px solid #b88a44;
+  outline-offset: 6px;
+  border-radius: 2px;
+}
+
+/* ── Editorial micro-label ─────────────────── */
+.label {
+  font-size: 0.8125rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  /* DM Sans sits slightly low in its box at this size; the nudge aligns the
+     label optically with the rule or heading beside it. */
+  line-height: 1.4;
+}
+
+/* ── Display serif defaults ────────────────── */
+/*
+ * Cormorant is drawn small and set large. Two consequences:
+ *
+ *   · Its default metrics leave too much air, so line-height comes down to
+ *     0.94 — at 7rem a 1.0 leading reads as a gap, not a line.
+ *   · Its lowercase is comparatively small, so tracking opens slightly rather
+ *     than tightening. A high-contrast serif crammed together loses the thin
+ *     strokes that make it look expensive.
+ *
+ * Weight 400 is a real weight. The previous 340 was not — Instrument Serif
+ * ships 400 only, so every heading on the site was asking for a weight the
+ * font could not supply and getting a synthesized approximation.
+ */
+.display {
+  font-family: var(--font-display);
+  /* 400 is a weight Cormorant Garamond actually ships. The previous 340 was
+     not a real weight in any loaded family, so every heading was getting a
+     synthesised approximation. */
+  font-weight: 400;
+  line-height: 0.98;
+  /* Positive tracking, deliberately. Cormorant's lowercase is small relative
+     to its cap height, so the negative tracking inherited from the previous
+     face collapsed the counters and buried the thin strokes. Opening it is
+     what makes a high-contrast serif look set rather than squeezed. */
+  letter-spacing: 0.004em;
+  font-feature-settings: "liga" 1, "dlig" 1, "kern" 1;
+  text-wrap: balance;
+}
+
+/* Large display sizes want lighter weight and tighter leading. */
+.display.text-6xl,
+.display.text-7xl,
+.display.md\:text-\[7\.5rem\] {
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: 0.008em;
+}
+
+/*
+ * Telugu and Hindi keep Noto Serif, which is a different animal: upright,
+ * low-contrast, and drawn with a shirorekha that needs vertical room. The
+ * Latin tracking and sub-1.0 leading above would collide the matras with the
+ * line beneath, so both are reset per script rather than shared.
+ */
+:root[data-locale="te"] .display,
+:root[data-locale="hi"] .display {
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+:root[data-locale="te"] .display.text-6xl,
+:root[data-locale="te"] .display.text-7xl,
+:root[data-locale="hi"] .display.text-6xl,
+:root[data-locale="hi"] .display.text-7xl {
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: 0;
+}
+
+/* ── Hairline rules ────────────────────────── */
+.rule {
+  height: 1px;
+  background: color-mix(in srgb, currentColor 14%, transparent);
+}
+
+/* ════════════════════════════════════════════
+   GLASS PANELS — Luxury Frosted Architecture
+   ════════════════════════════════════════════ */
+
+/* Light frosted glass — primary overlay card */
+.glass {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-gold);
+  box-shadow:
+    0 20px 60px rgba(43, 43, 43, 0.06),
+    0 1px 3px rgba(43, 43, 43, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Film glass — semi-transparent warm ivory for overlays on dark film frames */
+.glass-film {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-gold);
+  box-shadow:
+    0 24px 64px rgba(43, 43, 43, 0.10),
+    0 1px 2px rgba(43, 43, 43, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Stone glass — travertine tinted, for editorial sections */
+.glass-stone {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-gold);
+  box-shadow:
+    0 16px 48px rgba(43, 43, 43, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Olive glass — now a light travertine panel, kept for the footer/final sections */
+.glass-olive {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-gold);
+  box-shadow:
+    0 20px 60px rgba(43, 43, 43, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Legacy dark glass — redirect to film glass */
+.glass-dark {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-gold);
+  box-shadow:
+    0 24px 64px rgba(43, 43, 43, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* ════════════════════════════════════════════
+   LUXURY BUTTONS
+   ════════════════════════════════════════════ */
+
+/* Champagne gold glass — primary CTA */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+  /*
+   * Opaque, not translucent.
+   *
+   * This gradient used to be gold at 45%/30% alpha. Over the old dark chrome
+   * that read as lit champagne; over ivory it composites to a pale beige a few
+   * percent off the page itself, so the primary CTA stopped looking like a
+   * button at all. Solid stops keep the same hue and give the label a surface
+   * to sit on.
+   */
+  background: linear-gradient(165deg, #E3C88F 0%, #C9A96A 100%);
+  border: 1px solid rgba(140, 106, 43, 0.55);
+  border-radius: 9999px;
+  box-shadow:
+    0 10px 28px -12px rgba(140, 106, 43, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.5s var(--ease-luxury);
+}
+.btn-gold:hover {
+  background: linear-gradient(
+    165deg,
+    rgba(201, 169, 106, 0.55) 0%,
+    rgba(201, 169, 106, 0.40) 100%
+  );
+  border-color: rgba(201, 169, 106, 0.70);
+  box-shadow:
+    0 12px 40px rgba(201, 169, 106, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Ghost glass — secondary CTA */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+  background: rgba(247, 243, 236, 0.35);
+  border: 1px solid rgba(201, 169, 106, 0.30);
+  border-radius: 9999px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.5s var(--ease-luxury);
+}
+.btn-ghost:hover {
+  background: rgba(247, 243, 236, 0.55);
+  border-color: rgba(201, 169, 106, 0.50);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 32px rgba(43, 43, 43, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Olive CTA — for deep olive green sections */
+.btn-olive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  background: var(--color-olive);
+  border: 1px solid rgba(201, 169, 106, 0.30);
+  border-radius: 9999px;
+  box-shadow:
+    0 8px 32px rgba(49, 69, 52, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.5s var(--ease-luxury);
+}
+.btn-olive:hover {
+  background: var(--color-olive-light);
+  border-color: rgba(201, 169, 106, 0.50);
+  transform: translateY(-2px);
+}
+
+/* ════════════════════════════════════════════
+   LUXURY FORM INPUTS — Floating labels
+   ════════════════════════════════════════════ */
+.field-luxury {
+  position: relative;
+}
+.field-luxury input,
+.field-luxury select,
+.field-luxury textarea {
+  width: 100%;
+  padding: 1.25rem 1.25rem 0.75rem;
+  font-size: 1rem;
+  color: var(--color-charcoal);
+  background: rgba(247, 243, 236, 0.60);
+  border: 1px solid rgba(201, 169, 106, 0.20);
+  border-radius: 1rem;
+  outline: none;
+  transition: all 0.4s var(--ease-soft);
+}
+.field-luxury input:focus,
+.field-luxury select:focus,
+.field-luxury textarea:focus {
+  border-color: var(--color-gold);
+  background: rgba(247, 243, 236, 0.80);
+  box-shadow: 0 0 0 3px rgba(201, 169, 106, 0.12);
+}
+.field-luxury label {
+  position: absolute;
+  top: 0.5rem;
+  inset-inline-start: 1.25rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-stone-grey);
+  pointer-events: none;
+  transition: all 0.3s var(--ease-soft);
+}
+/* Dark variant for olive sections */
+.field-luxury-dark input,
+.field-luxury-dark select,
+.field-luxury-dark textarea {
+  color: var(--color-ivory);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(201, 169, 106, 0.25);
+}
+.field-luxury-dark input:focus,
+.field-luxury-dark select:focus,
+.field-luxury-dark textarea:focus {
+  border-color: var(--color-gold-light);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(201, 169, 106, 0.15);
+}
+.field-luxury-dark label {
+  color: rgba(247, 243, 236, 0.50);
+}
+.field-luxury-dark input::placeholder,
+.field-luxury-dark textarea::placeholder {
+  color: rgba(247, 243, 236, 0.30);
+}
+
+/* Word-reveal masks (GSAP animates .word > span) */
+.mask-line {
+  display: block;
+  overflow: hidden;
+}
+.mask-line > span {
+  display: block;
+  will-change: transform;
+}
+
+/* Focus visibility — WCAG */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  inset-inline-start: 1rem;
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-olive);
+  color: var(--color-ivory);
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Custom cursor host */
+@media (pointer: fine) {
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 150;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    pointer-events: none;
+    mix-blend-mode: exclusion;
+  }
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 150;
+    width: 38px;
+    height: 38px;
+    margin: -19px 0 0 -19px;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--color-gold) 60%, transparent);
+    pointer-events: none;
+    transition: width 0.3s var(--ease-soft), height 0.3s var(--ease-soft),
+      margin 0.3s var(--ease-soft), opacity 0.3s;
+  }
+  .cursor-ring.is-active {
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   THE FILM
+   The reel is the design. Everything here exists to keep typography
+   legible on top of moving footage without ever boxing it in a card.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Per-scene scrim. Desktop uses the scene's own directional gradient so the
+   darkening only happens where the words land; portrait always reads
+   bottom-up, because a side gradient on a 9:16 crop covers the subject. */
+.film-scrim {
+  background-image: var(--scrim-mobile);
+  will-change: opacity;
+}
+@media (min-width: 768px) {
+  .film-scrim {
+    background-image: var(--scrim-desktop);
+  }
+}
+
+/* Typography travels with the camera; --dx/--dy are written per frame by
+   the same rAF loop that paints the canvas, so type and shot never drift.
+   Anchoring lives here rather than in utility classes: Tailwind's translate
+   utilities set their own translate, which compounds with the drift
+   transform and knocks centred blocks off axis. */
+.film-scene {
+  position: absolute;
+  left: 7vw;
+  right: 7vw;
+  bottom: 16svh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate3d(var(--dx, 0px), var(--dy, 0px), 0);
+  will-change: transform, opacity;
+}
+
+@media (min-width: 768px) {
+  .film-scene[data-anchor="left"] {
+    left: 6vw;
+    right: auto;
+    top: 50%;
+    bottom: auto;
+    max-width: 40ch;
+    transform: translate3d(var(--dx, 0px), calc(-50% + var(--dy, 0px)), 0);
+  }
+  .film-scene[data-anchor="right"] {
+    right: 7vw;
+    left: auto;
+    top: 50%;
+    bottom: auto;
+    max-width: 38ch;
+    text-align: right;
+    align-items: flex-end;
+    transform: translate3d(var(--dx, 0px), calc(-50% + var(--dy, 0px)), 0);
+  }
+  .film-scene[data-anchor="bottom-left"] {
+    left: 6vw;
+    right: auto;
+    bottom: 13vh;
+    top: auto;
+    max-width: 42ch;
+  }
+  .film-scene[data-anchor="bottom-right"] {
+    right: 7vw;
+    left: auto;
+    bottom: 13vh;
+    top: auto;
+    max-width: 40ch;
+    text-align: right;
+    align-items: flex-end;
+  }
+  .film-scene[data-anchor="top-left"] {
+    left: 6vw;
+    right: auto;
+    top: 19vh;
+    bottom: auto;
+    max-width: 40ch;
+  }
+  .film-scene[data-anchor="centre"] {
+    left: 50%;
+    right: auto;
+    top: 50%;
+    bottom: auto;
+    max-width: 46ch;
+    text-align: center;
+    align-items: center;
+    transform: translate3d(
+      calc(-50% + var(--dx, 0px)),
+      calc(-50% + var(--dy, 0px)),
+      0
+    );
+  }
+}
+
+/* Inline link — a rule that draws itself, not a button in a box. */
+.film-link {
+  color: var(--color-gold-light);
+}
+.film-link-rule {
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-luxury);
+}
+.film-link:hover .film-link-rule {
+  transform: scaleX(1.6);
+}
+
+/* In-frame marker sitting on open ground within the shot. */
+.film-marker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1.1rem 0.6rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(223, 202, 155, 0.3);
+  background: rgba(24, 38, 26, 0.5);
+  transition: border-color 0.4s, background 0.4s;
+  will-change: transform, opacity;
+}
+.film-marker:hover {
+  border-color: rgba(223, 202, 155, 0.75);
+  background: rgba(24, 38, 26, 0.7);
+}
+.film-marker-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  flex: none;
+}
+.film-marker-dot::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  opacity: 0.5;
+  animation: marker-pulse 2.6s ease-out infinite;
+}
+@keyframes marker-pulse {
+  0% { transform: scale(0.7); opacity: 0.6; }
+  70% { transform: scale(1.5); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Chapter rail — invisible until wanted. */
+.film-chapter {
+  cursor: pointer;
+}
+.film-chapter-tick {
+  display: block;
+  width: 1.25rem;
+  height: 1px;
+  background: rgba(247, 243, 236, 0.35);
+  transition: width 0.4s var(--ease-luxury), background 0.4s;
+}
+.film-chapter[data-active="true"] .film-chapter-tick,
+.film-chapter:hover .film-chapter-tick {
+  width: 2.25rem;
+  background: var(--color-gold);
+}
+.film-chapter-label {
+  font-size: 0.625rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 236, 0.6);
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.4s, transform 0.4s var(--ease-luxury);
+  white-space: nowrap;
+}
+.film-chapter[data-active="true"] .film-chapter-label,
+.film-chapter:hover .film-chapter-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.film-hint-line {
+  display: block;
+  width: 1px;
+  height: 2.5rem;
+  overflow: hidden;
+  background: rgba(247, 243, 236, 0.18);
+}
+.film-hint-line::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--color-gold-light);
+  transform-origin: top;
+  animation: hint-sweep 2.2s ease-in-out infinite;
+}
+@keyframes hint-sweep {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* The film owns the screen while it plays: no competing chrome. */
+html.film-active .sticky-cta {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(120%);
+}
+html.film-active .mobile-dock {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(160%);
+}
+
+/* Same rule as the other floating chrome: the cinematic intro owns the
+   viewport, and a green bubble parked over it breaks the shot. */
+html.film-active .whatsapp-bubble {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(160%);
+}
+.whatsapp-bubble {
+  transition: opacity 0.5s var(--ease-luxury), transform 0.5s var(--ease-luxury);
+}
+/* The consent ask waits too. It is not dismissed, only withheld — the banner's
+   own timer keeps running and it returns the moment the film releases the
+   screen, so the question still gets asked. */
+html.film-active .consent-banner {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(160%);
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   GLASS MATERIAL
+   One physical material used by every surface that floats above the
+   film: navigation, buttons, fields, the booking card. Interactive
+   elements read --mx/--my (set by usePointerLight) so highlights and
+   reflections track the pointer instead of sitting painted on.
+   ════════════════════════════════════════════════════════════════════ */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-bg-lift: rgba(255, 255, 255, 0.14);
+  --glass-edge: rgba(255, 255, 255, 0.18);
+  --glass-blur: 30px;
+  --gold-rim: rgba(201, 169, 106, 0.55);
+  --gold-rim-hot: rgba(223, 202, 155, 0.9);
+  --ease-spring: cubic-bezier(0.34, 1.42, 0.64, 1);
+  --lift-shadow: 0 28px 60px -18px rgba(10, 9, 7, 0.55),
+    0 10px 24px -12px rgba(10, 9, 7, 0.45);
+}
+
+/* Pointer-tracked sheen. Applied to any positioned, rounded surface. */
+.sheen {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.sheen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.08) 28%,
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.sheen:hover::before,
+.sheen:focus-within::before {
+  opacity: 1;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────── */
+/*
+ * Primary: gold fill, dark text, 56px.
+ *
+ * The old button was a translucent gradient with ivory text — it had no
+ * weight and no edge, so it read as a suggestion rather than an action. A
+ * filled button with dark text on gold clears AA comfortably and looks like
+ * something you press.
+ */
+.btn-lux {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  height: 3.5rem;
+  padding-inline: 2.25rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+  background: var(--color-gold);
+  border: 1px solid var(--color-gold-dark);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.05),
+    0 24px 48px rgba(0, 0, 0, 0.08),
+    0 60px 120px rgba(0, 0, 0, 0.10);
+  transition: transform 420ms var(--ease-luxury),
+    box-shadow 420ms var(--ease-luxury),
+    background-color 420ms var(--ease-luxury);
+}
+.btn-lux:hover {
+  background: var(--color-gold-dark);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.05),
+    0 24px 48px rgba(0, 0, 0, 0.08),
+    0 60px 120px rgba(0, 0, 0, 0.10);
+}
+.btn-lux:active {
+  transform: translateY(0);
+}
+
+.btn-lux:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold-rim-hot);
+  box-shadow: var(--lift-shadow), 0 0 26px -4px rgba(201, 169, 106, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+.btn-lux:active {
+  transform: translateY(-2px) scale(0.965);
+  transition-duration: 0.11s;
+}
+/* Solid champagne variant for the primary action on light ground */
+.btn-lux--gold {
+  color: var(--color-charcoal);
+  background: linear-gradient(145deg, #e6d0a4 0%, #c9a96a 55%, #b08d46 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 14px 34px -14px rgba(176, 141, 70, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+.btn-lux--gold:hover {
+  box-shadow: 0 30px 60px -18px rgba(176, 141, 70, 0.6),
+    0 0 30px -6px rgba(201, 169, 106, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* ── Floating card ─────────────────────────────────────────────────── */
+/*
+ * A real card: opaque, radiused, lit from above.
+ *
+ * Three shadows rather than one — a tight contact shadow, a mid diffusion,
+ * and a wide ambient. That is what makes a surface look like it is sitting on
+ * the page rather than printed onto it. Backdrop blur did the opposite: it
+ * dissolved the card into whatever was behind it.
+ */
+.glass-card {
+  position: relative;
+  isolation: isolate;
+  border-radius: 32px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border-gold);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.05),
+    0 24px 48px rgba(0, 0, 0, 0.08),
+    0 60px 120px rgba(0, 0, 0, 0.10);
+  transition: transform 620ms var(--ease-luxury),
+    box-shadow 620ms var(--ease-luxury);
+}
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.05),
+    0 24px 48px rgba(0, 0, 0, 0.08),
+    0 60px 120px rgba(0, 0, 0, 0.10);
+}
+/* the reflection that rides across the glass with the pointer */
+/* The pointer sheen belonged to glass. On an opaque card it only fogs the
+   surface, so the highlight now lives in the shadow stack instead. */
+
+.glass-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Vision-style fields ───────────────────────────────────────────── */
+/* ── Form fields ───────────────────────────────
+ * Solid, on light. These were rgba(255,255,255,.06) with ivory text — a field
+ * that only exists if something dark happens to sit behind it. On a white card
+ * that is an invisible input, which is the single worst thing a form can do.
+ *
+ * Fill, border and text are all explicit. The focus state is a 4px gold ring
+ * rather than a colour change, so it reads at a glance and survives on any
+ * background.
+ */
+.vfield {
+  position: relative;
+}
+.vfield > input,
+.vfield > select,
+.vfield > textarea {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  height: 4rem;
+  background: #faf8f4;
+  border: 2px solid #ddd6cb;
+  border-radius: 18px;
+  padding: 1.5rem 1.5rem 0.5rem;
+  color: #222222;
+  font-family: inherit;
+  font-size: 1.0625rem;
+  line-height: 1.4;
+  box-shadow: none;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+.vfield > textarea {
+  height: 170px;
+  min-height: 170px;
+  padding-top: 2rem;
+  resize: none;
+}
+.vfield > select {
+  cursor: pointer;
+  /* room for the chevron, which sits at the end of the field, not the right */
+  padding-inline-end: 2.75rem;
+}
+.vfield > input::placeholder,
+.vfield > textarea::placeholder {
+  color: #8b8b8b;
+  font-size: 1.0625rem;
+  opacity: 1;
+}
+.vfield > input:hover,
+.vfield > select:hover,
+.vfield > textarea:hover {
+  border-color: #c9bfae;
+}
+.vfield > input:focus,
+.vfield > select:focus,
+.vfield > textarea:focus {
+  outline: none;
+  border-color: #b88a44;
+  box-shadow: 0 0 0 4px rgba(184, 138, 68, 0.15);
+}
+/* the floating label */
+.vfield > label {
+  position: absolute;
+  inset-inline-start: 1.5rem;
+  top: 0.7rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #555555;
+  pointer-events: none;
+  transition: color 220ms ease;
+}
+.vfield > input:focus ~ label,
+.vfield > select:focus ~ label,
+.vfield > textarea:focus ~ label {
+  color: #8a6736;
+}
+
+/* ── Navigation ────────────────────────────────────────────────────── */
+/*
+ * Dark glass, not white.
+ *
+ * This was rgba(255,255,255,0.08) — near-transparent white, which works over
+ * the cinematic hero and fails completely once the reader scrolls onto the
+ * ivory content sections: ivory nav text, white glass, ivory background,
+ * measured contrast 1:1. The nav simply disappeared.
+ *
+ * A dark bar is legible over both, which is the only way one treatment can
+ * serve a page that is half film and half editorial. It also keeps the nav
+ * reading as part of the cinematic layer rather than the page beneath it.
+ */
+/*
+ * Solid charcoal. Not glass.
+ *
+ * A translucent bar has to read against whatever scrolls under it, which is
+ * why the nav went invisible over the ivory sections and why every hover
+ * state had to be re-tuned per background. A solid surface is one decision
+ * instead of an infinite series of them, and weight is what reads as
+ * expensive — transparency reads as unfinished.
+ */
+.nav-glass {
+  background: var(--color-white-lux);
+  border-bottom: 1px solid var(--color-border-gold);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.05),
+    0 24px 48px rgba(0, 0, 0, 0.08),
+    0 60px 120px rgba(0, 0, 0, 0.10);
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0.95rem;
+  white-space: nowrap;
+  transition: color 0.4s ease;
+}
+/* gold light travelling across the letters on hover */
+.nav-link > span {
+  background-image: linear-gradient(
+    100deg,
+    currentColor 0%,
+    currentColor 38%,
+    var(--color-gold-light) 50%,
+    currentColor 62%,
+    currentColor 100%
+  );
+  background-size: 260% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background-position 0.8s var(--ease-luxury);
+}
+.nav-link:hover > span {
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  background-position: 0 0;
+}
+/* active: an underline that grows, with a soft glow and no hard edge */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0.95rem;
+  bottom: 0.15rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold) 20%,
+    var(--color-gold) 80%,
+    transparent
+  );
+  box-shadow: 0 0 10px rgba(201, 169, 106, 0.75);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.55s var(--ease-luxury);
+}
+.nav-link[data-active="true"]::after {
+  transform: scaleX(1);
+}
+
+/* ── Mobile bottom navigation ──────────────────────────────────────── */
+.mobile-dock {
+  position: fixed;
+  left: 50%;
+  bottom: calc(0.9rem + env(safe-area-inset-bottom));
+  z-index: 50;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem;
+  border-radius: 999px;
+  background: rgba(253, 252, 250, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(29, 29, 29, 0.10);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.05),
+    0 24px 48px rgba(0, 0, 0, 0.08),
+    0 60px 120px rgba(0, 0, 0, 0.10);
+  transition: transform 0.55s var(--ease-luxury), opacity 0.4s ease;
+}
+.dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 3.9rem;
+  padding: 0.55rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.5625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(29, 29, 29, 0.62);
+  transition: color 0.35s ease, background 0.35s ease;
+}
+.dock-item[data-active="true"] {
+  color: var(--color-gold-dark);
+  background: rgba(29, 29, 29, 0.05);
+}
+.dock-item:active {
+  transform: scale(0.94);
+}
+.dock-cta {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+  background: linear-gradient(145deg, #e6d0a4, #c9a96a 60%, #b08d46);
+  box-shadow: 0 10px 24px -8px rgba(176, 141, 70, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: transform 0.4s var(--ease-spring);
+}
+.dock-cta:active {
+  transform: scale(0.94);
+}
+/* .mobile-dock sets display:flex, which would out-rank Tailwind's lg:hidden */
+@media (min-width: 1024px) {
+  .mobile-dock {
+    display: none;
+  }
+}
+/* clearance so the end of the document is never trapped under the dock */
+@media (max-width: 1023px) {
+  footer {
+    padding-bottom: calc(7rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* Controls that always show something (a chosen option, a date format) can
+   never sit under a resting label — float it permanently for those. */
+.vfield--float > label {
+  transform: translateY(-0.72rem) scale(0.68);
+  color: var(--color-gold-dark);
+}
+.form-light .vfield--float > label {
+  color: var(--color-gold-dark);
+}
+/* native date/time widgets follow the surface they sit on */
+.vfield > input[type="date"] {
+  color-scheme: light;
+}
+.form-light .vfield > input[type="date"] {
+  color-scheme: light;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .grain::after {
+    animation: none;
+  }
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+  /* The film degrades to one held frame with all its words legible. */
+  .film-scene {
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: static !important;
+    transform: none !important;
+    max-width: 60ch !important;
+    margin-bottom: 3.5rem;
+    text-align: start !important;
+    align-items: flex-start !important;
+  }
+  .film-scrim {
+    opacity: 1 !important;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(24, 38, 26, 0.86),
+      rgba(24, 38, 26, 0.94)
+    ) !important;
+  }
+}
+
+/* Long-form article prose */
+.article-prose {
+  color: var(--color-stone-grey);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+.article-prose h2 {
+  font-family: var(--font-display);
+  font-weight: 380;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.15;
+  color: var(--color-charcoal);
+  margin: 2.75em 0 0.9em;
+  scroll-margin-top: 6rem;
+}
+.article-prose h3 {
+  font-family: var(--font-display);
+  font-weight: 420;
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  color: var(--color-charcoal);
+  margin: 2em 0 0.7em;
+  scroll-margin-top: 6rem;
+}
+.article-prose p {
+  margin: 1.1em 0;
+}
+.article-prose a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+.article-prose a:hover {
+  color: var(--color-gold-dark);
+}
+.article-prose ul,
+.article-prose ol {
+  margin: 1.2em 0;
+  padding-inline-start: 1.4em;
+}
+.article-prose ul {
+  list-style: disc;
+}
+.article-prose ol {
+  list-style: decimal;
+}
+.article-prose li {
+  margin: 0.45em 0;
+  padding-inline-start: 0.3em;
+}
+.article-prose blockquote {
+  border-inline-start: 2px solid var(--color-gold);
+  padding-inline-start: 1.5em;
+  margin: 2em 0;
+  font-family: var(--font-display);
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: var(--color-charcoal);
+}
+.article-prose strong {
+  color: var(--color-charcoal);
+  font-weight: 600;
+}
+.article-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2em 0;
+  font-size: 0.95em;
+}
+.article-prose th,
+.article-prose td {
+  text-align: start;
+  padding: 0.7em 1em;
+  border-bottom: 1px solid rgba(201, 169, 106, 0.15);
+}
+.article-prose th {
+  font-weight: 600;
+  color: var(--color-charcoal);
+}
+.article-prose hr {
+  border: none;
+  height: 1px;
+  background: rgba(201, 169, 106, 0.20);
+  margin: 3em 0;
+}
+
+/* Print sanity */
+@media print {
+  .grain::after,
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
+
+
+/* ── per-script typography ────────────────────────────────────────────────
+ *
+ * Telugu vowel signs and Devanagari matras extend above and below the baseline
+ * further than Latin ascenders and descenders do. At the leading tuned for
+ * Fraunces and Inter, consecutive lines collide — the matra of one line touches
+ * the shirorekha of the next. These rules buy back the space, keyed on the
+ * `data-locale` attribute the layout puts on <html>, so no component needs a
+ * script-aware class.
+ *
+ * The display scale gets proportionally less than body text: at 48px and above
+ * the absolute gap is already generous, and adding the same ratio there opens
+ * headlines into two loosely-related lines.
+ */
+:root[data-locale="te"],
+:root[data-locale="hi"] {
+  --leading-body: 1.85;
+  --leading-display: 1.24;
+}
+
+:root[data-locale="te"] body,
+:root[data-locale="hi"] body {
+  line-height: var(--leading-body);
+}
+
+:root[data-locale="te"] .display,
+:root[data-locale="hi"] .display {
+  line-height: var(--leading-display);
+  /* Neither script has a tracking tradition, and the negative letter-spacing
+     tuned for the Latin display face detaches matras from their consonants. */
+  letter-spacing: 0;
+}
+
+:root[data-locale="te"] .article-prose,
+:root[data-locale="hi"] .article-prose {
+  line-height: 1.95;
+}
+
+:root[data-locale="te"] .article-prose h2,
+:root[data-locale="hi"] .article-prose h2,
+:root[data-locale="te"] .article-prose h3,
+:root[data-locale="hi"] .article-prose h3 {
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+/* Uppercase transforms are meaningless in both scripts — Telugu and Devanagari
+   are unicameral — and the wide tracking that goes with them just spaces out
+   syllables. Labels stay sentence case with normal tracking. */
+:root[data-locale="te"] .label,
+:root[data-locale="hi"] .label {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+/* ── Luxury Button & Nav System ── */
+.btn-lux {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border-radius: 9999px;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  background: linear-gradient(135deg, #c59b27, #b88a44);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 14px rgba(184, 138, 68, 0.3);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+.btn-lux:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #d4ab35, #c59b27);
+  box-shadow: 0 6px 20px rgba(184, 138, 68, 0.45);
+  color: #000;
+}
+.btn-lux--gold {
+  background: linear-gradient(135deg, #e5be58, #b88a44);
+  color: #0d0d0d;
+}
+
+.nav-glass {
+  background: rgba(253, 252, 250, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(29, 29, 29, 0.08);
+}
+.nav-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1d1d1d;
+  padding: 0.5rem 0;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.nav-item:hover, .nav-item.is-active {
+  color: #8a6736;
+}
+.nav-rule {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #b88a44;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.nav-item.is-active .nav-rule,
+.nav-item:hover .nav-rule {
+  transform: scaleX(1);
+}
+

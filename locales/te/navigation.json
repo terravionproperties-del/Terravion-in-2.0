@@ -1,0 +1,77 @@
+{
+  "primaryLabel": "ప్రధాన నావిగేషన్",
+  "mobileLabel": "మొబైల్ నావిగేషన్",
+  "skipToContent": "నేరుగా విషయానికి వెళ్లండి",
+  "openMenu": "మెనూ తెరవండి",
+  "closeMenu": "మెనూ మూసివేయండి",
+  "home": "హోమ్",
+  "projects": "ప్రాజెక్టులు",
+  "gis": "జీఐఎస్ మాస్టర్ ప్లాన్",
+  "locations": "ప్రాంతాలు",
+  "guides": "గైడ్‌లు",
+  "journal": "జర్నల్",
+  "investment": "పెట్టుబడి",
+  "about": "మా గురించి",
+  "amenities": "సౌకర్యాలు",
+  "gallery": "గ్యాలరీ",
+  "testimonials": "కొనుగోలుదారుల మాట",
+  "contact": "సంప్రదించండి",
+  "privacy": "గోప్యతా విధానం",
+  "terms": "వినియోగ నిబంధనలు",
+  "founder": "వ్యవస్థాపకుడు",
+  "tools": "సాధనాలు",
+  "emiCalculator": "EMI కాలిక్యులేటర్",
+  "roiCalculator": "ROI కాలిక్యులేటర్",
+  "bookVisit": "సైట్ సందర్శన బుక్ చేయండి",
+  "megaMenu": {
+    "projectsHeading": "మా కమ్యూనిటీలు",
+    "locationsHeading": "పశ్చిమ హైదరాబాద్",
+    "guidesHeading": "కొనే ముందు",
+    "viewAllProjects": "అన్ని ప్రాజెక్టులు",
+    "viewAllLocations": "అన్ని ప్రాంతాలు",
+    "viewAllGuides": "అన్ని గైడ్‌లు",
+    "latest": "తాజా",
+    "allEssays": "అన్ని వ్యాసాలు",
+    "bookVisit": "సందర్శన బుక్ చేయండి",
+    "featuredCaption": "45 ఎకరాలు · 475 ప్లాట్లు · క్లబ్‌హౌస్",
+    "latestArticle": {
+      "title": "శంకర్‌పల్లి వృద్ధి కథ",
+      "excerpt": "రైలు పట్టణం నుండి విల్లా కారిడార్ వరకు — ఏమి మారింది, ORR కు పశ్చిమాన ఉన్న భూమికి దాని అర్థం ఏమిటి."
+    },
+    "places": {
+      "shankarpally": "శంకర్‌పల్లి",
+      "mokila": "మోకిల",
+      "kokapet": "కోకాపేట",
+      "tellapur": "తెల్లాపూర్",
+      "financial-district": "ఫైనాన్షియల్ డిస్ట్రిక్ట్",
+      "orr-corridor": "ORR కారిడార్"
+    },
+    "destinationNotes": {
+      "shankarpally": "మా స్వస్థలం",
+      "mokila": "10 కి.మీ. తూర్పు",
+      "kokapet": "నియోపొలిస్",
+      "tellapur": "కుటుంబ ప్రాంతం",
+      "financial-district": "పని ప్రదేశం",
+      "orr-corridor": "రింగ్ రోడ్డు"
+    },
+    "readingLabels": {
+      "hmda-guide": "HMDA అనుమతి — వివరణ",
+      "legal-verification": "చట్టపరమైన పరిశీలన",
+      "registration-process": "తెలంగాణలో రిజిస్ట్రేషన్",
+      "investment-checklist": "25-అంశాల చెక్‌లిస్ట్"
+    }
+  },
+  "breadcrumb": {
+    "label": "బ్రెడ్‌క్రంబ్",
+    "home": "హోమ్"
+  },
+  "dock": {
+    "ariaLabel": "మొబైల్ నావిగేషన్",
+    "homes": "ఇళ్లు",
+    "places": "ప్రాంతాలు",
+    "journal": "జర్నల్",
+    "chat": "చాట్",
+    "chatAria": "వాట్సాప్‌లో చాట్ చేయండి",
+    "visit": "సందర్శన"
+  }
+}

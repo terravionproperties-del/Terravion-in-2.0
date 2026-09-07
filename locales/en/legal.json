@@ -1,0 +1,142 @@
+{
+  "privacy": {
+    "title": "Privacy Policy",
+    "updatedLabel": "Last updated",
+    "updated": "August 2026",
+    "intro": "Terravion Properties (\"we\", \"us\") operates this website to present our plotted-development projects and to help you arrange a site visit. This policy explains, in plain language, what personal data we collect, why we collect it, and the choices you have. It is written to align with India's Digital Personal Data Protection Act, 2023 (DPDP Act) and the rules made under it.",
+    "sections": [
+      {
+        "h": "Who we are",
+        "body": [
+          "The data fiduciary for this website is Terravion Properties, Shankarpally, Ranga Reddy district, Telangana, India. You can reach us for anything in this policy at info@terravionproperties.com or +91 93472 59638."
+        ]
+      },
+      {
+        "h": "What we collect, and why",
+        "body": [
+          "Enquiry and site-visit forms: your name, phone number, and — if you choose to give them — a project of interest, a preferred visit date, and a free-text note. We use these solely to respond to your enquiry, arrange the visit you asked for, and follow up on that conversation.",
+          "Campaign context: if you arrive from an advertisement, the page may record standard campaign parameters (UTM tags, click identifiers), the page you landed on, and the referring site. We use these to understand which of our advertising works. They are attached to your enquiry, not tracked across other websites by us.",
+          "Technical logs: like nearly every website, our hosting infrastructure records IP addresses and request logs for security and reliability. These are kept briefly and are not used to profile you.",
+          "We do not collect financial information, government identifiers, or any sensitive personal data through this website. We do not knowingly collect data from children."
+        ]
+      },
+      {
+        "h": "Consent",
+        "body": [
+          "We process your enquiry data on the basis of your consent, given when you submit a form after ticking the consent box. Consent is specific to the purpose stated on the form — responding to your enquiry — and is never a condition for simply browsing the site.",
+          "You may withdraw consent at any time by writing to info@terravionproperties.com. Withdrawal is as easy as giving consent, and after withdrawal we will stop processing your data for that purpose unless the law requires otherwise."
+        ]
+      },
+      {
+        "h": "Who we share it with",
+        "body": [
+          "Your enquiry is delivered to our sales team through our customer-relationship system, and — where you choose the WhatsApp hand-off — through WhatsApp, whose own terms and privacy policy apply to that conversation.",
+          "We use service providers (hosting, analytics, CRM) strictly as processors under contract. We do not sell your personal data, and we do not share it with other marketers."
+        ]
+      },
+      {
+        "h": "How long we keep it",
+        "body": [
+          "Enquiry records are retained while the conversation is live and for a reasonable period afterwards for follow-up and legal record-keeping, after which they are deleted or anonymised. If you withdraw consent or ask for erasure, we delete your data unless a legal obligation requires us to retain it."
+        ]
+      },
+      {
+        "h": "Your rights",
+        "body": [
+          "Under the DPDP Act you have the right to access a summary of your personal data and how it has been processed; to correction and erasure; to grievance redressal; and to nominate a person to exercise your rights if you are unable to.",
+          "To exercise any of these, write to info@terravionproperties.com with the subject \"Data request\". We respond within the timelines the law prescribes. If you are not satisfied with our response, you may complain to the Data Protection Board of India."
+        ]
+      },
+      {
+        "h": "Security",
+        "body": [
+          "We use reasonable technical and organisational safeguards — encrypted transport, access controls, and minimal collection in the first place. No system is perfectly secure; if a breach affecting your data ever occurs, we will notify you and the Data Protection Board as the law requires."
+        ]
+      },
+      {
+        "h": "Cookies and analytics",
+        "body": [
+          "This site keeps client-side storage to a functional minimum. Where analytics are enabled, they are used in aggregate to understand how pages perform, not to build individual profiles. Your browser's settings let you clear or block storage at any time."
+        ]
+      },
+      {
+        "h": "Changes to this policy",
+        "body": [
+          "If we change this policy, the new version appears on this page with a fresh date. Material changes affecting how we use data already collected will be notified before they take effect."
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms of Use",
+    "updatedLabel": "Last updated",
+    "updated": "August 2026",
+    "intro": "These terms govern your use of the Terravion Properties website. By using the site you accept them; if you do not accept them, please do not use the site. They exist mostly to be honest with you about what this website is — an introduction to our projects — and what it is not: an offer document, a survey record, or professional advice.",
+    "sections": [
+      {
+        "h": "Informational purpose only",
+        "body": [
+          "Everything on this site — project pages, guides, journal articles, location notes, tools and calculators — is general information about our projects and the West Hyderabad market. It is not legal, financial, tax, or investment advice, and it is not a substitute for your own professional advisers.",
+          "Real-estate purchases are significant decisions. Verify title, approvals, and encumbrances through your own advocate; verify current government rates, duties, and regulations with the concerned departments. Our own guides say this on every page, and we mean it."
+        ]
+      },
+      {
+        "h": "No offer; project information",
+        "body": [
+          "Nothing on this website constitutes an offer, an invitation to offer, or a commitment to sell. A booking or sale happens only through the formal documentation executed between you and us — the agreement of sale and sale deed — and on the terms stated there.",
+          "Project details shown here (layouts, plot counts, dimensions, amenities, imagery, pricing indications) are indicative and subject to change, to regulatory approvals, and to availability. The sanctioned layout plan, approval documents and registration particulars for each project are available at our experience centre and prevail over anything shown on this website. Where a project is required to be registered under the Real Estate (Regulation and Development) Act, 2016 with TS-RERA, its registration particulars are stated on the project page and in the project documentation.",
+          "Renderings and photographs are artistic impressions or representative imagery unless expressly stated to be actual site photographs."
+        ]
+      },
+      {
+        "h": "GIS, maps and the digital twin",
+        "body": [
+          "The GIS master plan, 3D digital twin, plot-availability views, boundaries, dimensions, distances and travel times shown on this site are indicative visualisations built for orientation, not measurement. They are not survey documents, not revenue records, and not legal representations of extent or boundary.",
+          "The authoritative geometry of any plot is the sanctioned layout plan read with the registered sale deed schedule and, where needed, a licensed surveyor's measurement on the ground. Plot availability shown online may lag the live sales position; confirm availability with our team before relying on it."
+        ]
+      },
+      {
+        "h": "Articles and market commentary",
+        "body": [
+          "Journal articles and guides describe infrastructure, regulations and market conditions as we understand them on their stated date. Roads get renamed, schemes get restructured, timetables change. Where an article describes proposed infrastructure — a proposed rail extension, a proposed ring road — it is a proposal, not a promise, and we price our own arguments accordingly. Check current status with the concerned authority before acting on any statement here."
+        ]
+      },
+      {
+        "h": "Intellectual property",
+        "body": [
+          "The content of this site — text, artwork, photography, the digital twin, and the Terravion name and marks — belongs to Terravion Properties or its licensors. You may read, share links, and print for personal use; you may not republish, scrape at scale, or use the content commercially without written permission."
+        ]
+      },
+      {
+        "h": "Acceptable use",
+        "body": [
+          "Do not misuse the site: no attempts to breach security, no automated bulk scraping, no submitting another person's data without authority, and no unlawful content through any form."
+        ]
+      },
+      {
+        "h": "Third-party links and services",
+        "body": [
+          "The site links to third-party services — WhatsApp, map providers, government portals. Their content and terms are theirs; we are not responsible for them."
+        ]
+      },
+      {
+        "h": "No warranty; limitation of liability",
+        "body": [
+          "The site is provided \"as is\". We work to keep it accurate and available but do not warrant that it is error-free, complete, or uninterrupted. To the extent permitted by law, Terravion Properties is not liable for indirect or consequential loss arising from use of the site or reliance on its content. Nothing in these terms limits liability that cannot be limited under law, or your statutory rights under RERA and consumer-protection law in respect of an actual purchase."
+        ]
+      },
+      {
+        "h": "Governing law",
+        "body": [
+          "These terms are governed by the laws of India. Courts at Hyderabad / Ranga Reddy district, Telangana have exclusive jurisdiction over disputes arising from use of this website."
+        ]
+      },
+      {
+        "h": "Changes",
+        "body": [
+          "We may revise these terms; the current version is always the one on this page, with its date above. Continued use after a change is acceptance of the revised terms."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "title": "About Terravion",
+  "eyebrow": "Who we are",
+  "intro": "We sell approved, titled land in one belt of West Hyderabad, and we hand over the sanctioned plan before the conversation about price.",
+  "story": { "heading": "How we work" },
+  "principles": {
+    "heading": "What we hold to",
+    "documentsFirst": { "title": "Documents first", "body": "The sanctioned layout, the title chain and the encumbrance certificate are shown before a price is quoted." },
+    "oneBelt": { "title": "One belt", "body": "We work the Shankarpally corridor and nothing else. Depth beats spread." },
+    "noPressure": { "title": "No pressure", "body": "We call once about your enquiry. There is no second campaign." }
+  },
+  "founder": { "title": "Founder", "eyebrow": "The person behind it" },
+  "testimonials": { "title": "What buyers say", "eyebrow": "Testimonials" },
+  "amenities": { "title": "Amenities", "eyebrow": "Inside the community" },
+  "gallery": { "title": "Gallery", "eyebrow": "The site today" }
+}

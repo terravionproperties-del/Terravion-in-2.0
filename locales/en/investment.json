@@ -1,0 +1,92 @@
+{
+  "title": "Investment",
+  "eyebrow": "The investment thesis",
+  "intro": "We make one argument, in four parts. No projected percentages, no breathless charts — the mechanics of the corridor, which you can verify yourself.",
+  "headline": { "lead": "Patient capital,", "emphasis": "positioned land." },
+  "thesis": {
+    "heading": "Why this belt",
+    "body": "The ORR, the Financial District spillover and the Shankarpally industrial corridor are the three forces setting price here. None of them is speculative.",
+    "parts": {
+      "one": {
+        "numeral": "I.",
+        "title": "Employment drifts west",
+        "body": "Hyderabad's employment core — HITEC City, Gachibowli, the Financial District — sits on the city's western edge, and each expansion (Kokapet's Neopolis, Tellapur's grid, Kollur's townships) has stepped further west along the ORR. Shankarpally is the next arc of that drift: connected by suburban rail and the Exit 3 corridor, but still priced as periphery.",
+        "linkLabel": "Read the spillover analysis"
+      },
+      "two": {
+        "numeral": "II.",
+        "title": "Infrastructure arrives in rings",
+        "body": "The 158-km Outer Ring Road rewrote Hyderabad's land market once; the proposed ~340-km Regional Ring Road is positioned to do it again, and Shankarpally sits between the two rings on the western side. Infrastructure is announced, then built, then priced in — the investor's opportunity lives in the gap.",
+        "linkLabel": "Track the RRR's stakes"
+      },
+      "three": {
+        "numeral": "III.",
+        "title": "Gated supply is finite",
+        "body": "Anyone can sell an acre; assembling 45 contiguous acres with HMDA approval, a 25,000 sq. ft. clubhouse and underground utilities is another business entirely. As the corridor urbanises, land parcels of that scale stop existing — which is precisely what protects the ones that do.",
+        "linkLabel": ""
+      },
+      "four": {
+        "numeral": "IV.",
+        "title": "Paper decides everything",
+        "body": "The difference between an asset and a dispute is documentation. HMDA/DTCP approval, clean link documents, nil encumbrance — these decide resale value more than any market cycle. Start with our",
+        "linkLabel": "legal verification guide",
+        "linkLabelSecond": "25-point checklist",
+        "conjunction": "and"
+      }
+    }
+  },
+  "tools": {
+    "emi": { "title": "EMI Calculator", "body": "Model plot-loan instalments across tenures and rates." },
+    "roi": { "title": "ROI Calculator", "body": "Test appreciation scenarios you choose — we assume nothing." },
+    "checklist": { "title": "The Checklist", "body": "25 verifications before any plot purchase, anywhere." }
+  },
+  "drivers": { "heading": "What moves price", "corridors": "Corridors", "employment": "Employment", "approvals": "Approvals", "supply": "Supply" },
+  "risks": { "heading": "What could go wrong", "body": "Land is illiquid, timelines slip, and infrastructure dates are announcements rather than guarantees. Any projection here assumes none of that is certain." },
+  "calculators": {
+    "heading": "Run your own numbers",
+    "emi": "EMI calculator",
+    "roi": "ROI calculator",
+    "loanAmount": "Loan amount",
+    "interestRate": "Interest rate",
+    "tenure": "Tenure",
+    "years": "years",
+    "monthlyPayment": "Monthly payment",
+    "totalInterest": "Total interest",
+    "totalPayable": "Total payable",
+    "purchasePrice": "Purchase price",
+    "holdingPeriod": "Holding period",
+    "expectedGrowth": "Expected annual growth",
+    "projectedValue": "Projected value",
+    "absoluteGain": "Gain",
+    "disclaimer": "Illustrative only. Not a projection, not advice, and not a promise of returns."
+  },
+  "faqHeading": "Straight answers",
+  "faqs": {
+    "one": {
+      "q": "Is a villa plot a better investment than an apartment?",
+      "a": "They behave differently. Apartments yield rent but depreciate structurally; plots yield nothing but hold land value entirely. In corridor locations, appreciation accrues to land. Our essay on plots vs apartments covers the trade-offs honestly."
+    },
+    "two": {
+      "q": "What returns should I expect from a Shankarpally plot?",
+      "a": "We do not project returns — appreciation depends on infrastructure delivery, market cycles and holding period, and no outcome is guaranteed. What we can show you is the corridor's infrastructure pipeline and our approvals; the conclusion is yours to draw."
+    },
+    "three": {
+      "q": "How liquid is a plot investment?",
+      "a": "Plots in approved, gated communities with clear titles resell far more easily than un-approved land. Liquidity improves as a community builds out — another reason we finish infrastructure early."
+    },
+    "four": {
+      "q": "Can I buy with a loan?",
+      "a": "Yes. Banks and HFCs offer plot loans (and composite plot-plus-construction loans) for approved layouts. See our loan guide, or use the EMI calculator to model instalments."
+    },
+    "five": {
+      "q": "What makes Terravion's projects investment-grade?",
+      "a": "Statutory approval before launch (HMDA/DTCP), infrastructure completed early, clear titles open to independent verification, and locations chosen for corridor logic rather than sentiment."
+    }
+  },
+  "cta": {
+    "titleLead": "Test the thesis",
+    "titleEmphasis": "on the ground.",
+    "body": "An hour in Shankarpally with the masterplans and approval files will tell you more than any webpage. Investments remain subject to market conditions — the land, at least, you can stand on.",
+    "intent": "Investment enquiry"
+  }
+}

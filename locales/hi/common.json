@@ -1,0 +1,127 @@
+{
+  "brand": {
+    "name": "Terravion",
+    "suffix": "प्रॉपर्टीज़",
+    "tagline": "शंकरपल्ली, पश्चिम हैदराबाद में विला प्लॉट"
+  },
+  "units": {
+    "sqft": "वर्ग फुट",
+    "sqyd": "वर्ग गज",
+    "acre": "एकड़",
+    "guntha": "गुंठा",
+    "lakh": "लाख",
+    "crore": "करोड़",
+    "km": "कि.मी.",
+    "min": "मिनट"
+  },
+  "readingTime": "{minutes} मिनट का पठन",
+  "updatedOn": "{date} को अद्यतन",
+  "publishedOn": "{date} को प्रकाशित",
+  "onThisPage": "इस पृष्ठ पर",
+  "readMore": "और पढ़ें",
+  "viewAll": "सभी देखें",
+  "back": "वापस",
+  "next": "अगला",
+  "previous": "पिछला",
+  "close": "बंद करें",
+  "loading": "लोड हो रहा है",
+  "search": {
+    "label": "खोजें",
+    "placeholder": "Terravion में खोजें",
+    "noResults": "\"{query}\" के लिए कुछ नहीं मिला",
+    "noResultsHint": "छोटा वाक्यांश आज़माएँ, या इसके बजाय गाइड देखें.",
+    "resultCount": "{count} परिणाम",
+    "resultCountOne": "1 परिणाम",
+    "clear": "खोज हटाएँ"
+  },
+  "filters": {
+    "label": "फ़िल्टर",
+    "all": "सभी",
+    "category": "श्रेणी",
+    "status": "स्थिति",
+    "location": "स्थान",
+    "priceRange": "मूल्य सीमा",
+    "plotSize": "प्लॉट का आकार",
+    "sortBy": "क्रमबद्ध करें",
+    "newest": "नए पहले",
+    "oldest": "पुराने पहले",
+    "clear": "फ़िल्टर हटाएँ",
+    "applied": "{count} फ़िल्टर लागू",
+    "showResults": "परिणाम देखें"
+  },
+  "empty": {
+    "title": "यहाँ अभी कुछ नहीं है",
+    "body": "यह भाग अभी लिखा जा रहा है. तब तक गाइड इसी विषय को समझाती हैं."
+  },
+  "language": {
+    "label": "भाषा",
+    "change": "भाषा बदलें",
+    "current": "वर्तमान भाषा: {language}",
+    "select": "भाषा चुनें",
+    "searchPlaceholder": "भाषाएँ खोजें",
+    "chooseHint": "आप जो पृष्ठ पढ़ रहे हैं वह आपकी चुनी हुई भाषा में फिर से खुलेगा."
+  },
+  "consent": {
+    "eyebrow": "आपकी निजता",
+    "body": "यह समझने के लिए कि इस साइट का उपयोग कैसे होता है, हम कुकीज़ का उपयोग करते हैं. आपकी सहमति से पहले कुछ भी मापा नहीं जाता, और मना करने पर आप कुछ नहीं खोते.",
+    "accept": "स्वीकार करें",
+    "decline": "मना करें",
+    "privacy": "गोपनीयता नीति",
+    "ariaLabel": "कुकी और विश्लेषण सहमति"
+  },
+  "translation": {
+    "notAvailableTitle": "यह लेख अभी अनूदित नहीं हुआ है",
+    "notAvailableBody": "आप अंग्रेज़ी मूल पढ़ रहे हैं. {language} अनुवाद तैयार किया जा रहा है.",
+    "readInEnglish": "अंग्रेज़ी में पढ़ें"
+  },
+  "translationStatus": {
+    "label": "अनुवाद स्थिति",
+    "translated": "अनूदित",
+    "pending": "अनुवाद जल्द ही",
+    "missing": "अंग्रेज़ी में उपलब्ध",
+    "readInEnglish": "अंग्रेज़ी में पढ़ें",
+    "cardNote": "यह कहानी अभी अनूदित नहीं हुई है. अंग्रेज़ी मूल पूरा उपलब्ध है.",
+    "englishOnly": "केवल अंग्रेज़ी में",
+    "comingSoon": "हिन्दी अनुवाद जल्द ही",
+    "openEnglish": "अंग्रेज़ी लेख खोलें"
+  },
+  "placeholder": {
+    "cardTitle": "यह लेख जल्द ही उपलब्ध होगा",
+    "cardSummary": "यह रचना फ़िलहाल केवल अंग्रेज़ी में उपलब्ध है. हिन्दी अनुवाद तैयार होते ही यहाँ दिखाई देगी.",
+    "cardCta": "अंग्रेज़ी संस्करण पढ़ें",
+    "pageTitle": "यह लेख जल्द ही उपलब्ध होगा",
+    "pageBody": "यह रचना फ़िलहाल केवल अंग्रेज़ी में उपलब्ध है. हिन्दी अनुवाद तैयार होते ही यहाँ प्रकाशित की जाएगी.",
+    "pageCta": "अंग्रेज़ी संस्करण पढ़ें",
+    "eyebrow": "अनुवाद प्रगति पर"
+  },
+  "article": {
+    "chapter": "अध्याय",
+    "chapterNav": "अध्याय नेविगेशन",
+    "storyNav": "कहानी नेविगेशन",
+    "playbookNav": "मार्गदर्शिका नेविगेशन",
+    "storybookFormat": "दृश्य कथा प्रारूप",
+    "todaysStory": "आज की दृश्य कहानी",
+    "storySummaryAria": "आज की कहानी का सार",
+    "verifiedData": "सत्यापित भूमि आँकड़े",
+    "timeline": "चरणबद्ध समयरेखा",
+    "conclusion": "कहानी का निष्कर्ष",
+    "expertInsight": "विशेषज्ञ विश्लेषण",
+    "conceptBreakdown": "दृश्य अवधारणा विवरण",
+    "faqHeading": "अक्सर पूछे जाने वाले प्रश्न",
+    "faqAria": "अक्सर पूछे जाने वाले प्रश्न",
+    "relatedAria": "संबंधित दृश्य कहानियाँ",
+    "exploreNext": "आगे देखें",
+    "onThisPage": "इस पृष्ठ पर",
+    "masterPlaybook": "सम्पूर्ण मार्गदर्शिका",
+    "expertAssistance": "विशेषज्ञ सहायता",
+    "speakToTeam": "हमारी टीम से बात करें",
+    "enquireAria": "पूछताछ",
+    "experienceCentre": "अनुभव केंद्र",
+    "byline": "Terravion संपादकीय",
+    "chapterCount": "{count} दृश्य अध्याय",
+    "summaryLabel": "संक्षेप में",
+    "takeawaysLabel": "मुख्य बातें",
+    "writtenBy": "लेखन",
+    "reviewedBy": "समीक्षा"
+  }
+}

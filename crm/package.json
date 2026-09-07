@@ -1,0 +1,43 @@
+{
+    "name": "terravion-crm",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Terravion Real Estate OS â€” sales, inventory, finance and partner operations",
+    "scripts": {
+        "dev": "next dev --turbopack -p 3100",
+        "build": "next build",
+        "start": "next start -p 3100",
+        "db:schema": "node scripts/apply-sql.mjs db/001_schema.sql",
+        "db:module3": "node scripts/apply-sql.mjs db/002_module3.sql",
+        "db:backup-procs": "node scripts/apply-sql.mjs db/003_backup.sql",
+        "db:security": "node scripts/apply-sql.mjs db/004_security.sql",
+        "db:seed": "node scripts/seed.mjs",
+        "db:verify": "node scripts/db-verify.mjs",
+        "verify:module3": "node scripts/verify-module3.mjs",
+        "notify:worker": "node scripts/notify-worker.mjs --loop",
+        "notify:once": "node scripts/notify-worker.mjs",
+        "db:setup": "npm run db:schema && npm run db:module3 && npm run db:security && npm run db:seed && npm run db:verify"
+    },
+    "dependencies": {
+        "@node-rs/argon2": "^2.0.2",
+        "@types/better-sqlite3": "^9.6.0",
+        "@types/pg": "^8.21.0",
+        "better-sqlite3": "^13.0.3",
+        "mssql": "^12.7.0",
+        "next": "^15.5.22",
+        "next-auth": "^5.0.0-beta.25",
+        "pg": "^8.23.0",
+        "react": "^19.2.8",
+        "react-dom": "^19.2.8",
+        "zod": "^3.24.1"
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "^4.3.3",
+        "@types/mssql": "^12.3.0",
+        "@types/node": "^22.10.5",
+        "@types/react": "^19.2.18",
+        "@types/react-dom": "^19.2.4",
+        "tailwindcss": "^4.3.3",
+        "typescript": "^5.7.3"
+    }
+}

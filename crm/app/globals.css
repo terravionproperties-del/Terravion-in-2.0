@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+/* ────────────────────────────────────────────────────────────────
+   Terravion OS — Pure Luxury White & Warm Gold Theme
+   ──────────────────────────────────────────────────────────────── */
+@theme {
+  --color-ink: #ffffff;
+  --color-surface: #ffffff;
+  --color-raised: #f8fafc;
+  --color-line: #e2e8f0;
+  --color-ivory: #0f172a;
+  --color-muted: #64748b;
+  --color-gold: #b88d23;
+  --color-gold-light: #946c0b;
+  --color-good: #15803d;
+  --color-warn: #b45309;
+  --color-bad: #b91c1c;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+}
+
+aside {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+main {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Panels: pure white cards with soft elevation */
+.panel {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  color: #0f172a !important;
+}
+
+.field {
+  width: 100%;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  color: #0f172a !important;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field:hover {
+  border-color: #94a3b8 !important;
+}
+.field:focus {
+  border-color: #b88d23 !important;
+  box-shadow: 0 0 0 3px rgba(184, 141, 35, 0.15);
+}
+.field::placeholder {
+  color: #94a3b8 !important;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.35rem;
+  padding: 0 1rem;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #1e293b;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: linear-gradient(180deg, #c59b27, #a67c1e) !important;
+  border-color: #96741b !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(166, 124, 30, 0.3);
+}
+.btn-primary:hover {
+  background: linear-gradient(180deg, #d4a933, #b88d23) !important;
+  color: #ffffff !important;
+}
+
+:focus-visible {
+  outline: 2px solid #b88d23;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #64748b !important;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border: 1px solid currentColor;
+}
+
+.chart-grow {
+  transform-origin: left center;
+  animation: chart-grow 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes chart-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.chart-draw {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: chart-draw 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes chart-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Light table */
+.table-lux {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.table-lux thead th {
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #475569 !important;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  background: #f8fafc !important;
+  z-index: 1;
+}
+.table-lux tbody td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b !important;
+}
+.table-lux tbody tr:last-child td {
+  border-bottom: 0;
+}
+.table-lux tbody tr {
+  transition: background 0.15s;
+}
+.table-lux tbody tr:hover {
+  background: #f8fafc !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  .chart-grow { animation: none; transform: scaleX(1); }
+  .chart-draw { animation: none; stroke-dashoffset: 0; }
+}

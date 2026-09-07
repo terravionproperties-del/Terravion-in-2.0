@@ -1,0 +1,39 @@
+{
+  "indexTitle": "Buyer guides",
+  "indexEyebrow": "Before you buy",
+  "indexIntro": "The complete playbook for plot buyers in Telangana — approvals, paperwork, money and construction, explained without a sales pitch attached.",
+  "eyebrow": "Buyer guides",
+  "onThisPage": "On this page",
+  "faqHeading": "Frequently asked",
+  "updatedLabel": "Updated",
+  "readGuide": "Read the guide",
+  "relatedHeading": "Related guides",
+  "count": "{count} guides",
+  "headline": {
+    "lead": "The complete",
+    "emphasis": "buyer's playbook."
+  },
+  "allGuides": "All guides",
+  "empty": {
+    "title": "The Telugu guides are still being written.",
+    "body": "Guides are translated whole, never in fragments. {count} of {total} are ready in {language}.",
+    "action": "Read the guides in English"
+  },
+  "eyebrowPlaybooks": "Master Buyer Playbooks",
+  "headlineLead": "Buy land like",
+  "headlineEmphasis": "you've done it before.",
+  "playbookIntro": "The complete visual playbook for plot buyers in Telangana — approvals, paperwork, money, and construction explained with 3D Pixar-quality storytelling artwork.",
+  "featuredPlaybook": "Featured Playbook",
+  "allPlaybooks": "All Buyer Playbooks",
+  "readPlaybook": "Read the playbook",
+  "guideNumber": "Guide {number}",
+  "tier": {
+    "essential": "Essential Guide",
+    "deepDive": "Deep Dive",
+    "legal": "Legal Standard"
+  },
+  "guidesCount": "{count} guides",
+  "readPlaybookCta": "Read playbook",
+  "featuredAria": "Featured playbook",
+  "libraryAria": "Buyer playbook library"
+}

@@ -1,0 +1,38 @@
+{
+  "eyebrow": "Tools",
+  "years": "{count} yrs",
+  "tryRoi": "Try the ROI calculator →",
+  "tryEmi": "Try the EMI calculator →",
+  "bookSiteVisit": "Book a site visit →",
+  "checklist": "The 25-point checklist →",
+  "emi": {
+    "headlineLead": "The EMI,",
+    "headlineEmphasis": "before the bank visit.",
+    "introBefore": "Model a plot loan honestly: what the instalment costs monthly, and what the borrowing costs in total. Then read our",
+    "introLink": "plot loan guide",
+    "introAfter": "before you negotiate.",
+    "loanAmount": "Loan amount",
+    "interestRate": "Interest rate (p.a.)",
+    "tenure": "Tenure",
+    "monthlyEmi": "Monthly EMI",
+    "totalInterest": "Total interest",
+    "totalPayable": "Total payable",
+    "disclaimer": "Illustrative only, using the standard reducing-balance formula. Actual rates, eligibility, processing fees and terms are set by your lender — verify current plot-loan rates directly with banks or HFCs."
+  },
+  "roi": {
+    "headlineLead": "Your assumptions,",
+    "headlineEmphasis": "run honestly.",
+    "introBefore": "Most ROI calculators smuggle in a rosy growth rate. Ours starts at zero — you choose the scenario, we just do the arithmetic. For the qualitative case, read",
+    "introLink": "the investment thesis",
+    "introAfter": ".",
+    "purchaseValue": "Purchase value",
+    "holdingPeriod": "Holding period",
+    "cagr": "Your assumed CAGR",
+    "projectedValue": "Projected value at your assumption",
+    "projectedGain": "Projected gain",
+    "multiple": "Multiple",
+    "disclaimerBefore": "The growth rate above is",
+    "disclaimerStrong": "your assumption, not our forecast",
+    "disclaimerAfter": ". Terravion does not project or guarantee appreciation; land values can fall as well as rise. Use past corridor behaviour as context, not as a promise of future performance."
+  }
+}
