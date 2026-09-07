@@ -29,7 +29,9 @@ export default auth((req) => {
   if (isPublic) return NextResponse.next();
 
   if (!req.auth?.user) {
-    const url = new URL("/login", req.nextUrl.origin);
+    const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || "crm.terravionproperties.in";
+    const proto = req.headers.get("x-forwarded-proto") || "https";
+    const url = new URL("/login", `${proto}://${host}`);
     if (pathname !== "/") url.searchParams.set("from", pathname);
     return NextResponse.redirect(url);
   }
