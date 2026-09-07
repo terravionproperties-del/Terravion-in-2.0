@@ -25,7 +25,7 @@ npm start      # serve the production build
 | Business data | `lib/site.ts`, `lib/data/projects.ts` | Single source of truth. Search for `[PLACEHOLDER` to find values awaiting verified business input |
 | Content CMS | `content/blog` (70+ essays), `content/guides` (12), `content/locations` (13) | File-based CMS: each entry is a typed TS module (`lib/types.ts`). `npm run content` regenerates the index files (also runs automatically before every build) |
 | SEO | `lib/schema.ts`, `app/sitemap.ts`, `app/robots.ts`, `app/rss.xml`, `public/llms.txt` | JSON-LD (Organization/RealEstateAgent/Residence/OfferCatalog/FAQ/Article/Breadcrumb/Speakable), OG image generation, AI-crawler optimization |
-| Lead gen | `components/forms/LeadForm.tsx`, `components/layout/StickyCta.tsx`, `app/tools/*` | WhatsApp-handoff forms (no server needed), sticky CTA cluster, EMI & ROI calculators |
+| Lead gen | `components/forms/LeadForm.tsx`, `app/actions/submit-lead.ts`, `app/tools/*` | HMAC-signed CRM webhook delivery (`CRM_LEAD_ENDPOINT`) with WhatsApp-handoff fallback, sticky CTA cluster, EMI & ROI calculators |
 
 ## Adding content
 
