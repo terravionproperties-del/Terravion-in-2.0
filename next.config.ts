@@ -39,13 +39,13 @@ const CSP = [
   `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms`,
   `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`,
   `font-src 'self' https://fonts.gstatic.com data:`,
-  `img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://maps.gstatic.com https://maps.googleapis.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://api.mapbox.com https://*.cloudinary.com https://res.cloudinary.com`,
-  `media-src 'self' blob:`,
+  `img-src 'self' data: blob: https://media.terravionproperties.in https://www.google-analytics.com https://www.googletagmanager.com https://maps.gstatic.com https://maps.googleapis.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://api.mapbox.com https://*.cloudinary.com https://res.cloudinary.com`,
+  `media-src 'self' blob: https://media.terravionproperties.in`,
   // `*.clarity.ms` alongside the two named hosts, because Clarity uploads to a
   // regional ingest origin chosen at runtime (c.clarity.ms, d.clarity.ms, …).
   // Naming only www and scripts here would let the recorder load and then fail
   // silently on every upload, which looks exactly like "Clarity is broken".
-  `connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://*.clarity.ms https://maps.googleapis.com https://*.supabase.co wss://*.supabase.co https://api.mapbox.com https://events.mapbox.com https://*.cloudinary.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org`,
+  `connect-src 'self' https://media.terravionproperties.in https://www.google-analytics.com https://region1.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://*.clarity.ms https://maps.googleapis.com https://*.supabase.co wss://*.supabase.co https://api.mapbox.com https://events.mapbox.com https://*.cloudinary.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org`,
   // googletagmanager is here for GTM's <noscript> ns.html iframe, which is
   // otherwise blocked — the fallback would be present in the markup and dead.
   `frame-src 'self' https://www.google.com https://www.youtube-nocookie.com https://www.googletagmanager.com`,
@@ -72,6 +72,26 @@ const nextConfig: NextConfig = {
   compress: true,
   images: {
     formats: ["image/avif", "image/webp"],
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/assets/:path*",
+        destination: "https://media.terravionproperties.in/assets/:path*",
+      },
+      {
+        source: "/film/:path*",
+        destination: "https://media.terravionproperties.in/film/:path*",
+      },
+      {
+        source: "/illustrations/:path*",
+        destination: "https://media.terravionproperties.in/illustrations/:path*",
+      },
+      {
+        source: "/projects/:path*",
+        destination: "https://media.terravionproperties.in/projects/:path*",
+      },
+    ];
   },
   async headers() {
     return [
