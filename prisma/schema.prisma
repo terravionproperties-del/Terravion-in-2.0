@@ -9,7 +9,7 @@ generator client {
 
 datasource db {
   provider   = "postgresql"
-  extensions = [uuid_ossp(map: "uuid-ossp")]
+  extensions = [postgis, uuid_ossp(map: "uuid-ossp")]
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
