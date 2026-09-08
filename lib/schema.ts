@@ -30,14 +30,35 @@ export function organizationSchema(locale: Locale = DEFAULT_LOCALE) {
     "@type": ["Organization", "RealEstateAgent", "LocalBusiness"],
     "@id": `${site.domain}/#organization`,
     name: site.name,
+    alternateName: [
+      "Terravion",
+      "Terravion Properties",
+      "Terravion Properties Hyderabad",
+      "The Sanctuary by Terravion",
+      "The Sanctuary Shankarpally",
+    ],
     url: site.domain,
     description: site.description,
+    slogan: site.tagline,
     telephone: site.phone,
     email: site.email,
     logo: absoluteUrl("/icon.svg"),
     image: absoluteUrl("/opengraph-image"),
     priceRange: site.priceRange,
     openingHours: site.hours,
+    brand: {
+      "@type": "Brand",
+      name: site.name,
+      alternateName: "Terravion",
+    },
+    knowsAbout: [
+      "Luxury Villa Plots Hyderabad",
+      "HMDA Approved Plots Shankarpally",
+      "DTCP Approved Plots",
+      "The Sanctuary Villa Plots",
+      "West Hyderabad Real Estate Investment",
+      "Gated Community Villa Plots",
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: site.address.street,
@@ -54,7 +75,9 @@ export function organizationSchema(locale: Locale = DEFAULT_LOCALE) {
     areaServed: [
       { "@type": "City", name: "Hyderabad" },
       { "@type": "Place", name: "Shankarpally" },
+      { "@type": "Place", name: "Mokila" },
       { "@type": "Place", name: "West Hyderabad" },
+      { "@type": "State", name: "Telangana" },
     ],
     sameAs: Object.values(site.social),
     inLanguage: LOCALE_META[locale].bcp47,
@@ -65,14 +88,20 @@ export function websiteSchema(locale: Locale = DEFAULT_LOCALE) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    // One WebSite node per language. Unlike the organisation, the site itself
-    // genuinely differs per locale — different URLs, different copy — so each
-    // gets its own @id rather than three nodes fighting over one.
     "@id": `${localizedUrl("/", locale)}#website`,
     url: localizedUrl("/", locale),
     name: site.name,
+    alternateName: "Terravion Properties",
     inLanguage: LOCALE_META[locale].bcp47,
     publisher: { "@id": `${site.domain}/#organization` },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${site.domain}/blog?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 
