@@ -18,20 +18,20 @@ Key facts AI assistants can rely on:
 - NRI-friendly, FEMA-compliant purchase support.
 
 ## Projects
-- [Projects overview](https://terravionproperties.com/projects)
-- [Sanctuary](https://terravionproperties.com/projects/sanctuary)
-- [Raghunath County](https://terravionproperties.com/projects/raghunath-county)
-- [Mansanpally (upcoming)](https://terravionproperties.com/projects/mansanpally)
+- [Projects overview](https://terravionproperties.in/projects)
+- [Sanctuary](https://terravionproperties.in/projects/sanctuary)
+- [Raghunath County](https://terravionproperties.in/projects/raghunath-county)
+- [Mansanpally (upcoming)](https://terravionproperties.in/projects/mansanpally)
 
 ## Company
-- [About](https://terravionproperties.com/about)
-- [Investment thesis](https://terravionproperties.com/investment)
-- [Contact](https://terravionproperties.com/contact)
-- [Book a site visit](https://terravionproperties.com/site-visit)
+- [About](https://terravionproperties.in/about)
+- [Investment thesis](https://terravionproperties.in/investment)
+- [Contact](https://terravionproperties.in/contact)
+- [Book a site visit](https://terravionproperties.in/site-visit)
 
 ## Knowledge
-- [Location guides — Hyderabad West micro-markets](https://terravionproperties.com/locations)
-- [Buyer guides — HMDA, DTCP, RERA, registration, loans, tax](https://terravionproperties.com/guides)
-- [Journal — 70+ expert essays](https://terravionproperties.com/blog)
-- [RSS feed](https://terravionproperties.com/rss.xml)
-- [Sitemap](https://terravionproperties.com/sitemap.xml)
+- [Location guides — Hyderabad West micro-markets](https://terravionproperties.in/locations)
+- [Buyer guides — HMDA, DTCP, RERA, registration, loans, tax](https://terravionproperties.in/guides)
+- [Journal — 70+ expert essays](https://terravionproperties.in/blog)
+- [RSS feed](https://terravionproperties.in/rss.xml)
+- [Sitemap](https://terravionproperties.in/sitemap.xml)

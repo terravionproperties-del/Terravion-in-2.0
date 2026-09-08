@@ -8,14 +8,14 @@
 export const site = {
   name: "Terravion Properties",
   legalName: "Terravion Properties",
-  domain: "https://terravionproperties.com",
+  domain: process.env.NEXT_PUBLIC_SITE_URL || "https://terravionproperties.in",
   tagline: "Premium villa plots in Shankarpally, Hyderabad",
   description:
     "Terravion Properties curates HMDA & DTCP approved premium villa plots in Shankarpally, West Hyderabad — gated communities with clubhouse living, minutes from ORR, the Financial District and IIT Hyderabad.",
   phone: "+91 93472 59638",
   phoneHref: "tel:+919347259638",
   whatsapp: "https://wa.me/919347259638",
-  email: "info@terravionproperties.com",
+  email: "info@terravionproperties.in",
   address: {
     street: "Shankarpally", // [PLACEHOLDER — replace with verified office street address]
     locality: "Shankarpally",
