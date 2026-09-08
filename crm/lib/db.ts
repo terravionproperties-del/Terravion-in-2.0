@@ -394,4 +394,59 @@ function initSchema(db: Database.Database): void {
   if (!notifColNames.has("provider_id")) {
     db.exec("ALTER TABLE notifications ADD COLUMN provider_id TEXT");
   }
+
+  // Safe migrations for lead_activities table
+  const actCols = db.prepare("PRAGMA table_info(lead_activities)").all() as { name: string }[];
+  const actColNames = new Set(actCols.map((c) => c.name.toLowerCase()));
+  const missingActCols: Record<string, string> = {
+    ip: "TEXT",
+    user_agent: "TEXT",
+    browser: "TEXT",
+    os: "TEXT",
+    device_type: "TEXT",
+    city: "TEXT",
+    country: "TEXT",
+    channel: "TEXT",
+    before_json: "TEXT",
+    after_json: "TEXT",
+  };
+  for (const [col, type] of Object.entries(missingActCols)) {
+    if (!actColNames.has(col)) {
+      try {
+        db.exec(`ALTER TABLE lead_activities ADD COLUMN ${col} ${type}`);
+      } catch {
+        // ignore
+      }
+    }
+  }
+
+  // Safe migrations for leads table
+  const leadCols = db.prepare("PRAGMA table_info(leads)").all() as { name: string }[];
+  const leadColNames = new Set(leadCols.map((c) => c.name.toLowerCase()));
+  const missingLeadCols: Record<string, string> = {
+    utm_source: "TEXT",
+    utm_medium: "TEXT",
+    utm_campaign: "TEXT",
+    utm_term: "TEXT",
+    utm_content: "TEXT",
+    gclid: "TEXT",
+    fbclid: "TEXT",
+    landing_page: "TEXT",
+    referrer: "TEXT",
+    remarks: "TEXT",
+    lost_reason: "TEXT",
+    next_follow_up_at: "TEXT",
+    first_contacted_at: "TEXT",
+    last_activity_at: "TEXT",
+    merged_into_id: "TEXT",
+  };
+  for (const [col, type] of Object.entries(missingLeadCols)) {
+    if (!leadColNames.has(col)) {
+      try {
+        db.exec(`ALTER TABLE leads ADD COLUMN ${col} ${type}`);
+      } catch {
+        // ignore
+      }
+    }
+  }
 }
