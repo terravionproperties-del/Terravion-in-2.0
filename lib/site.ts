@@ -15,7 +15,7 @@ export const site = {
   phone: "+91 93472 59638",
   phoneHref: "tel:+919347259638",
   whatsapp: "https://wa.me/919347259638",
-  email: "info@terravionproperties.in",
+  email: "info@terravionproperties.com",
   address: {
     street: "Shankarpally", // [PLACEHOLDER — replace with verified office street address]
     locality: "Shankarpally",
