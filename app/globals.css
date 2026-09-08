@@ -309,52 +309,37 @@ body {
 
 /* ── Editorial micro-label ─────────────────── */
 .label {
-  font-size: 0.8125rem;
-  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-weight: 500;
-  /* DM Sans sits slightly low in its box at this size; the nudge aligns the
-     label optically with the rule or heading beside it. */
+  font-weight: 600;
   line-height: 1.4;
 }
 
-/* ── Display serif defaults ────────────────── */
-/*
- * Cormorant is drawn small and set large. Two consequences:
- *
- *   · Its default metrics leave too much air, so line-height comes down to
- *     0.94 — at 7rem a 1.0 leading reads as a gap, not a line.
- *   · Its lowercase is comparatively small, so tracking opens slightly rather
- *     than tightening. A high-contrast serif crammed together loses the thin
- *     strokes that make it look expensive.
- *
- * Weight 400 is a real weight. The previous 340 was not — Instrument Serif
- * ships 400 only, so every heading on the site was asking for a weight the
- * font could not supply and getting a synthesized approximation.
- */
+/* ── Display headline defaults (Montserrat) ────────────────── */
 .display {
   font-family: var(--font-display);
-  /* 400 is a weight Cormorant Garamond actually ships. The previous 340 was
-     not a real weight in any loaded family, so every heading was getting a
-     synthesised approximation. */
-  font-weight: 400;
-  line-height: 0.98;
-  /* Positive tracking, deliberately. Cormorant's lowercase is small relative
-     to its cap height, so the negative tracking inherited from the previous
-     face collapsed the counters and buried the thin strokes. Opening it is
-     what makes a high-contrast serif look set rather than squeezed. */
-  letter-spacing: 0.004em;
-  font-feature-settings: "liga" 1, "dlig" 1, "kern" 1;
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 
-/* Large display sizes want lighter weight and tighter leading. */
+/* Large display sizes */
 .display.text-6xl,
 .display.text-7xl,
+.display.text-8xl,
 .display.md\:text-\[7\.5rem\] {
-  font-weight: 300;
-  line-height: 0.92;
-  letter-spacing: 0.008em;
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+
+/* Ensure Montserrat headings never get crushed by legacy 0.9x serif leading */
+.display[class*="leading-[0."],
+h1[class*="leading-[0."],
+h2[class*="leading-[0."] {
+  line-height: 1.14 !important;
 }
 
 /*

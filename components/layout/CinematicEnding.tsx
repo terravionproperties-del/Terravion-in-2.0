@@ -76,21 +76,14 @@ export default function CinematicEnding({
 
         <div className="mx-auto w-full max-w-[1500px] px-7 pb-20 md:px-12 md:pb-24">
           <div className="flex flex-col justify-between gap-14 lg:flex-row lg:items-end">
-            <div className="max-w-[32ch]">
-              <div className="mb-6 inline-flex items-center rounded-xl bg-white/80 p-2 backdrop-blur-md border border-charcoal/10 shadow-lg">
-                <img
-                  src="/terravion-logo.jpeg"
-                  alt="Terravion Properties"
-                  className="h-12 w-auto object-contain rounded-lg"
-                />
-              </div>
-              <p className="label text-gold-ink">{strings.eyebrow}</p>
-              <p className="display mt-5 text-[clamp(2.3rem,4.6vw,4.4rem)] leading-[0.98] text-charcoal">
+            <div className="max-w-2xl lg:max-w-3xl">
+              <p className="label text-gold-ink font-semibold tracking-[0.2em] text-xs uppercase">{strings.eyebrow}</p>
+              <h2 className="display mt-4 text-[clamp(2.3rem,4.4vw,4rem)] font-bold leading-[1.12] tracking-[-0.03em] text-charcoal">
                 {strings.titleLines[0]}
-                <br />
+                <br className="hidden sm:inline" />{" "}
                 {strings.titleLines[1]}
-              </p>
-              <p className="mt-7 max-w-[40ch] text-base leading-relaxed text-text-secondary">
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-text-secondary">
                 {strings.body}
               </p>
             </div>
@@ -100,14 +93,14 @@ export default function CinematicEnding({
               ref={light.ref}
               onPointerMove={light.onPointerMove}
               onPointerLeave={light.onPointerLeave}
-              className="glass-card w-full max-w-[440px] p-7 md:p-8"
+              className="glass-card w-full max-w-[420px] rounded-2xl bg-white/95 p-7 shadow-2xl backdrop-blur-xl border border-charcoal/10 md:p-8"
             >
-              <p className="label text-text-muted">{strings.hours}</p>
+              <p className="label text-text-muted text-xs tracking-wider uppercase font-semibold">{strings.hours}</p>
               <div className="mt-6 flex flex-col gap-3.5">
                 <LuxuryButton
                   href={localizePath("/site-visit", locale)}
                   variant="gold"
-                  className="w-full"
+                  className="w-full text-xs font-bold tracking-wider py-3.5"
                 >
                   {strings.bookVisit}
                 </LuxuryButton>
@@ -116,18 +109,18 @@ export default function CinematicEnding({
                     href={site.whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="!px-4"
+                    className="!px-4 text-xs font-semibold tracking-wide"
                   >
                     {strings.whatsapp}
                   </LuxuryButton>
-                  <LuxuryButton href={site.phoneHref} className="!px-4">
+                  <LuxuryButton href={site.phoneHref} className="!px-4 text-xs font-semibold tracking-wide">
                     {strings.call}
                   </LuxuryButton>
                 </div>
               </div>
               <a
                 href={site.phoneHref}
-                className="display mt-7 block text-center text-2xl text-charcoal transition-colors hover:text-gold-ink"
+                className="mt-6 block text-center text-2xl font-bold tracking-tight text-charcoal transition-colors hover:text-gold-ink"
               >
                 {site.phone}
               </a>

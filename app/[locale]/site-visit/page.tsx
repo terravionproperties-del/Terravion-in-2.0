@@ -63,8 +63,8 @@ export default function SiteVisitPage() {
       <BookingExperience
         aside={
           <>
-            <p className="label text-gold-ink">Book a site visit</p>
-            <h1 className="display mt-6 text-[clamp(2.4rem,4.2vw,4.2rem)] leading-[0.98] text-charcoal">
+            <p className="label text-gold-ink font-semibold tracking-[0.2em] text-xs uppercase">Book a site visit</p>
+            <h1 className="display mt-6 text-[clamp(2.4rem,4.2vw,4.2rem)] font-bold tracking-tight leading-[1.12] text-charcoal">
               Two hours that
               <br />
               settle everything.
@@ -72,9 +72,9 @@ export default function SiteVisitPage() {
             <div className="mt-12 flex flex-col gap-7">
               {steps.map((s) => (
                 <div key={s.n} className="flex gap-6">
-                  <p className="display text-2xl text-gold-ink/60">{s.n}</p>
+                  <p className="display text-2xl font-bold text-gold-ink/70">{s.n}</p>
                   <div>
-                    <h2 className="display text-xl text-charcoal">{s.title}</h2>
+                    <h2 className="display text-xl font-bold tracking-tight text-charcoal">{s.title}</h2>
                     <p className="mt-2 max-w-[44ch] text-sm leading-relaxed text-text-secondary">
                       {s.body}
                     </p>

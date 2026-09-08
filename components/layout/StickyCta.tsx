@@ -36,7 +36,7 @@ export default function StickyCta({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (canonicalPath.startsWith("/gis/")) {
+  if (canonicalPath.startsWith("/gis/") || canonicalPath === "/site-visit") {
     return null;
   }
 

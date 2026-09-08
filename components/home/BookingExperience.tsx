@@ -67,13 +67,13 @@ export default function BookingExperience({
           }}
         >
           <div className="mb-10 text-center">
-            <p className="text-[14px] font-bold uppercase tracking-[0.25em] text-[#9C6D28]">
+            <p className="text-[13px] font-bold uppercase tracking-[0.2em] text-[#9C6D28]">
               Book a site visit
             </p>
-            <p className="display mt-4 text-[clamp(2rem,3.4vw,3rem)] font-normal leading-[1.1] text-[#222222]">
+            <p className="display mt-4 text-[clamp(2rem,3.4vw,3rem)] font-bold tracking-tight leading-[1.15] text-[#1a1a1a]">
               Reserve your afternoon
             </p>
-            <p className="mt-4 text-[20px] leading-[1.7] text-[#666666]">
+            <p className="mt-3 text-[16px] leading-[1.6] text-[#666666]">
               Two hours on the land, documents in hand.
             </p>
           </div>
