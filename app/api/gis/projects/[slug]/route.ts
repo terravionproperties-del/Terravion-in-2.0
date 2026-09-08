@@ -5,12 +5,18 @@
 
 import { NextResponse } from "next/server";
 import { TERRAVION_SHANKARPALLY } from "@/lib/data/terravion-shankarpally";
+import { SANCTUARY_SHANKARPALLY } from "@/lib/data/sanctuary-shankarpally";
+import { RAGHUNATH_COUNTY } from "@/lib/data/raghunath-county";
+import type { Project } from "@/lib/types/gis";
 
 export const runtime = "nodejs";
 export const revalidate = 10;
 
-const PROJECT_MAP: Record<string, typeof TERRAVION_SHANKARPALLY> = {
-  shankarpally: TERRAVION_SHANKARPALLY,
+const PROJECT_MAP: Record<string, Project> = {
+  shankarpally: TERRAVION_SHANKARPALLY as unknown as Project,
+  sanctuary: SANCTUARY_SHANKARPALLY,
+  "raghunath-county": RAGHUNATH_COUNTY,
+  raghunath: RAGHUNATH_COUNTY,
 };
 
 export async function GET(
