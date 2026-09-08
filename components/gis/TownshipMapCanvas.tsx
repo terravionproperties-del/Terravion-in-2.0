@@ -344,14 +344,14 @@ interface Car {
 function makeCars(): Car[] {
   const cars: Car[] = [];
   const routes: [number, number, number, number][] = [
-    [-230, -100, -230, 220, ], // main road south
-    [-160, -280, -160, 220],   // spine 1 south
-    [-80,  220,  -80, -280],   // spine 2 north
-    [0,   -280,   0,  220],    // spine 3 south
-    [80,   220,  80, -280],    // spine 4 north
-    [160, -280, 160,  220],    // spine 5 south
-    [-230, 0,   210,  0],      // E-W collector
-    [210, -225, -230, -225],   // top road
+    [-230, -100, -230, 220], // 100' main road south
+    [-120, -280, -120, 220], // 40' road 1
+    [60,   220,   60, -280], // 40' road 2
+    [-175, -280, -175, 220], // 30' road west
+    [-4,   220,   -4, -280], // 30' central
+    [140, -280,  140, 220], // 30' east
+    [-230,   0,  210,    0], // 60' collector
+    [210, -225, -230, -225], // top road
   ] as [number, number, number, number][];
 
   routes.forEach((route, ri) => {
@@ -491,22 +491,30 @@ export default function TownshipMapCanvas({ project, onPlotSelect, selectedPlot,
     }
 
     // 3. ── ROADS ─────────────────────────────────────────────────────────
-    const SPINE_X = [-160, -80, 0, 80, 160];
+    const ROAD40_X = [-120, 60];
+    const ROAD30_NS_X = [-175, -145, -68, -36, -4, 28, 108, 140, 172];
 
     // W main road (100ft = 25 units)
     { const p = w2c(-230, -295, v); const p2 = w2c(-230, 240, v);
       drawRoadV(ctx, p.y, p2.y, p.x, 25 * s); }
 
-    // N-S spine roads (60ft = 15 units)
-    SPINE_X.forEach((x) => {
+    // 40' N-S internal roads (10 units)
+    ROAD40_X.forEach((x) => {
       const p  = w2c(x, -290, v);
       const p2 = w2c(x,  235, v);
-      drawRoadV(ctx, p.y, p2.y, p.x, 15 * s);
+      drawRoadV(ctx, p.y, p2.y, p.x, 10 * s);
     });
 
-    // E-W collector (40ft = 10 units)
+    // 30' N-S internal roads (7.5 units)
+    ROAD30_NS_X.forEach((x) => {
+      const p  = w2c(x, -280, v);
+      const p2 = w2c(x,  225, v);
+      drawRoadV(ctx, p.y, p2.y, p.x, 7.5 * s);
+    });
+
+    // 60' E-W collector road (15 units)
     { const p = w2c(-235, 0, v); const p2 = w2c(222, 0, v);
-      drawRoadH(ctx, p.x, p2.x, p.y, 10 * s); }
+      drawRoadH(ctx, p.x, p2.x, p.y, 15 * s); }
 
     // Top road -225 (30ft = 7.5 units)
     { const p = w2c(-235, -225, v); const p2 = w2c(222, -225, v);
@@ -524,14 +532,14 @@ export default function TownshipMapCanvas({ project, onPlotSelect, selectedPlot,
       const p2 = w2c(222, z, v);
       drawRoadH(ctx, p.x, p2.x, p.y, 7.5 * s);
     }
-    // Bottom boundary (40ft)
+    // Bottom boundary (40ft = 10 units)
     { const p = w2c(-235, 230, v); const p2 = w2c(222, 230, v);
       drawRoadH(ctx, p.x, p2.x, p.y, 10 * s); }
 
-    // Crosswalks at main intersections (collector × spines)
+    // Crosswalks at main intersections (collector × 40' roads & west road)
     if (s > 0.8) {
-      SPINE_X.forEach((x) => {
-        const cw = 5 * s, ch = 9.5 * s;
+      [-230, ...ROAD40_X].forEach((x) => {
+        const cw = 5 * s, ch = 14 * s;
         const c  = w2c(x, 0, v);
         drawCrosswalk(ctx, c.x - cw / 2, c.y - ch / 2, cw, ch);
       });
@@ -561,15 +569,12 @@ export default function TownshipMapCanvas({ project, onPlotSelect, selectedPlot,
       drawTree(ctx, c.x, c.y, TR * 1.1, Math.round(z * 13 + 700));
     }
 
-    // Street trees alongside spine roads (both sides if space)
+    // Street trees alongside main roads
     if (s > 0.55) {
-      SPINE_X.forEach((x, si) => {
-        for (let z = -275; z < 225; z += 22) {
-          const offset = 9.5 * 0.25; // half-road + tiny margin, in world units... but spines are in world units
-          // Actually spine roads are 60ft = 15 world units wide, so half = 7.5
-          // Trees at ±9 units from spine centre
-          const c1 = w2c(x - 9, z, v);
-          const c2 = w2c(x + 9, z, v);
+      [-120, -36, 60, 140].forEach((x, si) => {
+        for (let z = -275; z < 225; z += 24) {
+          const c1 = w2c(x - 7, z, v);
+          const c2 = w2c(x + 7, z, v);
           drawTree(ctx, c1.x, c1.y, TR * 0.68, si * 100 + Math.round(z));
           drawTree(ctx, c2.x, c2.y, TR * 0.68, si * 200 + Math.round(z) + 50);
         }
@@ -645,6 +650,41 @@ export default function TownshipMapCanvas({ project, onPlotSelect, selectedPlot,
       drawBuilding(ctx, p0.x, p0.y, p1.x - p0.x, p1.y - p0.y,
         "AMPHIT.", "🎭", "#2a0a4a", "#9333ea", s);
     }
+
+    // Site Office & Experience Center (near 60' collector & 40' road)
+    {
+      const p0 = w2c(-95, -30, v);
+      const p1 = w2c(-65, -10, v);
+      drawBuilding(ctx, p0.x, p0.y, p1.x - p0.x, p1.y - p0.y,
+        "SITE OFFICE", "🏢", "#1e293b", "#d97706", s);
+    }
+
+    // Official Park Zones
+    const drawParkZone = (x1: number, z1: number, x2: number, z2: number, label: string) => {
+      const p0 = w2c(x1, z1, v);
+      const p1 = w2c(x2, z2, v);
+      const pw = p1.x - p0.x, ph = p1.y - p0.y;
+      // Green lawn
+      rr(ctx, p0.x, p0.y, pw, ph, 4);
+      ctx.fillStyle = "#2d6a4f";
+      ctx.fill();
+      ctx.strokeStyle = "#52b788";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      // Label
+      if (pw > 25 && ph > 15) {
+        ctx.font = `bold ${Math.max(6, Math.min(pw * 0.18, ph * 0.3, 11))}px system-ui`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "rgba(255,255,255,0.85)";
+        ctx.fillText("🌳 " + label, p0.x + pw / 2, p0.y + ph / 2);
+      }
+    };
+
+    drawParkZone(-225, -175, -185, -125, "PARK 5076 SY");
+    drawParkZone(-225, -85, -185, -35, "PARK 5076 SY");
+    drawParkZone(168, -195, 212, -145, "NE PARK 4861 SY");
+    drawParkZone(168, 170, 212, 210, "SE PARK 3327 SY");
 
     // 6. ── CARS ───────────────────────────────────────────────────────────
     if (s > 0.5) {

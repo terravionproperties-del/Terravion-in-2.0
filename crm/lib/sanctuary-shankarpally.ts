@@ -3,55 +3,67 @@
  *
  * SANCTUARY at Shankarpally Town — accurate GIS seed data from master plan.
  *
- * Layout (HMDA approved, 45 acres, 475 plots):
- *   ┌──────────────────────────────────────────────────────┐
- *   │ Club House │  Block A (40 plots, top section)         │
- *   ├──────────────────────────────────────────────────────┤
- *   │          ← 30' local road (top boundary) →           │
- *   ├──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬─┤
- *   │  │  │  │  │  │  │  │  │  │  │  │  │  │  │  │  │  │P│
- *   │60'│  │60'│  │60'│  │60'│  │60'│  │  │  │  │  │  │  │a│
- *   │   │B │   │B │   │B │   │B │   │B │  │  │  │  │  │  │r│
- *   │   │l │   │l │   │l │   │l │   │l │  │  │  │  │  │  │k│
- *   │   │o │   │o │   │o │   │o │   │o │  │  │  │  │  │  │ │
- *   │   │c │   │c │   │c │   │c │   │c │  │  │  │  │  │  │ │
- *   │   │k │   │k │   │k │   │k │   │k │  │  │  │  │  │  │ │
- *   │   │B │   │B │   │B │   │B │   │B │  │  │  │  │  │  │ │
- *   ├──────────────────────────────────────────────────────┤
- *   │          ← 40' collector road (central) →            │
- *   ├──────────────────────────────────────────────────────┤
- *   │  Block C (south — 10 rows × 20 plots per row)        │
- *   └──────────────────────────────────────────────────────┘
+ * Layout (HMDA approved, 45 acres, 475 plots) — from official PDF:
+ *
+ *   ┌──────────────────────────────────────────────────────────────────────┐
+ *   │ CLUB HOUSE  │  Social Infra   │         Block A (top)    │ NE Park  │
+ *   │  NW Park    │                 │                          │  4861sy  │
+ *   ├─────────────┤  ← 30' roads → ┼──────────────────────────┤──────────┤
+ *   │  W Park     │      North Block (plots, 30' local rows)  │          │
+ *   │  5076sy     │  ┌──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┐   │          │
+ *   │             │  │  │  │  │  │  │  │  │  │  │  │  │  │   │          │
+ *   ├─────────────┤  ├──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┤   │          │
+ *   │  100' Road  │  │  │  │OFFICE│  │  │  │  │  │  │  │  │   │          │
+ *   │  (West)     │  ├──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┤   │          │
+ *   │             │  │   ← 60' E-W collector road →       │   │          │
+ *   │             │  ├──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┤   │          │
+ *   │             │  │  │  │  │  │  │  │  │  │  │  │  │  │   │ SE Park  │
+ *   │             │  │  │  │  │  │  │  │  │  │  │  │  │  │   │  3327sy  │
+ *   └─────────────┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┘───┴──────────┘
+ *
+ * N-S Roads: 100' west boundary + 2×40' internal + multiple 30' between columns
+ * E-W Roads: 1×60' central collector + multiple 30' local roads
  */
 
 import type { Project, Plot, Amenity, ConstructionUpdate, Road, NearbyPlace } from "@/lib/gis-types";
 
 // ─── Scale ────────────────────────────────────────────────────────────────────
 // 1 real foot → 0.25 Three.js units
-// 60' road → 15 units | 40' road → 10 units | 30' road → 7.5 units
-// 33' plot width → 8.25 units | 57' plot depth → 14.25 units
+// 100' road → 25 units | 60' road → 15 units | 40' road → 10 units | 30' road → 7.5 units
+// 33' plot width → 8.25 units | 55' plot depth → 13.75 units
 
 const S = 0.25;
 
-// ─── 5 × 60' N-S spine roads ─────────────────────────────────────────────────
-// The master plan shows 5 major N-S roads at roughly equal spacing
-// Total E-W span ≈ 800 ft → 200 units, spread from X=-160 to X=+160
-const SPINE_X = [-160, -80, 0, 80, 160] as const;
+// ─── Actual Master Plan Road Positions ───────────────────────────────────────
+// From the PDF, the N-S roads from west to east:
+//   1) 100' Master Plan Road (west boundary)
+//   2) 33' road, 33' road (flanking first plot columns near parks)
+//   3) 40' wide road (first major internal N-S road)
+//   4) 30' roads between plot column pairs
+//   5) 40' wide road (second major internal N-S road)
+//   6) 30' roads between plot column pairs
+//   7) 30' road (east boundary zone)
+
+// Two major 40' N-S internal roads (replaces five 60' spines)
+const ROAD40_X = [-120, 60] as const;
+
+// 30' N-S roads between plot column pairs (local streets)
+const ROAD30_NS_X = [-175, -145, -68, -36, -4, 28, 108, 140, 172] as const;
 
 // ─── Row Z-positions ─────────────────────────────────────────────────────────
-const PLOT_D_N = 57.5 * S;   // north block plot depth  = 14.375 units
-const PLOT_D_S = 67.5 * S;   // south block plot depth  = 16.875 units
+const PLOT_D  = 55 * S;       // standard plot depth = 13.75 units (33' × 55' = 202 sy)
 const R60  = 60 * S;          // 60' road width          = 15 units
-const R40  = 40 * S;          // 40' collector           = 10 units
+const R40  = 40 * S;          // 40' internal road       = 10 units
 const R30  = 30 * S;          // 30' local road          = 7.5 units
+const R100 = 100 * S;         // 100' master plan road   = 25 units
 
-// North block rows 0-9, counting away from centre (row 0 = closest to centre)
+// North block rows 0-5, counting away from centre (row 0 = closest to 60' collector)
 function northZ(row: number): number {
-  return -(R40 / 2 + PLOT_D_N / 2 + row * (PLOT_D_N + R30));
+  return -(R60 / 2 + PLOT_D / 2 + row * (PLOT_D + R30));
 }
-// South block rows 0-9
+// South block rows 0-5
 function southZ(row: number): number {
-  return R40 / 2 + PLOT_D_S / 2 + row * (PLOT_D_S + R30);
+  return R60 / 2 + PLOT_D / 2 + row * (PLOT_D + R30);
 }
 
 // ─── Official Status Map (from Sanctuary Julkal Available List 08/09/2026) ───
@@ -206,83 +218,55 @@ function generatePlots(): Plot[] {
   const plots: Plot[] = [];
   let n = 1;
 
-  // ── Column group dimensions ──────────────────────────────────────────────
-  // CG 0 (leftmost, near 100' main road): 30' plots
-  // CG 1-3 (centre groups): 33' plots
-  // CG 4 (rightmost, near park): 40' plots
-  const CG: { wA: number; wB: number; wC: number; wD: number }[] = [
-    { wA: 30, wB: 30, wC: 30, wD: 30 }, // CG 0
-    { wA: 33, wB: 33, wC: 33, wD: 33 }, // CG 1
-    { wA: 33, wB: 33, wC: 33, wD: 33 }, // CG 2
-    { wA: 33, wB: 33, wC: 33, wD: 33 }, // CG 3
-    { wA: 40, wB: 40, wC: 40, wD: 40 }, // CG 4
-  ];
-
-  // X positions for each sub-column (relative to spine centre)
-  function cgX(cg: number, col: "A" | "B" | "C" | "D"): number {
-    const sp = SPINE_X[cg];
-    const { wA, wB, wC, wD } = CG[cg];
-    switch (col) {
-      case "A": return sp - R60 / 2 - wA * S / 2;
-      case "B": return sp + R60 / 2 + wB * S / 2;
-      case "C": return sp + R60 / 2 + wB * S + R30 + wC * S / 2;
-      case "D": return sp + R60 / 2 + wB * S + R30 + wC * S + R30 + wD * S / 2;
-    }
-  }
-
+  // 10 N-S internal road corridors across the layout defining 20 plot columns
+  const NS_CORRIDORS = [-175, -145, -120, -68, -36, -4, 28, 60, 108, 140] as const;
   const TOTAL_ROWS = 20;
 
   for (let row = 0; row < TOTAL_ROWS; row++) {
     const isNorth = row < 10;
-    const localRow = isNorth ? 9 - row : row - 10; // 0 = closest to collector
+    const localRow = isNorth ? 9 - row : row - 10; // 0 = closest to 60' collector
     const z = isNorth ? northZ(localRow) : southZ(localRow);
-    const depthFt = isNorth ? 57.5 : 67.5;
+    const depthFt = 55;
     const isEdgeRow = row === 0 || row === TOTAL_ROWS - 1;
 
-    for (let cg = 0; cg < 5; cg++) {
-      const { wA, wB, wC, wD } = CG[cg];
-      const isFirstCG = cg === 0;
-      const isLastCG  = cg === 4;
+    for (let c = 0; c < NS_CORRIDORS.length; c++) {
+      const roadX = NS_CORRIDORS[c];
+      const roadW = (roadX === -120 || roadX === 60) ? 40 : 30;
+      const roadHalf = (roadW * S) / 2;
+      const plotHalfW = (33 * S) / 2;
 
-      // Col A — EAST facing, left of spine
-      plots.push(makePlot(n++, row, cg * 4 + 0, cgX(cg, "A"), z, wA, depthFt, "EAST", 60, {
-        isMainRoadFacing: isFirstCG,
-        isCorner: isFirstCG && isEdgeRow,
-        isClubhouseFacing: row <= 1 && cg < 2,
+      const isFirst = c === 0;
+      const isLast = c === NS_CORRIDORS.length - 1;
+
+      // Col A — West of road, facing EAST into the road
+      const xA = roadX - roadHalf - plotHalfW;
+      plots.push(makePlot(n++, row, c * 2, xA, z, 33, depthFt, "EAST", roadW, {
+        isMainRoadFacing: isFirst,
+        isCorner: isFirst && isEdgeRow,
+        isClubhouseFacing: row <= 2 && c < 2,
       }));
 
-      // Col B — WEST facing, right of spine
-      plots.push(makePlot(n++, row, cg * 4 + 1, cgX(cg, "B"), z, wB, depthFt, "WEST", 60, {
-        isClubhouseFacing: row <= 1 && cg < 2,
-      }));
-
-      // Col C — EAST facing (back-to-back with B across 30' local)
-      plots.push(makePlot(n++, row, cg * 4 + 2, cgX(cg, "C"), z, wC, depthFt, "EAST", 30, {
-        isParkFacing: isLastCG,
-        isClubhouseFacing: row <= 1 && cg < 2,
-      }));
-
-      // Col D — WEST facing
-      plots.push(makePlot(n++, row, cg * 4 + 3, cgX(cg, "D"), z, wD, depthFt, "WEST", 30, {
-        isParkFacing: isLastCG,
-        isPremium: isLastCG && isEdgeRow,
-        isCorner: isLastCG && isEdgeRow,
-        isClubhouseFacing: row <= 1 && cg < 2,
+      // Col B — East of road, facing WEST into the road
+      const xB = roadX + roadHalf + plotHalfW;
+      plots.push(makePlot(n++, row, c * 2 + 1, xB, z, 33, depthFt, "WEST", roadW, {
+        isParkFacing: isLast,
+        isCorner: isLast && isEdgeRow,
+        isClubhouseFacing: row <= 2 && c < 2,
       }));
     }
   }
 
-  // ── Block A — top section near Club House (40 plots in 4 rows of 10) ──────
-  const BLOCK_A_BASE_Z = northZ(9) - PLOT_D_N - R30 * 2;
+  // ── Block A — top section near Club House & North Boundary (75 plots) ───────
+  const BLOCK_A_BASE_Z = northZ(9) - PLOT_D - R30 * 2;
 
-  for (let r = 0; r < 4 && n <= 475; r++) {
-    const z = BLOCK_A_BASE_Z - r * (57 * S + R30);
-    for (let c = 0; c < 10 && n <= 475; c++) {
-      const x = SPINE_X[0] - R60 / 2 + c * (33 * S + R30 * 0.5);
-      const wFt = c === 0 || c === 9 ? 40 : 33;
-      plots.push(makePlot(n++, -r - 1, c, x, z, wFt, 57, "SOUTH", 30, {
-        isClubhouseFacing: c < 3,
-        isCorner: c === 0 || c === 9,
+  for (let r = 0; r < 5 && n <= 475; r++) {
+    const z = BLOCK_A_BASE_Z - r * (PLOT_D + R30 * 0.8);
+    for (let c = 0; c < 15 && n <= 475; c++) {
+      const x = -175 + c * (25 * S + R30 * 0.4);
+      const wFt = (c === 0 || c === 14) ? 40 : 33;
+      plots.push(makePlot(n++, -r - 1, c, x, z, wFt, 55, "SOUTH", 30, {
+        isClubhouseFacing: c < 4,
+        isCorner: c === 0 || c === 14,
         isMainRoadFacing: c === 0,
       }));
     }
@@ -300,28 +284,38 @@ const SANCTUARY_ROADS: Road[] = [
   {
     id: "r-main",
     projectId: "sanctuary-shankarpally-001",
-    name: "Master Plan Road (100'4\")",
+    name: "Master Plan Road (100'0\")",
     widthFt: 100,
     type: "MAIN",
     path3D: [[-230, 0, -280], [-230, 0, 220]],
   },
 
-  // 5 × 60' N-S spine roads
-  ...SPINE_X.map((x, i) => ({
-    id: `r-spine-${i}`,
+  // 2 × 40' N-S internal roads
+  ...ROAD40_X.map((x, i) => ({
+    id: `r-road40-${i}`,
     projectId: "sanctuary-shankarpally-001",
-    name: `Proposed 60'0" Wide Road ${i + 1}`,
-    widthFt: 60,
+    name: `Proposed 40'0" Wide Road (N-S ${i + 1})`,
+    widthFt: 40,
     type: "CROSS" as const,
     path3D: [[x, 0, -270], [x, 0, 215]] as [number, number, number][],
   })),
 
-  // 40' central collector (E-W)
+  // 9 × 30' N-S internal roads
+  ...ROAD30_NS_X.map((x, i) => ({
+    id: `r-road30-ns-${i}`,
+    projectId: "sanctuary-shankarpally-001",
+    name: `Proposed 30'0" Wide Road (N-S ${i + 1})`,
+    widthFt: 30,
+    type: "INTERNAL" as const,
+    path3D: [[x, 0, -260], [x, 0, 210]] as [number, number, number][],
+  })),
+
+  // 60' central collector (E-W)
   {
     id: "r-collector",
     projectId: "sanctuary-shankarpally-001",
-    name: "Proposed 40'0\" Wide Road (Central)",
-    widthFt: 40,
+    name: "Proposed 60'0\" Central Collector Road",
+    widthFt: 60,
     type: "CROSS",
     path3D: [[-230, 0, 0], [215, 0, 0]],
   },
@@ -333,7 +327,7 @@ const SANCTUARY_ROADS: Road[] = [
     name: "Proposed 30'0\" Wide Road (Top)",
     widthFt: 30,
     type: "INTERNAL",
-    path3D: [[-230, 0, northZ(9) - PLOT_D_N - R30], [215, 0, northZ(9) - PLOT_D_N - R30]],
+    path3D: [[-230, 0, northZ(9) - PLOT_D - R30], [215, 0, northZ(9) - PLOT_D - R30]],
   },
 
   // 30' local E-W roads within north block (between row pairs)
@@ -343,7 +337,7 @@ const SANCTUARY_ROADS: Road[] = [
     name: `30'0" Local Road N${i + 1}`,
     widthFt: 30,
     type: "INTERNAL" as const,
-    path3D: [[-230, 0, northZ(r) + PLOT_D_N / 2 + R30 / 2], [215, 0, northZ(r) + PLOT_D_N / 2 + R30 / 2]] as [number, number, number][],
+    path3D: [[-230, 0, northZ(r) + PLOT_D / 2 + R30 / 2], [215, 0, northZ(r) + PLOT_D / 2 + R30 / 2]] as [number, number, number][],
   })),
 
   // 30' local E-W roads within south block
@@ -353,7 +347,7 @@ const SANCTUARY_ROADS: Road[] = [
     name: `30'0" Local Road S${i + 1}`,
     widthFt: 30,
     type: "INTERNAL" as const,
-    path3D: [[-230, 0, southZ(r) - PLOT_D_S / 2 - R30 / 2], [215, 0, southZ(r) - PLOT_D_S / 2 - R30 / 2]] as [number, number, number][],
+    path3D: [[-230, 0, southZ(r) - PLOT_D / 2 - R30 / 2], [215, 0, southZ(r) - PLOT_D / 2 - R30 / 2]] as [number, number, number][],
   })),
 
   // 40' bottom boundary road
@@ -363,7 +357,7 @@ const SANCTUARY_ROADS: Road[] = [
     name: "Proposed 40'0\" Wide Road (South)",
     widthFt: 40,
     type: "CROSS",
-    path3D: [[-230, 0, southZ(9) + PLOT_D_S], [215, 0, southZ(9) + PLOT_D_S]],
+    path3D: [[-230, 0, southZ(9) + PLOT_D], [215, 0, southZ(9) + PLOT_D]],
   },
 ];
 
@@ -391,22 +385,58 @@ const SANCTUARY_AMENITIES: Amenity[] = [
     position3D: [195, 0, -230],
   },
   {
+    id: "sa-office",
+    projectId: "sanctuary-shankarpally-001",
+    name: "Site Office & Experience Center",
+    type: "COMMERCIAL",
+    description: "On-site customer lounge, project scale model, and management office",
+    icon: "🏢",
+    position3D: [-80, 0, -20],
+  },
+  {
+    id: "sa-west-park-1",
+    projectId: "sanctuary-shankarpally-001",
+    name: "West Park 1 (5,076 Sq.Yds)",
+    type: "PARK",
+    description: "Official HMDA 5,076 sq.yds landscaped green with gazebo & walking loop",
+    icon: "🌳",
+    position3D: [-205, 0, -150],
+  },
+  {
+    id: "sa-west-park-2",
+    projectId: "sanctuary-shankarpally-001",
+    name: "West Park 2 (5,076 Sq.Yds)",
+    type: "PARK",
+    description: "Official HMDA 5,076 sq.yds open green space with native shade trees",
+    icon: "🌿",
+    position3D: [-205, 0, -60],
+  },
+  {
+    id: "sa-ne-park",
+    projectId: "sanctuary-shankarpally-001",
+    name: "North-East Park (4,861 Sq.Yds)",
+    type: "PARK",
+    description: "4,861 sq.yds green buffer with botanical garden and reflexology track",
+    icon: "🌸",
+    position3D: [185, 0, -170],
+  },
+  {
+    id: "sa-se-park",
+    projectId: "sanctuary-shankarpally-001",
+    name: "South-East Park (3,327 Sq.Yds)",
+    type: "PARK",
+    description: "3,327 sq.yds recreation park with meditation deck and lawn",
+    icon: "🍃",
+    position3D: [185, 0, 190],
+  },
+  {
     id: "sa-social-infra",
     projectId: "sanctuary-shankarpally-001",
-    name: "Social Infra",
+    name: "Social Infra (5,149 Sq.Yds)",
     type: "COMMERCIAL",
     description: "Convenience stores, ATM, pharmacy, salon & essential services",
     icon: "🏪",
     position3D: [40, 0, -260],
-  },
-  {
-    id: "sa-park",
-    projectId: "sanctuary-shankarpally-001",
-    name: "Central Park",
-    type: "PARK",
-    description: "4-acre landscaped park with walking tracks and seating",
-    icon: "🌳",
-    position3D: [200, 0, -60],
   },
   {
     id: "sa-tennis",

@@ -54,8 +54,10 @@ const PLOT_EMISSIVE: Record<string, number> = {
   COMMERCIAL: 0x00102a,
 };
 
-// Road definitions [x1, z1, x2, z2, widthFt]
-const SPINE_X = [-160, -80, 0, 80, 160];
+// Road definitions [x1, z1, x2, z2, widthFt] matching master plan
+const ROAD40_X = [-120, 60] as const;
+const ROAD30_NS_X = [-175, -145, -68, -36, -4, 28, 108, 140, 172] as const;
+const ALL_NS_ROADS = [-175, -145, -120, -68, -36, -4, 28, 60, 108, 140, 172] as const;
 const ROAD_EW_Z = [0, -225, -170, -120, -70, 50, 100, 150, 230];
 
 // Tree generation helper
@@ -66,14 +68,14 @@ function* genTrees(): Generator<[number, number, number]> {
   for (let x = -220; x < 225; x += 16) yield [x, 0, 236];
   // west boundary (left of main road)
   for (let z = -280; z < 236; z += 16) yield [-238, 0, z];
-  // east boundary strip (moved to x=222,232 so amenity zone at x=170-215 is clear)
+  // east boundary strip (clear of amenity zones)
   for (let z = -215; z < 220; z += 14) yield [222, 0, z];
   for (let z = -215; z < 220; z += 14) yield [232, 0, z];
-  // street trees both sides of each spine (skip top zone where clubhouse is)
-  for (const x of SPINE_X) {
-    for (let z = -220; z < 220; z += 20) {
-      yield [x - 9, 0, z];
-      yield [x + 9, 0, z];
+  // street trees along primary roads (skip top zone where clubhouse is)
+  for (const x of [-120, -36, 60, 140]) {
+    for (let z = -210; z < 210; z += 24) {
+      yield [x - 7, 0, z];
+      yield [x + 7, 0, z];
     }
   }
   // NW entrance trees (flanking gate, NOT over clubhouse)
@@ -85,14 +87,14 @@ function* genTrees(): Generator<[number, number, number]> {
 // Car route [x1, z1, x2, z2]
 const CAR_ROUTES: [number, number, number, number][] = [
   [-230, -100, -230, 215],
-  [-160, -275,  -160, 225],
-  [ -80,  225,   -80,-275],
-  [   0, -275,     0, 225],
-  [  80,  225,    80,-275],
-  [ 160, -275,   160, 225],
-  [-230,    0,   215,   0],
-  [ 215, -225,  -230,-225],
-  [-230,   50,   215,  50],
+  [-120, -260, -120, 210],
+  [  60,  210,   60, -260],
+  [-175, -260, -175, 210],
+  [  -4,  210,   -4, -260],
+  [ 140, -260,  140, 210],
+  [-230,    0,  215,    0],
+  [ 215, -225, -230, -225],
+  [-230,   50,  215,   50],
 ];
 const CAR_COLORS_HEX = [0xef4444,0x3b82f6,0x22c55e,0xf59e0b,0xec4899,0xffffff,0x94a3b8];
 
@@ -233,13 +235,19 @@ export default function TownshipScene3D({ project, onPlotSelect, selectedPlot, f
       // W main road (100ft = 25u)
       addRoad(-230, -25, 25, 540);
 
-      // N-S spines (60ft = 15u)
-      SPINE_X.forEach((x) => addRoad(x, -25, 15, 540));
+      // 40' internal roads (10u)
+      ROAD40_X.forEach((x) => addRoad(x, -25, 10, 500));
 
-      // E-W roads
+      // 30' internal roads (7.5u)
+      ROAD30_NS_X.forEach((x) => addRoad(x, -25, 7.5, 480));
+
+      // 60' collector road (15u)
+      addRoad(0, 0, 490, 15);
+
+      // Local E-W roads
       for (const z of ROAD_EW_Z) {
-        const widthFt = (z === 0 || z === 230) ? 10 : 7.5;
-        addRoad(0, z, 490, widthFt);
+        if (z === 0) continue;
+        addRoad(0, z, 490, 7.5);
       }
 
       // ── Plots (InstancedMesh per status) ──────────────────────────────────
@@ -578,6 +586,64 @@ export default function TownshipScene3D({ project, onPlotSelect, selectedPlot, f
       // 7. SOCIAL INFRA / MARKET — top zone at z=-265
       // ──────────────────────────────────────────────────────
       addPremiumBuilding(40, -265, 40, 8, 22, 0x1c3a1c, 0x4a8a4a, 0x04100a);
+
+      // ──────────────────────────────────────────────────────
+      // 8. SITE OFFICE & EXPERIENCE CENTER — near 60' collector & 40' road
+      // ──────────────────────────────────────────────────────
+      addPremiumBuilding(-80, -20, 32, 10, 22, 0x1e293b, 0xd97706, 0x1e1b4b);
+      // Entrance canopy / portico
+      {
+        const canopyMat = new THREE.MeshPhongMaterial({ color: 0xf59e0b, shininess: 120 });
+        const canopy = new THREE.Mesh(new THREE.BoxGeometry(16, 0.8, 10), canopyMat);
+        canopy.position.set(-80, 5, -8);
+        canopy.castShadow = true;
+        scene.add(canopy);
+      }
+
+      // ──────────────────────────────────────────────────────
+      // 9. PARK ZONES (from official master plan)
+      // ──────────────────────────────────────────────────────
+      function addParkZone(px: number, pz: number, pw: number, pd: number, name: string) {
+        // Lush green lawn pad
+        const grassMat = new THREE.MeshPhongMaterial({
+          color: 0x226b2b,
+          emissive: 0x061a0a,
+          shininess: 25,
+        });
+        const grass = new THREE.Mesh(new THREE.BoxGeometry(pw, 0.4, pd), grassMat);
+        grass.position.set(px, 0.2, pz);
+        grass.receiveShadow = true;
+        scene.add(grass);
+
+        // Walking track border
+        const trackMat = new THREE.MeshPhongMaterial({ color: 0xd4a373, shininess: 15 });
+        const track = new THREE.Mesh(new THREE.BoxGeometry(pw + 2, 0.25, pd + 2), trackMat);
+        track.position.set(px, 0.12, pz);
+        track.receiveShadow = true;
+        scene.add(track);
+
+        // Central pavilion / gazebo
+        const gazMat = new THREE.MeshPhongMaterial({ color: 0xfefae0, shininess: 50 });
+        const gaz = new THREE.Mesh(new THREE.CylinderGeometry(3, 3.5, 4, 8), gazMat);
+        gaz.position.set(px, 2.2, pz);
+        gaz.castShadow = true;
+        scene.add(gaz);
+
+        const gazRoofMat = new THREE.MeshPhongMaterial({ color: 0xbc6c25, shininess: 80 });
+        const gazRoof = new THREE.Mesh(new THREE.ConeGeometry(5, 2.5, 8), gazRoofMat);
+        gazRoof.position.set(px, 5.2, pz);
+        gazRoof.castShadow = true;
+        scene.add(gazRoof);
+      }
+
+      // West Park 1 (5,076 Sq.Yds)
+      addParkZone(-205, -150, 36, 48, "West Park 1");
+      // West Park 2 (5,076 Sq.Yds)
+      addParkZone(-205, -60, 36, 48, "West Park 2");
+      // North-East Park (4,861 Sq.Yds)
+      addParkZone(185, -170, 38, 44, "NE Park");
+      // South-East Park (3,327 Sq.Yds)
+      addParkZone(185, 190, 38, 40, "SE Park");
 
 
       // ── Cars — proper 2-part body+cab instanced meshes ──────────────────────
