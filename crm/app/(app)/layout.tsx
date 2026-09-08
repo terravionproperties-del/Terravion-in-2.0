@@ -80,7 +80,7 @@ export default async function AppLayout({
         <div className="border-t border-slate-200 bg-slate-50/70 p-3 space-y-2.5">
           {/* View Public Site link */}
           <a
-            href="http://localhost:3000"
+            href={process.env.NEXT_PUBLIC_SITE_URL || "https://terravionproperties.in"}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2 text-[0.75rem] font-medium text-slate-700 shadow-2xs transition-colors hover:border-amber-300 hover:text-[#946c0b]"

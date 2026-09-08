@@ -409,7 +409,7 @@ export default async function MediaLibraryPage() {
 
         <div className="flex items-center gap-3">
           <a
-            href="http://localhost:3000/gallery"
+            href={`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://terravionproperties.in"}/gallery`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn text-xs font-semibold"
@@ -501,7 +501,7 @@ export default async function MediaLibraryPage() {
                 </a>
                 <a
                   href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
-                    `Sharing official collateral: ${asset.title} — Terravion Properties: http://localhost:3000${asset.url}`
+                    `Sharing official collateral: ${asset.title} — Terravion Properties: ${process.env.NEXT_PUBLIC_SITE_URL ?? "https://terravionproperties.in"}${asset.url}`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

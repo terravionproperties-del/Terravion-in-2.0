@@ -235,7 +235,7 @@ export default function InventoryPage() {
 
           {/* Open live 3D */}
           <a
-            href={`${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/gis/${activeProjectKey}`}
+            href={`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://terravionproperties.in"}/gis/${activeProjectKey}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold bg-gradient-to-r from-[#c59b27] to-[#a67c1e] text-white shadow-xs hover:brightness-105 transition-all"
