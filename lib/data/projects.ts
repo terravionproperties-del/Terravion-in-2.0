@@ -80,6 +80,18 @@ export const projects: Project[] = [
         a: "The 25,000 sq. ft. clubhouse houses a banquet hall, restaurant and café, swimming pool complex, two indoor badminton courts, a gymnasium, an indoor games lounge, a business centre with co-working spaces, and three guest suites.",
       },
       {
+        q: "Is Sanctuary by Southpride Realty located in Julkul (Julkal) Shankarpally?",
+        a: "Yes. Sanctuary by Southpride Realty is situated at Julkul (Julkal), Shankarpally, Hyderabad. It is an HMDA-approved premium plotted community featuring 475 Vaastu-compliant villa plots and a 25,000 sq. ft. clubhouse with rapid access to the Financial District and ORR Exit 3.",
+      },
+      {
+        q: "Why is Southpride Realty's Sanctuary considered the best open plots project in Shankarpally?",
+        a: "Sanctuary by Southpride Realty stands out as the best open plots project in Shankarpally due to its sanctioned 45-acre HMDA layout, comprehensive underground utilities, 25,000 sq. ft. luxury clubhouse, 100% clear titles with immediate bank loan eligibility, and strategic location on the high-growth West Hyderabad corridor.",
+      },
+      {
+        q: "How does Southpride Sanctuary compare to other regional developments like Vanora Abodes, League Agro Farms, or Primeavenue?",
+        a: "While agricultural projects like League Agro Farms focus on farmland retreat concepts, Southpride Sanctuary and communities like Southpride Vanora Abodes and Primeavenue provide fully sanctioned, non-agricultural HMDA/DTCP residential villa plots. Southpride Sanctuary guarantees full statutory permissions, underground drainage, asphalted avenues, and institutional security for maximum long-term capital appreciation.",
+      },
+      {
         q: "Can NRIs buy plots in South Pride Sanctuary?",
         a: "Yes. The project is NRI-friendly and FEMA-compliant. Our team assists NRI buyers with documentation, Power of Attorney arrangements and repatriation-compliant payment channels.",
       },
@@ -87,8 +99,23 @@ export const projects: Project[] = [
     accent: "#b08d46",
     metaTitle: "South Pride Sanctuary Shankarpally — 45-Acre HMDA Villa Plots | Terravion",
     metaDescription:
-      "South Pride Sanctuary (South Pride by Sanctuary Shankarpally): 475 HMDA-approved villa plots (200–750 sq yds) across 45 acres in Shankarpally with 25,000 sq ft clubhouse. Verified title, ready for registration.",
+      "South Pride Sanctuary (Sanctuary by Southpride Realty, Julkul Shankarpally): 475 HMDA-approved villa plots (200–750 sq yds) across 45 acres with 25,000 sq ft clubhouse. Clear title, bank loan eligible.",
     keywords: [
+      "shankarpally open plots",
+      "open plots in shankarpally",
+      "west hyderabad open plots",
+      "real estate properties",
+      "southpride realty",
+      "sanctuary by southpride realty",
+      "sanctuary julkul",
+      "shankarpally julkul",
+      "southpride open plots",
+      "southpride vanora abodes",
+      "league agro farms",
+      "primeavenue",
+      "hyderabad real estate",
+      "hmda approved projects",
+      "best open plots project in shankarpally",
       "southpride by sanctuary",
       "south pride sanctuary",
       "south pride by sanctuary shankarpally",
@@ -96,10 +123,6 @@ export const projects: Project[] = [
       "the sanctuary shankarpally",
       "shankarpally plots",
       "shankarpallly polts",
-      "plots in shankarpally",
-      "hmda approved plots shankarpally",
-      "villa plots shankarpally",
-      "gated community plots hyderabad west",
       "the sanctuary by terravion",
     ],
   },
@@ -117,7 +140,7 @@ export const projects: Project[] = [
     priceFrom: "₹45 Lakh onwards", // [PLACEHOLDER — verify project-specific pricing]
     headline: "Raghunath County — Nineteen acres on the hundred-feet road, built for the long view.",
     intro:
-      "Raghunath County (frequently searched as Raghnath County Shankarpally) is a 19-acre DTCP-approved villa plot community facing the 100-feet Shankarpally to Mehtabkhan Guda–Mominpet main road — a grand entrance arch, 40- and 33-feet CC roads, and a secure compound wall framing a masterplan of avenue plantation and open commons.",
+      "Raghunath County (also searched as Southprides Raghunathcounty and Raghnath County Shankarpally) is a 19-acre DTCP-approved villa plot community facing the 100-feet Shankarpally to Mehtabkhan Guda–Mominpet main road — a grand entrance arch, 40- and 33-feet CC roads, and a secure compound wall framing a masterplan of avenue plantation and open commons.",
     narrative: [
       "Frontage decides fortunes in plotted development, and Raghunath County holds one of Shankarpally's best: direct face onto the 100-feet main road toward Mominpet, minutes from Shankarpally's railway station, schools and daily markets.",
       "Inside the gate, the community is laid with 40-feet and 33-feet cement concrete roads, modern streetlights, avenue plantation with paved footpaths, and underground water, electricity and drainage to every plot. Landscaped open spaces and community seating areas thread the layout together.",
@@ -151,8 +174,8 @@ export const projects: Project[] = [
     ],
     faqs: [
       {
-        q: "What is Raghunath County (also known as Raghnath County)?",
-        a: "Raghunath County (often searched as Raghnath County) is a premier 19-acre DTCP-approved plotted development strategically positioned with direct frontage on the 100-feet Shankarpally–Mominpet main road. It offers high-growth villa plots with cement concrete internal roads, underground utilities, and round-the-clock security.",
+        q: "What is Southprides Raghunathcounty (also known as Raghnath County)?",
+        a: "Southprides Raghunathcounty (often searched as Raghnath County or Raghunath County Shankarpally) is a premier 19-acre DTCP-approved plotted development strategically positioned with direct frontage on the 100-feet Shankarpally–Mominpet main road. It offers high-growth open plots with cement concrete internal roads, underground utilities, and round-the-clock security.",
       },
       {
         q: "Is Raghunath County DTCP approved with clear title?",
@@ -174,19 +197,23 @@ export const projects: Project[] = [
     accent: "#9c6b4a",
     metaTitle: "Raghunath County Shankarpally — 19-Acre DTCP Villa Plots | Raghnath County",
     metaDescription:
-      "Raghunath County (Raghnath County) Shankarpally: 19 acres of DTCP-approved villa plots facing the 100-ft main road with 40ft & 33ft CC roads, underground drainage, and clear title. Starting ₹45L.",
+      "Southprides Raghunathcounty (Raghnath County Shankarpally): 19 acres of DTCP-approved villa plots facing the 100-ft main road with CC roads, underground drainage, and clear title. Starting ₹45L.",
     keywords: [
+      "southprides raghunathcounty",
       "raghnath county",
       "raghunath county",
       "raghnath county shankarpally",
       "raghunath county shankarpally",
-      "raghunath county plots",
-      "shankarpally plots",
-      "shankarpallly polts",
-      "plots in shankarpally",
+      "shankarpally open plots",
+      "open plots in shankarpally",
+      "west hyderabad open plots",
+      "southpride open plots",
+      "southpride realty",
+      "real estate properties",
+      "hyderabad real estate",
+      "best open plots project in shankarpally",
       "dtcp approved plots shankarpally",
       "villa plots near mominpet road",
-      "open plots shankarpally",
     ],
   },
   {
