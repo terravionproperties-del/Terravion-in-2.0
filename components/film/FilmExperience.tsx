@@ -107,13 +107,14 @@ export default function FilmExperience() {
 
     let st: ScrollTrigger | null = null;
     if (!isPreview) {
+      const isMobile = window.innerWidth < 768;
       st = ScrollTrigger.create({
         trigger: el,
         start: "top top",
-        end: SCROLL_LENGTH,
+        end: isMobile ? "+=650%" : SCROLL_LENGTH,
         pin: true,
         pinSpacing: true,
-        scrub: 0.95,
+        scrub: isMobile ? 0.35 : 0.85,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           frameRef.current = progressToFrame(self.progress);
@@ -257,22 +258,22 @@ export default function FilmExperience() {
             className="film-scene"
           >
             {scene.kicker && (
-              <p className="label mb-4 text-gold-light/90 md:mb-5">{scene.kicker}</p>
+              <p className="label mb-2 text-gold-light/95 text-xs font-semibold uppercase tracking-[0.16em] md:mb-5">{scene.kicker}</p>
             )}
-            <h2 className="display whitespace-pre-line text-[clamp(2.1rem,6.4vw,4.6rem)] leading-[0.98] text-ivory drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)]">
+            <h2 className="display whitespace-pre-line text-2xl sm:text-3xl md:text-[clamp(2.1rem,6.4vw,4.6rem)] font-bold tracking-tight leading-[1.14] text-ivory drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)]">
               {scene.title}
             </h2>
             {scene.lead && (
-              <p className="mt-5 max-w-[46ch] text-[clamp(0.95rem,1.5vw,1.15rem)] leading-relaxed text-on-dark-secondary">
+              <p className="mt-2.5 max-w-[46ch] text-xs sm:text-sm md:text-[clamp(0.95rem,1.5vw,1.15rem)] leading-relaxed text-on-dark-secondary md:mt-5">
                 {scene.lead}
               </p>
             )}
             {scene.facts && (
-              <dl className="mt-7 flex flex-wrap gap-x-10 gap-y-4">
+              <dl className="mt-3 flex flex-wrap gap-2 sm:gap-4 md:mt-7 md:gap-x-10 md:gap-y-4">
                 {scene.facts.map((f) => (
-                  <div key={f.label}>
-                    <dt className="label text-on-dark-muted">{f.label}</dt>
-                    <dd className="display mt-1 text-2xl text-ivory md:text-3xl">
+                  <div key={f.label} className="rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur-sm md:bg-transparent md:p-0">
+                    <dt className="label text-[10px] text-on-dark-muted font-semibold uppercase tracking-wider">{f.label}</dt>
+                    <dd className="display mt-0.5 text-base font-bold text-ivory sm:text-lg md:text-3xl">
                       {f.value}
                     </dd>
                   </div>
@@ -282,9 +283,9 @@ export default function FilmExperience() {
             {scene.link && (
               <Link
                 href={scene.link.href}
-                className="film-link pointer-events-auto mt-8 inline-flex items-center gap-3"
+                className="film-link pointer-events-auto mt-3 inline-flex items-center gap-2 md:mt-8 md:gap-3"
               >
-                <span className="label">{scene.link.label}</span>
+                <span className="label text-xs font-semibold text-gold-light uppercase tracking-wider">{scene.link.label}</span>
                 <span aria-hidden="true" className="film-link-rule" />
               </Link>
             )}
@@ -347,10 +348,10 @@ export default function FilmExperience() {
           person. It carries its own soft gradient for contrast. */}
       <div
         ref={hintRef}
-        className="pointer-events-none absolute bottom-8 left-[7vw] z-30 flex items-center gap-4 text-on-dark-secondary md:left-[6vw]"
+        className="pointer-events-none absolute bottom-20 left-5 z-30 flex items-center gap-3 text-on-dark-secondary md:bottom-8 md:left-[6vw] md:gap-4"
       >
         <span className="film-hint-line" aria-hidden="true" />
-        <span className="label drop-shadow-[0_1px_10px_rgba(0,0,0,0.7)]">
+        <span className="label text-[10px] tracking-wider uppercase font-medium drop-shadow-[0_1px_10px_rgba(0,0,0,0.7)] sm:text-xs">
           Scroll to begin the film
         </span>
       </div>
@@ -366,7 +367,7 @@ export default function FilmExperience() {
             window.scrollTo({ top: stRef.current.end, behavior: "smooth" });
           }
         }}
-        className="pointer-events-auto absolute bottom-7 right-6 z-30 flex items-center gap-2 rounded-full border border-gold-light/30 bg-forest-deep/80 px-4 py-2 text-xs font-semibold text-gold-light backdrop-blur-md transition-all hover:border-gold-light hover:bg-forest-deep hover:text-white shadow-lg cursor-pointer md:bottom-8 md:right-8"
+        className="pointer-events-auto absolute bottom-20 right-5 z-30 flex items-center gap-2 rounded-full border border-gold-light/40 bg-forest-deep/85 px-3.5 py-1.5 text-[11px] font-semibold text-gold-light backdrop-blur-md transition-all hover:border-gold-light hover:bg-forest-deep hover:text-white shadow-lg cursor-pointer md:bottom-8 md:right-8 md:px-4 md:py-2 md:text-xs"
         aria-label="Skip to communities"
       >
         <span>Explore Communities</span>

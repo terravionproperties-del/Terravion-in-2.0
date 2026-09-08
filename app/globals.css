@@ -678,9 +678,9 @@ h2[class*="leading-[0."] {
    transform and knocks centred blocks off axis. */
 .film-scene {
   position: absolute;
-  left: 7vw;
-  right: 7vw;
-  bottom: 16svh;
+  left: 4vw;
+  right: 4vw;
+  bottom: 4svh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -689,9 +689,28 @@ h2[class*="leading-[0."] {
   opacity: 0;
   transform: translate3d(var(--dx, 0px), var(--dy, 0px), 0);
   will-change: transform, opacity;
+  background: rgba(14, 26, 16, 0.84);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.4rem;
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.75);
 }
 
 @media (min-width: 768px) {
+  .film-scene {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    bottom: 16svh;
+    left: 7vw;
+    right: 7vw;
+  }
   .film-scene[data-anchor="left"] {
     left: 6vw;
     right: auto;
@@ -866,9 +885,10 @@ html.film-active .sticky-cta {
   transform: translateY(120%);
 }
 html.film-active .mobile-dock {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(-50%) translateY(160%);
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateX(-50%) translateY(200%) !important;
 }
 
 /* Same rule as the other floating chrome: the cinematic intro owns the

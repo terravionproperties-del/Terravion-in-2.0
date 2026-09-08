@@ -46,8 +46,10 @@ export default function MobileDock({
     let last = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
-      // ignore rubber-banding, and always show near the top
-      if (y < 80) setHidden(false);
+      // On home page, the film owns the hero screen; stay hidden until user scrolls into content
+      const isHomeFilm = (canonicalPath === "/" || canonicalPath === "") && (y < 80 || document.documentElement.classList.contains("film-active"));
+      if (isHomeFilm) setHidden(true);
+      else if (y < 80) setHidden(false);
       else if (Math.abs(y - last) > 8) setHidden(y > last);
       last = y;
     };
