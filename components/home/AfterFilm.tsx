@@ -75,6 +75,7 @@ export default function AfterFilm() {
     <>
       {/* ── THE COMMUNITIES · three full-height frames, no gutters ────── */}
       <section
+        id="communities"
         aria-label="The communities"
         className="grid grid-cols-1 md:grid-cols-3"
       >

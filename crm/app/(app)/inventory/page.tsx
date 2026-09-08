@@ -5,7 +5,7 @@
  * ADMIN / SALES_MANAGER / FINANCE can change plot status, price, assign owner.
  */
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { TERRAVION_SHANKARPALLY } from "@/lib/terravion-shankarpally";
 import { SANCTUARY_SHANKARPALLY } from "@/lib/sanctuary-shankarpally";
 import type { Plot, PlotStatus, Project } from "@/lib/gis-types";
@@ -45,6 +45,46 @@ export default function InventoryPage() {
 
   const [editPlot, setEditPlot] = useState<Plot | null>(null);
 
+  // Fetch persisted plot overrides from database
+  useEffect(() => {
+    let isCancelled = false;
+    async function loadOverrides() {
+      try {
+        const res = await fetch(`/api/inventory/plots?project=${activeProjectKey}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.overrides && !isCancelled) {
+          const proj = PROJECTS.find((p) => p.key === activeProjectKey);
+          if (!proj) return;
+          setPlots(
+            proj.data.plots.map((p) => {
+              const override = data.overrides[p.plotNumber] || data.overrides[p.id];
+              if (!override) return p;
+              return {
+                ...p,
+                status: (override.status as PlotStatus) || p.status,
+                facing: override.facing || p.facing,
+                dimension: {
+                  ...p.dimension,
+                  areaSqYards: override.areaSqYards ?? p.dimension.areaSqYards,
+                },
+                price: override.pricePerSqYard ?? p.price,
+                totalPrice: override.totalPrice ?? p.totalPrice,
+                notes: override.remarks ?? p.notes,
+              };
+            })
+          );
+        }
+      } catch (err) {
+        console.error("Failed to load inventory overrides", err);
+      }
+    }
+    loadOverrides();
+    return () => {
+      isCancelled = true;
+    };
+  }, [activeProjectKey]);
+
   const stats = useMemo(() => computeStats(plots), [plots]);
 
   const displayed = useMemo(() => {
@@ -64,27 +104,49 @@ export default function InventoryPage() {
   }, [plots, filterStatus, filterFacing, searchQ, sortBy]);
 
   /**
-   * Session-local only.
-   *
-   * This used to PATCH the marketing site's `/api/gis/plots/:id` using a token
-   * read from `NEXT_PUBLIC_GIS_ADMIN_TOKEN` — a value Next inlines into the
-   * browser bundle, so the "secret" authorising inventory writes was readable
-   * by anyone who opened devtools, and it fell back to a hardcoded default
-   * when unset. Both the endpoint and the token have been removed: the GIS
-   * surface is a canvas/3D visualisation, not a system of record.
-   *
-   * When inventory truly needs to persist, it should write to this CRM's own
-   * authenticated API (NextAuth session, server-side), never to the public
-   * site with a shipped bearer token.
+   * Persists plot updates to CRM SQLite database via authenticated API
    */
-  const patchPlot = useCallback((plotId: string, payload: Partial<Plot>) => {
-    setSaving(plotId);
-    setPlots((prev) => prev.map((p) => (p.id === plotId ? { ...p, ...payload } : p)));
-    if (editPlot?.id === plotId) {
-      setEditPlot((prev) => (prev ? { ...prev, ...payload } : null));
-    }
-    setSaving(null);
-  }, [editPlot]);
+  const patchPlot = useCallback(
+    async (plotId: string, payload: Partial<Plot>) => {
+      setSaving(plotId);
+      // Optimistic state update
+      setPlots((prev) => prev.map((p) => (p.id === plotId ? { ...p, ...payload } : p)));
+      if (editPlot?.id === plotId) {
+        setEditPlot((prev) => (prev ? { ...prev, ...payload } : null));
+      }
+
+      try {
+        const targetPlot = plots.find((p) => p.id === plotId);
+        const plotNum = targetPlot?.plotNumber;
+        if (plotNum) {
+          const res = await fetch("/api/inventory/plots", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              projectSlug: activeProjectKey,
+              plotNumber: plotNum,
+              status: payload.status,
+              facing: payload.facing,
+              areaSqYards: payload.dimension?.areaSqYards,
+              pricePerSqYard: payload.price,
+              totalPrice: payload.totalPrice,
+              remarks: payload.notes,
+              isCorner: payload.isCorner,
+              isPremium: payload.isPremium,
+            }),
+          });
+          if (!res.ok) {
+            console.error("Failed to persist plot to database");
+          }
+        }
+      } catch (err) {
+        console.error("Error persisting plot to database:", err);
+      } finally {
+        setSaving(null);
+      }
+    },
+    [editPlot, plots, activeProjectKey]
+  );
 
   const facings = useMemo(() => ["ALL", ...new Set(plots.map((p) => p.facing))], [plots]);
 

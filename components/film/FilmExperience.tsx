@@ -19,8 +19,8 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-/** How much scroll the film occupies. 800% ≈ 240 frames per viewport height. */
-const SCROLL_LENGTH = "+=800%";
+/** How much scroll the film occupies. 1500% gives ~140 frames per viewport height for relaxed reading. */
+const SCROLL_LENGTH = "+=1500%";
 
 /* ── scrim geometry ───────────────────────────────────────────────────
  * Desktop honours each scene's safe zone (positioning lives in globals.css,
@@ -113,7 +113,7 @@ export default function FilmExperience() {
         end: SCROLL_LENGTH,
         pin: true,
         pinSpacing: true,
-        scrub: 0.55,
+        scrub: 0.95,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           frameRef.current = progressToFrame(self.progress);
@@ -354,6 +354,24 @@ export default function FilmExperience() {
           Scroll to begin the film
         </span>
       </div>
+
+      {/* ── Quick action: Skip to Communities / Projects ── */}
+      <button
+        type="button"
+        onClick={() => {
+          const target = document.querySelector("#communities");
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          } else if (stRef.current) {
+            window.scrollTo({ top: stRef.current.end, behavior: "smooth" });
+          }
+        }}
+        className="pointer-events-auto absolute bottom-7 right-6 z-30 flex items-center gap-2 rounded-full border border-gold-light/30 bg-forest-deep/80 px-4 py-2 text-xs font-semibold text-gold-light backdrop-blur-md transition-all hover:border-gold-light hover:bg-forest-deep hover:text-white shadow-lg cursor-pointer md:bottom-8 md:right-8"
+        aria-label="Skip to communities"
+      >
+        <span>Explore Communities</span>
+        <span className="text-[10px]">↓</span>
+      </button>
 
       {/* ── loader: full-bleed, never a white void ── */}
       <div

@@ -343,7 +343,7 @@ export function sceneEnvelope(scene: FilmScene, frame: number): number {
   if (span <= 0) return 0;
   const t = (frame - scene.in) / span;
   if (t <= 0 || t >= 1) return 0;
-  const ramp = 0.22;
+  const ramp = 0.14;
   if (t < ramp) return t / ramp;
   if (t > 1 - ramp) return (1 - t) / ramp;
   return 1;

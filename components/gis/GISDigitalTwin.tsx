@@ -8,7 +8,7 @@
  *   - 2D Canvas top-down map    (TownshipMapCanvas)
  */
 
-import { useCallback, useMemo, useState, useRef } from "react";
+import { useCallback, useMemo, useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { Project, Plot, PlotStatus, PlotFacing } from "@/lib/types/gis";
@@ -136,8 +136,64 @@ export function GISDigitalTwin({ project }: { project: Project }) {
   const [filterFacing, setFilterFacing] = useState<Set<PlotFacing>>(new Set());
   const [showFilters, setShowFilters]   = useState(false);
   const [viewMode, setViewMode]         = useState<"3D" | "2D">("3D");
+  const [plotOverrides, setPlotOverrides] = useState<
+    Record<
+      string,
+      {
+        status?: PlotStatus;
+        facing?: PlotFacing;
+        areaSqYards?: number;
+        pricePerSqYard?: number;
+        totalPrice?: number;
+        remarks?: string;
+      }
+    >
+  >({});
 
-  const stats = useMemo(() => computeStats(project.plots), [project.plots]);
+  useEffect(() => {
+    let isCancelled = false;
+    async function fetchOverrides() {
+      try {
+        const res = await fetch(`/api/gis/overrides?project=${project.slug}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.overrides && !isCancelled) {
+          setPlotOverrides(data.overrides);
+        }
+      } catch (err) {
+        console.error("Failed to load GIS overrides", err);
+      }
+    }
+    fetchOverrides();
+    return () => {
+      isCancelled = true;
+    };
+  }, [project.slug]);
+
+  const activeProject = useMemo<Project>(() => {
+    if (!plotOverrides || Object.keys(plotOverrides).length === 0) return project;
+    return {
+      ...project,
+      plots: project.plots.map((p) => {
+        const override = plotOverrides[p.plotNumber] || plotOverrides[p.id];
+        if (!override) return p;
+        return {
+          ...p,
+          status: (override.status as PlotStatus) || p.status,
+          facing: (override.facing as PlotFacing) || p.facing,
+          dimension: {
+            ...p.dimension,
+            areaSqYards: override.areaSqYards ?? p.dimension.areaSqYards,
+          },
+          price: override.pricePerSqYard ?? p.price,
+          totalPrice: override.totalPrice ?? p.totalPrice,
+          notes: override.remarks ?? p.notes,
+        };
+      }),
+    };
+  }, [project, plotOverrides]);
+
+  const stats = useMemo(() => computeStats(activeProject.plots), [activeProject.plots]);
 
   const filterFn = useCallback((p: Plot): boolean => {
     if (filterStatus.size > 0 && !filterStatus.has(p.status)) return false;
@@ -145,7 +201,7 @@ export function GISDigitalTwin({ project }: { project: Project }) {
     return true;
   }, [filterStatus, filterFacing]);
 
-  const filteredCount = useMemo(() => project.plots.filter(filterFn).length, [project.plots, filterFn]);
+  const filteredCount = useMemo(() => activeProject.plots.filter(filterFn).length, [activeProject.plots, filterFn]);
 
   const toggleStatus = (s: PlotStatus) => {
     setFilterStatus((prev) => { const n = new Set(prev); n.has(s) ? n.delete(s) : n.add(s); return n; });
@@ -320,21 +376,21 @@ export function GISDigitalTwin({ project }: { project: Project }) {
         {/* 3D or 2D renderer */}
         {viewMode === "3D" ? (
           <TownshipScene3D
-            project={project}
+            project={activeProject}
             onPlotSelect={setSelectedPlot}
             selectedPlot={selectedPlot}
             filterFn={filterFn}
           />
         ) : (project.slug === "raghunath-county" || project.slug === "raghunath") ? (
           <RaghunathCountyMapCanvas
-            project={project}
+            project={activeProject}
             onPlotSelect={setSelectedPlot}
             selectedPlot={selectedPlot}
             filterFn={filterFn}
           />
         ) : (
           <TownshipMapCanvas
-            project={project}
+            project={activeProject}
             onPlotSelect={setSelectedPlot}
             selectedPlot={selectedPlot}
             filterFn={filterFn}
@@ -380,7 +436,10 @@ export function GISDigitalTwin({ project }: { project: Project }) {
 
         {/* Plot detail card */}
         {selectedPlot && (
-          <PlotCard plot={selectedPlot} onClose={() => setSelectedPlot(null)} />
+          <PlotCard
+            plot={activeProject.plots.find((p) => p.id === selectedPlot.id || p.plotNumber === selectedPlot.plotNumber) || selectedPlot}
+            onClose={() => setSelectedPlot(null)}
+          />
         )}
       </div>
 

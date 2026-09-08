@@ -25,7 +25,8 @@ export default auth((req) => {
     // the 302 to /login, reads it as a reachable site, and stays quiet while
     // the database is down. It returns liveness and latency only — no version,
     // no paths, no counts — precisely because it is reachable unauthenticated.
-    pathname === "/api/health";
+    pathname === "/api/health" ||
+    (pathname === "/api/inventory/plots" && req.method === "GET");
 
   if (isPublic) return NextResponse.next();
 

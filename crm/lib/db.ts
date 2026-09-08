@@ -17,7 +17,7 @@ const DB_PATH = path.resolve(process.cwd(), "crm.sqlite3");
 
 const globalForDb = globalThis as unknown as { sqliteDb?: Database.Database };
 
-function getDb(): Database.Database {
+export function getDb(): Database.Database {
   if (!globalForDb.sqliteDb) {
     globalForDb.sqliteDb = new Database(DB_PATH);
     globalForDb.sqliteDb.pragma("journal_mode = WAL");
