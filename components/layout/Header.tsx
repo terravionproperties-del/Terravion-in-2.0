@@ -133,7 +133,7 @@ export default function Header({
         }}
       />
 
-      <div className="relative mx-auto flex h-[var(--header-h)] max-w-[1500px] items-center justify-between px-6 md:px-10">
+      <div className="relative mx-auto flex h-[var(--header-h)] max-w-[1600px] items-center justify-between px-4 lg:px-6 2xl:px-8">
         <Link
           prefetch={false}
           href={localizePath("/", locale)}
@@ -141,7 +141,7 @@ export default function Header({
           aria-label={strings.homeAriaLabel}
         >
           {/* Official Terravion Logo Graphic */}
-          <div className="relative h-12 w-44 md:h-14 md:w-52">
+          <div className="relative h-11 w-40 md:h-12 md:w-44 lg:h-13 lg:w-48">
             <img
               src="/terravion-logo.jpeg"
               alt="Terravion Properties"
@@ -150,34 +150,36 @@ export default function Header({
           </div>
         </Link>
 
-        <nav aria-label={strings.primaryLabel} className="hidden items-center gap-4 lg:flex">
+        <nav aria-label={strings.primaryLabel} className="hidden items-center gap-2 xl:gap-3 2xl:gap-4 lg:flex">
           <div
             ref={listRef}
-            className="flex items-center gap-5 md:gap-7 lg:gap-8"
+            className="flex items-center gap-3 xl:gap-4.5 2xl:gap-6"
             onPointerLeave={scheduleClose}
           >
-            {nav.map((item) => {
-              const active = canonicalPath.startsWith(item.path);
-              return (
-                <Link
-                  prefetch={false}
-                  key={item.path}
-                  href={item.href}
-                  data-active={active ? "true" : "false"}
-                  onPointerEnter={() => openMenu(MENU_FOR[item.path] ?? null)}
-                  className={`nav-item ${active ? "is-active" : ""}`}
-                >
-                  <span>{item.label}</span>
-                  <span aria-hidden="true" className="nav-rule" />
-                </Link>
-              );
-            })}
+            {nav
+              .filter((item) => item.path !== "/gis")
+              .map((item) => {
+                const active = canonicalPath.startsWith(item.path);
+                return (
+                  <Link
+                    prefetch={false}
+                    key={item.path}
+                    href={item.href}
+                    data-active={active ? "true" : "false"}
+                    onPointerEnter={() => openMenu(MENU_FOR[item.path] ?? null)}
+                    className={`nav-item ${active ? "is-active" : ""}`}
+                  >
+                    <span>{item.label}</span>
+                    <span aria-hidden="true" className="nav-rule" />
+                  </Link>
+                );
+              })}
           </div>
 
           {/* ── Dedicated GIS Master Plan Button ── */}
           <Link
             href={localizePath("/gis", locale)}
-            className="flex items-center gap-1.5 rounded-full border border-gold/50 bg-gradient-to-r from-gold/20 to-gold/10 px-3.5 py-1.5 text-[0.7rem] font-bold uppercase tracking-wider text-gold-ink shadow-sm transition-all hover:scale-105 hover:border-gold hover:text-charcoal"
+            className="flex items-center gap-1.5 rounded-full border border-gold/50 bg-gradient-to-r from-gold/20 to-gold/10 px-3 py-1.5 text-[0.68rem] xl:px-3.5 xl:text-[0.7rem] font-bold uppercase tracking-wider text-gold-ink shadow-sm transition-all hover:scale-105 hover:border-gold hover:text-charcoal whitespace-nowrap"
           >
             <span>🗺️</span>
             <span>GIS Master Plan</span>
@@ -193,29 +195,26 @@ export default function Header({
           <LuxuryButton
             href={localizePath("/site-visit", locale)}
             variant="gold"
-            className="ms-2 whitespace-nowrap !px-5 !py-2.5 !text-[0.72rem] font-bold tracking-wider shadow-md"
+            className="ms-1 whitespace-nowrap !px-3.5 !py-2 xl:!px-4.5 xl:!py-2.5 !text-[0.68rem] xl:!text-[0.72rem] font-bold tracking-wider shadow-md"
           >
             {strings.bookVisit}
           </LuxuryButton>
 
-          {/* CRM Staff Login — rendered only when a CRM URL is configured, so
-              production never links visitors to localhost. */}
-          {process.env.NEXT_PUBLIC_CRM_URL && (
-            <a
-              href={process.env.NEXT_PUBLIC_CRM_URL}
-              target="_blank"
-              rel="noreferrer"
-              title="Staff CRM"
-              className="ms-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-charcoal/20 text-charcoal/50 transition-all hover:border-gold-dark/60 hover:text-gold-ink"
-              aria-label="Staff login"
-            >
-              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="6" width="10" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.3"/>
-                <path d="M4.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
-                <circle cx="7" cy="9.5" r="1" fill="currentColor"/>
-              </svg>
-            </a>
-          )}
+          {/* CRM Staff Login — always rendered with fallback URL so staff can log in without zooming out */}
+          <a
+            href={process.env.NEXT_PUBLIC_CRM_URL || "https://crm.terravionproperties.in"}
+            target="_blank"
+            rel="noreferrer"
+            title="Staff CRM Login"
+            className="ms-1.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold-dark shadow-sm transition-all hover:scale-105 hover:border-gold hover:bg-gold/25 hover:text-charcoal"
+            aria-label="Staff CRM Login"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="6" width="10" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.3"/>
+              <path d="M4.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+              <circle cx="7" cy="9.5" r="1" fill="currentColor"/>
+            </svg>
+          </a>
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
@@ -279,21 +278,19 @@ export default function Header({
           <LuxuryButton href={localizePath("/site-visit", locale)} variant="gold" className="w-full">
             {strings.bookVisit}
           </LuxuryButton>
-          {process.env.NEXT_PUBLIC_CRM_URL && (
-            <a
-              href={process.env.NEXT_PUBLIC_CRM_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-center gap-2 rounded-full border border-charcoal/15 py-3 text-[0.7rem] font-medium uppercase tracking-widest text-charcoal/50 transition-all hover:border-gold-dark/40 hover:text-gold-ink"
-            >
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-                <rect x="2" y="6" width="10" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.3"/>
-                <path d="M4.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
-                <circle cx="7" cy="9.5" r="1" fill="currentColor"/>
-              </svg>
-              Staff Login
-            </a>
-          )}
+          <a
+            href={process.env.NEXT_PUBLIC_CRM_URL || "https://crm.terravionproperties.in"}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center gap-2 rounded-full border border-gold-dark/30 bg-gold/5 py-3 text-[0.7rem] font-semibold uppercase tracking-widest text-gold-dark transition-all hover:border-gold-dark/60 hover:bg-gold/15 hover:text-gold-ink"
+          >
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+              <rect x="2" y="6" width="10" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.3"/>
+              <path d="M4.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+              <circle cx="7" cy="9.5" r="1" fill="currentColor"/>
+            </svg>
+            Staff Login
+          </a>
           <a href={phoneHref} className="text-center text-text-muted">
             {phone}
           </a>
