@@ -18,6 +18,7 @@ export default auth((req) => {
 
   const isPublic =
     pathname === "/login" ||
+    pathname === "/terravion-logo.jpeg" ||
     pathname.startsWith("/api/auth") ||
     pathname.startsWith("/api/webhooks") ||
     // The uptime probe. It has to answer without a session, or a monitor sees
@@ -53,5 +54,5 @@ function headersOf(req: { headers: Headers }): Record<string, string> {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|webp)$).*)"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|webp|ico)$).*)"],
 };
