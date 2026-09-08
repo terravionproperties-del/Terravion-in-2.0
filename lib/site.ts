@@ -9,9 +9,9 @@ export const site = {
   name: "Terravion Properties",
   legalName: "Terravion Properties",
   domain: process.env.NEXT_PUBLIC_SITE_URL || "https://terravionproperties.in",
-  tagline: "Premium villa plots in Shankarpally, Hyderabad",
+  tagline: "Shankarpally Plots — South Pride Sanctuary & Raghunath County",
   description:
-    "Terravion Properties curates HMDA & DTCP approved premium villa plots in Shankarpally, West Hyderabad — gated communities with clubhouse living, minutes from ORR, the Financial District and IIT Hyderabad.",
+    "Terravion Properties curates HMDA & DTCP approved premium villa plots in Shankarpally, West Hyderabad — featuring South Pride Sanctuary (45 acres HMDA) and Raghunath County (19 acres DTCP on 100ft road). Gated communities with clubhouse living, minutes from ORR Exit 3 and the Financial District.",
   phone: "+91 93472 59638",
   phoneHref: "tel:+919347259638",
   whatsapp: "https://wa.me/919347259638",

@@ -34,7 +34,12 @@ export function organizationSchema(locale: Locale = DEFAULT_LOCALE) {
       "Terravion",
       "Terravion Properties",
       "Terravion Properties Hyderabad",
-      "The Sanctuary by Terravion",
+      "South Pride Sanctuary",
+      "South Pride by Sanctuary",
+      "SouthPride Sanctuary",
+      "Raghunath County",
+      "Raghnath County",
+      "Shankarpally Plots",
       "The Sanctuary Shankarpally",
     ],
     url: site.domain,
@@ -52,9 +57,18 @@ export function organizationSchema(locale: Locale = DEFAULT_LOCALE) {
       alternateName: "Terravion",
     },
     knowsAbout: [
+      "Shankarpally Plots",
+      "Shankarpallly Polts",
+      "Plots in Shankarpally",
+      "South Pride Sanctuary",
+      "South Pride by Sanctuary",
+      "SouthPride Sanctuary Shankarpally",
+      "Raghunath County",
+      "Raghnath County",
+      "Raghnath County Shankarpally",
       "Luxury Villa Plots Hyderabad",
       "HMDA Approved Plots Shankarpally",
-      "DTCP Approved Plots",
+      "DTCP Approved Plots Shankarpally",
       "The Sanctuary Villa Plots",
       "West Hyderabad Real Estate Investment",
       "Gated Community Villa Plots",
@@ -73,11 +87,29 @@ export function organizationSchema(locale: Locale = DEFAULT_LOCALE) {
       longitude: site.geo.lng,
     },
     areaServed: [
-      { "@type": "City", name: "Hyderabad" },
-      { "@type": "Place", name: "Shankarpally" },
+      {
+        "@type": "Place",
+        name: "Shankarpally",
+        sameAs: [
+          "https://en.wikipedia.org/wiki/Shankarpalli",
+          "https://www.wikidata.org/wiki/Q7488735",
+        ],
+      },
+      {
+        "@type": "City",
+        name: "Hyderabad",
+        sameAs: [
+          "https://en.wikipedia.org/wiki/Hyderabad",
+          "https://www.wikidata.org/wiki/Q1361",
+        ],
+      },
       { "@type": "Place", name: "Mokila" },
       { "@type": "Place", name: "West Hyderabad" },
-      { "@type": "State", name: "Telangana" },
+      {
+        "@type": "State",
+        name: "Telangana",
+        sameAs: "https://en.wikipedia.org/wiki/Telangana",
+      },
     ],
     sameAs: Object.values(site.social),
     inLanguage: LOCALE_META[locale].bcp47,
@@ -134,19 +166,75 @@ export function faqSchema(faqs: Faq[]) {
 }
 
 export function projectSchema(project: Project, locale: Locale = DEFAULT_LOCALE) {
+  const isSanctuary = project.slug === "sanctuary";
+  const isRaghunath = project.slug === "raghunath-county";
+
+  const alternateNames = isSanctuary
+    ? [
+        "South Pride Sanctuary",
+        "SouthPride Sanctuary",
+        "South Pride by Sanctuary",
+        "Sanctuary Shankarpally",
+        "The Sanctuary Shankarpally",
+        "Sanctuary by Terravion",
+        "Shankarpally Plots Sanctuary",
+      ]
+    : isRaghunath
+    ? [
+        "Raghnath County",
+        "Raghunath County Shankarpally",
+        "Raghnath County Shankarpally",
+        "Raghunath County Plots",
+        "Raghnath County Plots Shankarpally",
+      ]
+    : [project.name];
+
+  const geoCoordinates = isSanctuary
+    ? { latitude: 17.4812, longitude: 78.1105 }
+    : isRaghunath
+    ? { latitude: 17.4625, longitude: 78.102 }
+    : { latitude: site.geo.lat, longitude: site.geo.lng };
+
   return {
     "@context": "https://schema.org",
-    "@type": "Residence",
+    "@type": ["Residence", "RealEstateListing", "Place"],
     "@id": `${localizedUrl(`/projects/${project.slug}`, locale)}#residence`,
-    name: `${project.name} by ${site.name}`,
+    name: `${project.name} | Terravion`,
+    alternateName: alternateNames,
     description: project.metaDescription,
     url: localizedUrl(`/projects/${project.slug}`, locale),
     inLanguage: LOCALE_META[locale].bcp47,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: geoCoordinates.latitude,
+      longitude: geoCoordinates.longitude,
+    },
     address: {
       "@type": "PostalAddress",
+      streetAddress: project.location,
       addressLocality: "Shankarpally",
       addressRegion: "Telangana",
+      postalCode: "501203",
       addressCountry: "IN",
+    },
+    containedInPlace: {
+      "@type": "Place",
+      name: "Shankarpally",
+      addressLocality: "Shankarpally",
+      addressRegion: "Telangana",
+      sameAs: [
+        "https://en.wikipedia.org/wiki/Shankarpalli",
+        "https://www.wikidata.org/wiki/Q7488735",
+      ],
+    },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "INR",
+      lowPrice: "4500000",
+      price: "4500000",
+      priceValidUntil: "2026-12-31",
+      availability: "https://schema.org/InStock",
+      url: localizedUrl(`/projects/${project.slug}`, locale),
     },
     amenityFeature: project.amenities.map((a) => ({
       "@type": "LocationFeatureSpecification",
@@ -160,13 +248,16 @@ export function offerCatalogSchema(items: Project[], locale: Locale = DEFAULT_LO
   return {
     "@context": "https://schema.org",
     "@type": "OfferCatalog",
-    name: `${site.name} — Villa Plot Projects`,
+    name: `${site.name} — Shankarpally Plots (South Pride Sanctuary & Raghunath County)`,
     itemListElement: items.map((p) => ({
       "@type": "Offer",
       itemOffered: {
-        "@type": "Residence",
+        "@type": ["Residence", "RealEstateListing"],
         name: p.name,
         url: localizedUrl(`/projects/${p.slug}`, locale),
+        description: p.metaDescription,
+        price: "4500000",
+        priceCurrency: "INR",
       },
       availability:
         p.status === "ready"
