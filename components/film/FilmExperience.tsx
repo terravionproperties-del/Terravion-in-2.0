@@ -53,6 +53,7 @@ export default function FilmExperience() {
   const railFill = useRef<HTMLDivElement>(null);
   const chapterRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const hintRef = useRef<HTMLDivElement>(null);
+  const skipRef = useRef<HTMLButtonElement>(null);
   const frameRef = useRef(FILM_IN);
   const stRef = useRef<ScrollTrigger | null>(null);
 
@@ -185,8 +186,13 @@ export default function FilmExperience() {
         const active = frame >= CHAPTERS[i].frame && frame < next;
         btn.dataset.active = active ? "true" : "false";
       }
+      const hintAlpha = Math.max(0, 1 - prog * 22);
       if (hintRef.current) {
-        hintRef.current.style.opacity = String(Math.max(0, 1 - prog * 22));
+        hintRef.current.style.opacity = String(hintAlpha);
+      }
+      if (skipRef.current) {
+        skipRef.current.style.opacity = String(hintAlpha);
+        skipRef.current.style.pointerEvents = hintAlpha <= 0 ? "none" : "auto";
       }
     };
     raf = requestAnimationFrame(tick);
@@ -358,6 +364,7 @@ export default function FilmExperience() {
 
       {/* ── Quick action: Skip to Communities / Projects ── */}
       <button
+        ref={skipRef}
         type="button"
         onClick={() => {
           const target = document.querySelector("#communities");
