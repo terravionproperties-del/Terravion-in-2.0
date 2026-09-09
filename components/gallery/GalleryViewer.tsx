@@ -45,38 +45,12 @@ const ASSETS: Asset[] = [
     caption: "Avenue plantations, paved walkways, outdoor amphitheater, and meditation zones.",
   },
   {
-    id: "s-4",
-    title: "Sanctuary — Ground Earthworks & Site Progress",
-    type: "IMAGE",
-    project: "Sanctuary",
-    url: "/assets/Sanctuary_site-photo-1.jpeg",
-    aspect: "aspect-[4/3]",
-    caption: "Active ground leveling and boundary wall execution across the 45-acre masterplan.",
-  },
-  {
-    id: "s-5",
-    title: "Sanctuary — Plotted Layout Demarcation",
-    type: "IMAGE",
-    project: "Sanctuary",
-    url: "/assets/Sanctuary_site-photo-2.jpeg",
-    aspect: "aspect-[4/3]",
-    caption: "Stone demarcation of ready-to-construct 200–750 sq.yd villa plots.",
-  },
-  {
     id: "s-6",
     title: "Sanctuary 45-Acre Masterplan Film & Drone Walkthrough",
     type: "VIDEO",
     project: "Sanctuary",
     url: "/assets/Sanctuary_site-ad-1.mp4",
     caption: "Cinematic drone overview and commercial walkthrough of Sanctuary.",
-  },
-  {
-    id: "s-7",
-    title: "Sanctuary Ground Construction & Avenue Laying",
-    type: "VIDEO",
-    project: "Sanctuary",
-    url: "/assets/Sanctuary_site-video.mp4",
-    caption: "Live site footage of avenue formation and utility trenches.",
   },
 
   {
@@ -250,15 +224,6 @@ const ASSETS: Asset[] = [
   },
 
   // ── MANSANPALLY ──
-  {
-    id: "m-1",
-    title: "Mansanpally 100+ Acres Mega Project Brochure",
-    type: "BROCHURE",
-    project: "Mansanpally",
-    url: "/assets/Mansanpally_1.jpeg",
-    aspect: "aspect-[3/4]",
-    caption: "Official brochure for the landmark 100+ acre plotted community in the Airport corridor.",
-  },
   {
     id: "m-2",
     title: "Mansanpally Regional Connectivity & Layout Map",

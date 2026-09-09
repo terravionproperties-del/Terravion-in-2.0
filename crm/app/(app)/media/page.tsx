@@ -49,26 +49,6 @@ const MEDIA_ASSETS: MediaAsset[] = [
     tags: ["Parks", "Landscape", "Walkways", "Kids Play"],
   },
   {
-    id: "m-s4",
-    title: "Sanctuary Ground Earthworks & Perimeter Wall",
-    category: "3D_RENDER",
-    project: "Sanctuary",
-    fileSize: "130 KB",
-    format: "JPEG",
-    url: "/assets/Sanctuary_site-photo-1.jpeg",
-    tags: ["Site Progress", "Construction", "Ground Reality"],
-  },
-  {
-    id: "m-s5",
-    title: "Sanctuary Plot Demarcation & Infrastructure Laying",
-    category: "3D_RENDER",
-    project: "Sanctuary",
-    fileSize: "158 KB",
-    format: "JPEG",
-    url: "/assets/Sanctuary_site-photo-2.jpeg",
-    tags: ["Demarcation", "Villa Plots", "Underground Trenching"],
-  },
-  {
     id: "m-s6",
     title: "Sanctuary 45-Acre Masterplan Film & Drone Walkthrough",
     category: "WALKTHROUGH_VIDEO",
@@ -77,16 +57,6 @@ const MEDIA_ASSETS: MediaAsset[] = [
     format: "MP4 / HD",
     url: "/assets/Sanctuary_site-ad-1.mp4",
     tags: ["Drone Walkthrough", "Masterplan Film", "Commercial"],
-  },
-  {
-    id: "m-s7",
-    title: "Sanctuary Live Ground Site Progress Video",
-    category: "WALKTHROUGH_VIDEO",
-    project: "Sanctuary",
-    fileSize: "6.7 MB",
-    format: "MP4 / HD",
-    url: "/assets/Sanctuary_site-video.mp4",
-    tags: ["Site Progress", "Ground Footage", "Avenues"],
   },
 
   // ── RAGHUNATH COUNTY ──
@@ -202,16 +172,6 @@ const MEDIA_ASSETS: MediaAsset[] = [
   },
 
   // ── MANSANPALLY ──
-  {
-    id: "m-m1",
-    title: "Mansanpally 100+ Acres Mega Project Brochure",
-    category: "BROCHURE_MAP",
-    project: "Mansanpally",
-    fileSize: "427 KB",
-    format: "JPEG / Print",
-    url: "/assets/Mansanpally_1.jpeg",
-    tags: ["Brochure", "100+ Acres", "Airport Corridor"],
-  },
   {
     id: "m-m2",
     title: "Mansanpally Regional Connectivity & Masterplan Map",

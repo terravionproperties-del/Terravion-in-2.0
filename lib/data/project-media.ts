@@ -67,18 +67,6 @@ export const PROJECT_MEDIA: Record<string, ProjectMedia> = {
         caption: "Avenue plantations, paved walkways, and children's play meadows.",
       },
       {
-        src: "/assets/Sanctuary_site-photo-1.jpeg",
-        alt: "Sanctuary On-Ground Site Construction & Avenue Leveling",
-        category: "site_photo",
-        caption: "Actual on-ground earthworks and boundary wall construction at Julkal, Shankarpally.",
-      },
-      {
-        src: "/assets/Sanctuary_site-photo-2.jpeg",
-        alt: "Sanctuary Plot Demarcation & Infrastructure Laying",
-        category: "site_photo",
-        caption: "Plot demarcations with underground utilities trenching.",
-      },
-      {
         src: "/assets/Terravion_images1.jpeg",
         alt: "Terravion Plotted Avenue Perspective",
         category: "site_photo",
@@ -103,12 +91,6 @@ export const PROJECT_MEDIA: Record<string, ProjectMedia> = {
         title: "Sanctuary — 45-Acre Masterplan Film & Drone Walkthrough",
         bytes: 68_300_148,
         duration: "1:45",
-      },
-      {
-        src: "/assets/Sanctuary_site-video.mp4",
-        title: "Sanctuary — Live Site Progress & Road Groundwork",
-        bytes: 6_737_137,
-        duration: "0:48",
       },
       {
         src: "/assets/Terravion_shankarpally_short1.mp4",
@@ -366,12 +348,6 @@ export const PROJECT_MEDIA: Record<string, ProjectMedia> = {
   mansanpally: {
     gallery: [
       {
-        src: "/assets/Mansanpally_1.jpeg",
-        alt: "100+ Acres Mega Plotted Development — Airport Growth Corridor",
-        category: "masterplan",
-        caption: "Official pre-launch brochure for the 100+ acre mega community at Mansanpally.",
-      },
-      {
         src: "/assets/Mansanpally_2.jpeg",
         alt: "Mansanpally Master Layout & Regional Connectivity Map",
         category: "masterplan",
@@ -411,12 +387,6 @@ export const PROJECT_MEDIA: Record<string, ProjectMedia> = {
       },
     ],
     documents: [
-      {
-        label: "Mansanpally 100+ Acre Project Flyer",
-        href: "/assets/Mansanpally_1.jpeg",
-        bytes: 427_090,
-        note: "Overview of the upcoming southern mega project.",
-      },
       {
         label: "Mansanpally Regional Connectivity Map",
         href: "/assets/Mansanpally_2.jpeg",

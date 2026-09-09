@@ -233,7 +233,7 @@ export const SCENES: FilmScene[] = [
     focusX: 0.55,
     kicker: "Next",
     title: "Mansanpally.",
-    lead: "The southern corridor, near the airport and the proposed Regional Ring Road.",
+    lead: "The West Hyderabad corridor, connected to major arterials and the proposed Regional Ring Road.",
     link: { href: "/projects/mansanpally", label: "Register interest" },
     drift: { x: 0, y: 18 },
   },
