@@ -25,7 +25,7 @@
  * E-W Roads: 1×60' central collector + multiple 30' local roads
  */
 
-import type { Project, Plot, Amenity, ConstructionUpdate, Road, NearbyPlace } from "@/lib/types/gis";
+import type { Project, Plot, Amenity, ConstructionUpdate, Road, NearbyPlace } from "@/lib/gis-types";
 
 // ─── Scale ────────────────────────────────────────────────────────────────────
 // 1 real foot → 0.25 Three.js units
