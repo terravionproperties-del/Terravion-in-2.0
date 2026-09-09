@@ -50,7 +50,7 @@ const CORNER_PLOTS = new Set([
 
 function generateRaghunathPlots(): Plot[] {
   const plots: Plot[] = [];
-  const baseRate = 16500; // ₹16,500 / Sq. Yd
+  const baseRate = 22999; // ₹22,999 / Sq. Yd
 
   // Status distribution reflecting live project inventory
   const STATUS_CYCLE: PlotStatus[] = [
@@ -383,7 +383,7 @@ export const RAGHUNATH_COUNTY: Project = {
   // Size & Pricing
   totalArea: 19,
   totalPlots: 202,
-  pricePerSqYard: 16500,
+  pricePerSqYard: 22999,
   launchDate: "2024-03-01",
   completionDate: "2026-06-30",
   // Media

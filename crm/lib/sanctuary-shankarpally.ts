@@ -141,7 +141,7 @@ function basePrice(opts: {
   isParkFacing?: boolean;
   isClubhouseFacing?: boolean;
 }): number {
-  let p = 24000;
+  let p = 29999;
   if (opts.isMainRoadFacing)  p += 4000;
   if (opts.isCorner)          p += 3000;
   if (opts.isPremium)         p += 6000;
@@ -628,7 +628,7 @@ export const SANCTUARY_SHANKARPALLY: Project = {
   // Size & pricing
   totalArea: 45,
   totalPlots: 475,
-  pricePerSqYard: 24000,
+  pricePerSqYard: 29999,
   launchDate: "2024-01-01",
   completionDate: "2026-12-31",
   // Media

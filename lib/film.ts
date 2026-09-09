@@ -214,11 +214,11 @@ export const SCENES: FilmScene[] = [
     scrim: "bottom",
     focusX: 0.5,
     kicker: "The plots",
-    title: "200 to 750\nsquare yards.",
+    title: "202 to 750\nsquare yards.",
     facts: [
       { label: "Vaastu", value: "100% compliant" },
       { label: "Utilities", value: "Underground" },
-      { label: "From", value: "₹45 Lakh" },
+      { label: "From", value: "₹29,999/sq.yd." },
     ],
     drift: { x: 0, y: -20 },
   },

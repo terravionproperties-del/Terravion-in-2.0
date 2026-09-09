@@ -214,7 +214,7 @@ export default async function ProjectPage({
                     Explore {p.name} Master Plan in 3D
                   </h3>
                   <p className="text-sm text-text-secondary mt-2 max-w-xl">
-                    Inspect all 202 plots, check live availability, filter by facing, road width, and budget before your site visit.
+                    Inspect all {p.plots}, check live availability, filter by facing, road width, and budget before your site visit.
                   </p>
                 </div>
                 <Link

@@ -15,9 +15,9 @@ export const projects: Project[] = [
     location: "Julkal, Shankarpally, Hyderabad, Telangana 502285",
     acreage: "45 acres",
     plots: "475 plots",
-    plotSizes: "200 – 750 sq. yds",
+    plotSizes: "202 – 750 sq. yds",
     roads: "Paved internal roads with pedestrian footpaths",
-    priceFrom: "₹45 Lakh onwards",
+    priceFrom: "₹29,999 / sq. yd. onwards",
     headline: "South Pride Sanctuary — Forty-five acres of stillness, minutes from the city that never slows.",
     intro:
       "South Pride Sanctuary (The Sanctuary by Terravion) is an HMDA-approved gated plotted community spread across 45 acres at Julkal, Shankarpally — 475 fully Vaastu-compliant, ready-to-construct villa plots arranged around a 25,000 sq. ft. clubhouse, tree-lined avenues and landscaped commons.",
@@ -29,10 +29,10 @@ export const projects: Project[] = [
     highlights: [
       { label: "Extent", value: "45 acres" },
       { label: "Plots", value: "475" },
-      { label: "Plot sizes", value: "200–750 sq. yds" },
+      { label: "Plot sizes", value: "202–750 sq. yds" },
       { label: "Approval", value: "HMDA" },
       { label: "Clubhouse", value: "25,000 sq. ft." },
-      { label: "Vaastu", value: "100% compliant" },
+      { label: "Price", value: "₹29,999 / sq. yd." },
     ],
     amenities: [
       "25,000 sq. ft. clubhouse",
@@ -69,7 +69,7 @@ export const projects: Project[] = [
       },
       {
         q: "What are the plot sizes and pricing in South Pride Sanctuary Shankarpally?",
-        a: "Villa plot sizes range from 200 sq. yds to 750 sq. yds, priced from ₹45 Lakh onwards. Each plot is 100% Vaastu compliant, pegged with clear boundaries, and provided with underground water, drainage, and electricity connections ready for immediate villa construction.",
+        a: "Villa plot sizes start from 202 sq. yds up to 750 sq. yds, priced at ₹29,999 per sq. yd. (starting from ~₹60.6 Lakh for standard 202 sq. yds villa plots). Each plot is 100% Vaastu compliant, pegged with clear boundaries, and provided with underground water, drainage, and electricity connections ready for immediate villa construction.",
       },
       {
         q: "Where is South Pride Sanctuary located and how far is it from the Financial District?",
@@ -134,10 +134,10 @@ export const projects: Project[] = [
     status: "ready",
     location: "Shankarpally–Mominpet Road, Shankarpally, Telangana",
     acreage: "19 acres",
-    plots: "Limited-release villa plots", // [PLACEHOLDER — replace with verified plot count]
-    plotSizes: "167 – 500 sq. yds", // [PLACEHOLDER — verify size range with business]
+    plots: "202 plots",
+    plotSizes: "220 – 500 sq. yds",
     roads: "40 ft & 33 ft CC roads",
-    priceFrom: "₹45 Lakh onwards", // [PLACEHOLDER — verify project-specific pricing]
+    priceFrom: "₹22,999 / sq. yd. onwards",
     headline: "Raghunath County — Nineteen acres on the hundred-feet road, built for the long view.",
     intro:
       "Raghunath County (also searched as Southprides Raghunathcounty and Raghnath County Shankarpally) is a 19-acre DTCP-approved villa plot community facing the 100-feet Shankarpally to Mehtabkhan Guda–Mominpet main road — a grand entrance arch, 40- and 33-feet CC roads, and a secure compound wall framing a masterplan of avenue plantation and open commons.",
@@ -148,11 +148,11 @@ export const projects: Project[] = [
     ],
     highlights: [
       { label: "Extent", value: "19 acres" },
+      { label: "Plots", value: "202" },
+      { label: "Plot sizes", value: "220–500 sq. yds" },
       { label: "Approval", value: "DTCP" },
       { label: "Frontage", value: "100-ft main road" },
-      { label: "Internal roads", value: "40 & 33 ft CC" },
-      { label: "Utilities", value: "Underground" },
-      { label: "Perimeter", value: "Compound wall" },
+      { label: "Price", value: "₹22,999 / sq. yd." },
     ],
     amenities: [
       "Grand entrance arch",
@@ -197,7 +197,7 @@ export const projects: Project[] = [
     accent: "#9c6b4a",
     metaTitle: "Raghunath County Shankarpally — 19-Acre DTCP Villa Plots | Raghnath County",
     metaDescription:
-      "Southprides Raghunathcounty (Raghnath County Shankarpally): 19 acres of DTCP-approved villa plots facing the 100-ft main road with CC roads, underground drainage, and clear title. Starting ₹45L.",
+      "Southprides Raghunathcounty (Raghnath County Shankarpally): 19 acres of DTCP-approved villa plots (220–500 sq. yds) facing the 100-ft main road with CC roads, underground drainage, and clear title. Starting ₹22,999/sq.yd.",
     keywords: [
       "southprides raghunathcounty",
       "raghnath county",
