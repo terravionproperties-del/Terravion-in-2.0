@@ -387,13 +387,13 @@ export const PROJECT_MEDIA: Record<string, ProjectMedia> = {
     video: [
       {
         src: "/assets/Terravion_shankarpally_short1.mp4",
-        title: "South Hyderabad & Airport Corridor Growth Thesis",
+        title: "West Hyderabad Corridor Growth Thesis",
         bytes: 6_857_846,
         isShort: true,
       },
       {
         src: "/assets/Terravion_shankarpally_short5.mp4",
-        title: "Investor Guide to Strategic Land Holdings in South Hyderabad",
+        title: "Investor Guide to Strategic Land Holdings in West Hyderabad",
         bytes: 9_364_588,
         isShort: true,
       },
@@ -401,12 +401,12 @@ export const PROJECT_MEDIA: Record<string, ProjectMedia> = {
     news: [
       {
         src: "/assets/Terravion_news_article_1.jpeg",
-        alt: "Economic Times: South Hyderabad Airport Belt Infrastructure",
-        caption: "Pharma City, airport expressway and logistics corridor development.",
+        alt: "Economic Times: West Hyderabad Infrastructure",
+        caption: "Regional ring road and logistics corridor development.",
       },
       {
         src: "/assets/Terravion_news_article_5.jpeg",
-        alt: "The Hindu: Future City & Southern Metro Extension",
+        alt: "The Hindu: Metro Extension & West Hyderabad Connectivity",
         caption: "Strategic public transport alignment to Mansanpally.",
       },
     ],

@@ -67,7 +67,7 @@ The honest answer is that it does not, in any timeframe a current buyer is opera
 
 Metropolitan regions with two poles tend to be bigger and more resilient than metropolitan regions with one. Delhi has Gurugram and Noida. Mumbai has Navi Mumbai and the western suburbs. The correct reading of a southern city is not that the west loses. It is that Hyderabad becomes a larger and more diversified region, and the western corridor keeps its own logic intact — a commutable employment core forty-five minutes east of [Shankarpally](/locations/shankarpally), a school belt, an IIT campus, and a supply of approved plotted layouts.
 
-Terravion does have a foot in the southern story. [Mansanpally](/projects/mansanpally) sits in South Hyderabad's airport and RRR corridor, and we have deliberately not published specifics on it, because the specifics are not settled and publishing unsettled specifics is how corridors get oversold. When there is something to announce, it will be announced with numbers attached.
+Terravion does have a foot in the broader regional story. [Mansanpally](/projects/mansanpally) sits in West Hyderabad's high-growth corridor, and we have deliberately not published specifics on it, because the specifics are not settled and publishing unsettled specifics is how corridors get oversold. When there is something to announce, it will be announced with numbers attached.
 
 ## How to hold land through a project this long
 
