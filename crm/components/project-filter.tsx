@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export function ProjectFilter({
   projects,
@@ -9,8 +9,19 @@ export function ProjectFilter({
   projects: { Id: string; Name: string }[];
   currentProjectId?: string;
 }) {
-  const router = useRouter();
   const searchParams = useSearchParams();
+
+  const handleChange = (newId: string) => {
+    const params = new URLSearchParams(searchParams ? searchParams.toString() : "");
+    if (newId) {
+      params.set("projectId", newId);
+    } else {
+      params.delete("projectId");
+    }
+    const query = params.toString();
+    const dest = query ? `/?${query}` : "/";
+    window.location.href = dest;
+  };
 
   return (
     <div className="relative">
@@ -18,15 +29,7 @@ export function ProjectFilter({
         id="project-selector"
         name="projectId"
         value={currentProjectId ?? ""}
-        onChange={(e) => {
-          const params = new URLSearchParams(searchParams.toString());
-          if (e.target.value) {
-            params.set("projectId", e.target.value);
-          } else {
-            params.delete("projectId");
-          }
-          router.push(`/?${params.toString()}`);
-        }}
+        onChange={(e) => handleChange(e.target.value)}
         className="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-[0.8125rem] text-slate-800 font-medium shadow-2xs transition-colors hover:border-[#b88d23] focus:border-[#b88d23] focus:outline-none pr-8 cursor-pointer"
       >
         <option value="">All Projects (Sanctuary, Raghunath, Mansanpally)</option>
