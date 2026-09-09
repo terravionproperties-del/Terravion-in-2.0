@@ -49,6 +49,30 @@ export const PROJECT_MEDIA: Record<string, ProjectMedia> = {
   sanctuary: {
     gallery: [
       {
+        src: "/assets/Sanctuary_entrance_arch.jpeg",
+        alt: "Sanctuary Grand Architectural Entrance Arch & Pylon Gateway — Shankarpally",
+        category: "render",
+        caption: "Iconic entrance gateway featuring towering architectural pylon, wooden acoustic canopy, and 24/7 security pavilion with dual boom barriers.",
+      },
+      {
+        src: "/assets/Sanctuary_clubhouse_elevation.jpeg",
+        alt: "Sanctuary 25,000 sq. ft. Luxury Clubhouse Exterior Elevation & Terrace Lounge",
+        category: "render",
+        caption: "Ultra-luxury modern clubhouse with sweeping curves, rooftop garden terrace, fine dining lounge, and illuminated facade.",
+      },
+      {
+        src: "/assets/Sanctuary_master_plan_3d.jpeg",
+        alt: "Sanctuary 45-Acre 3D Master Plan Aerial Layout — All 475 Plots & Parks",
+        category: "masterplan",
+        caption: "Comprehensive 3D isometric aerial perspective showing all 475 demarcated plots, central 60' avenue, landscaped parks, and sports amenities.",
+      },
+      {
+        src: "/assets/Sanctuary_oht_design.png",
+        alt: "Sanctuary Engineered Overhead Water Tank (OHT) & Sump Complex",
+        category: "amenity",
+        caption: "Architectural elevation of the multi-tier Overhead Water Tank (OHT) and high-capacity sump ensuring pressurized 24/7 water supply.",
+      },
+      {
         src: "/assets/Sanctuary_gate.jpg.jpeg",
         alt: "Sanctuary Grand Entrance Arch & Security Gateway — Shankarpally",
         category: "render",
@@ -86,6 +110,12 @@ export const PROJECT_MEDIA: Record<string, ProjectMedia> = {
       },
     ],
     video: [
+      {
+        src: "/assets/Sanctuary_construction_progress_2026.mp4",
+        title: "Sanctuary — Paved Concrete Roads & Live Site Construction Progress (2026)",
+        bytes: 13_339_819,
+        duration: "1:03",
+      },
       {
         src: "/assets/Sanctuary_site-ad-1.mp4",
         title: "Sanctuary — 45-Acre Masterplan Film & Drone Walkthrough",
@@ -152,6 +182,18 @@ export const PROJECT_MEDIA: Record<string, ProjectMedia> = {
       },
     ],
     documents: [
+      {
+        label: "Sanctuary Julkal Available Plots Master Register (Sep 2026)",
+        href: "/assets/Sanctuary Julkal Available List_08092026.pdf",
+        bytes: 33_369_791,
+        note: "Official layout inventory register with plot-by-plot allotment, registration, and booking availability status.",
+      },
+      {
+        label: "Sanctuary Overhead Water Tank (OHT) & Sump Architectural Design",
+        href: "/assets/Sanctuary @Julkal OHT design.pdf",
+        bytes: 357_814,
+        note: "Approved multi-tier OHT structural blueprints and ground sump engineering specifications.",
+      },
       {
         label: "Official Sanctuary E-Brochure (Full Edition)",
         href: "/assets/Sanctuary E Brochure.pdf",

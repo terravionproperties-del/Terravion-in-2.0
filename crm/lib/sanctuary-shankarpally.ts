@@ -25,7 +25,7 @@
  * E-W Roads: 1×60' central collector + multiple 30' local roads
  */
 
-import type { Project, Plot, Amenity, ConstructionUpdate, Road, NearbyPlace } from "@/lib/gis-types";
+import type { Project, Plot, Amenity, ConstructionUpdate, Road, NearbyPlace } from "@/lib/types/gis";
 
 // ─── Scale ────────────────────────────────────────────────────────────────────
 // 1 real foot → 0.25 Three.js units
@@ -371,8 +371,9 @@ const SANCTUARY_AMENITIES: Amenity[] = [
     projectId: "sanctuary-shankarpally-001",
     name: "Club House",
     type: "CLUBHOUSE",
-    description: "8,000 sqft clubhouse — banquet hall, fine dining, gym, business centre, three theatre, indoor games",
+    description: "25,000 sqft clubhouse — banquet hall, fine dining, gym, business centre, guest suites, indoor games",
     icon: "🏛️",
+    imageUrl: "/assets/Sanctuary_clubhouse_elevation.jpeg",
     position3D: [-210, 0, -250],
   },
   {
@@ -470,9 +471,20 @@ const SANCTUARY_AMENITIES: Amenity[] = [
     projectId: "sanctuary-shankarpally-001",
     name: "Main Entrance Gate",
     type: "ENTRANCE",
-    description: "Architecturally designed entrance with 24/7 security & boom barriers",
+    description: "Architecturally designed grand entrance with soaring pylon, wooden acoustic canopy, 24/7 security & boom barriers",
     icon: "🚪",
+    imageUrl: "/assets/Sanctuary_entrance_arch.jpeg",
     position3D: [-230, 0, -100],
+  },
+  {
+    id: "sa-oht-sump",
+    projectId: "sanctuary-shankarpally-001",
+    name: "Overhead Water Tank & Sump",
+    type: "WATER_TANK",
+    description: "Multi-tier engineered Overhead Water Tank (OHT) and ground sump ensuring uninterrupted 24/7 pressurized water supply",
+    icon: "💧",
+    imageUrl: "/assets/Sanctuary_oht_design.png",
+    position3D: [190, 0, -200],
   },
   {
     id: "sa-jogging",
@@ -490,6 +502,19 @@ const SANCTUARY_AMENITIES: Amenity[] = [
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SANCTUARY_UPDATES: ConstructionUpdate[] = [
+  {
+    id: "cu-sep26",
+    projectId: "sanctuary-shankarpally-001",
+    month: "Sep 2026",
+    title: "Paved Internal Concrete Roads & Underground Utilities",
+    description: "Concrete paving of internal avenues and collector roads in active progress with installed kerbstones, street light infrastructure, and demarcated plots across the 45-acre community.",
+    progressPercent: 95,
+    droneImages: ["/assets/Sanctuary_master_plan_3d.jpeg", "/assets/Sanctuary_entrance_arch.jpeg"],
+    beforeImages: [],
+    afterImages: ["/assets/Sanctuary_clubhouse_elevation.jpeg"],
+    videoUrl: "/assets/Sanctuary_construction_progress_2026.mp4",
+    createdAt: new Date().toISOString(),
+  },
   {
     id: "cu-aug25",
     projectId: "sanctuary-shankarpally-001",
@@ -632,11 +657,35 @@ export const SANCTUARY_SHANKARPALLY: Project = {
   launchDate: "2024-01-01",
   completionDate: "2026-12-31",
   // Media
-  masterLayoutUrl: "/projects/sanctuary/master-plan.jpg",
-  droneImages: [],
-  gallery: [],
-  videos: [],
-  documents: [],
+  masterLayoutUrl: "/assets/Sanctuary_master_plan_3d.jpeg",
+  brochureUrl: "/assets/Sanctuary E Brochure.pdf",
+  droneImages: [
+    "/assets/Sanctuary_master_plan_3d.jpeg",
+    "/assets/Sanctuary_entrance_arch.jpeg",
+    "/assets/Sanctuary_clubhouse_elevation.jpeg",
+  ],
+  gallery: [
+    "/assets/Sanctuary_entrance_arch.jpeg",
+    "/assets/Sanctuary_clubhouse_elevation.jpeg",
+    "/assets/Sanctuary_master_plan_3d.jpeg",
+    "/assets/Sanctuary_oht_design.png",
+    "/assets/Sanctuary_gate.jpg.jpeg",
+    "/assets/Sanctuary_clubhouse.jpg.jpeg",
+    "/assets/Sanctuary_park.jpg.jpeg",
+  ],
+  videos: [
+    "/assets/Sanctuary_construction_progress_2026.mp4",
+    "/assets/Sanctuary_site-ad-1.mp4",
+  ],
+  documents: [
+    "/assets/Sanctuary Julkal Available List_08092026.pdf",
+    "/assets/Sanctuary @Julkal OHT design.pdf",
+    "/assets/Sanctuary E Brochure.pdf",
+    "/assets/Sanctuary RERA Certificate - P01100010026.pdf",
+    "/assets/BPO1_010327_LO_HMDA_2691_SKP_2024 (1).pdf",
+    "/assets/JULKAL.pdf",
+    "/assets/Julkal_Clubhouse_Plans_R1_24.10.2025 (1).pdf",
+  ],
   // Relations
   plots: generatePlots(),
   amenities: SANCTUARY_AMENITIES,

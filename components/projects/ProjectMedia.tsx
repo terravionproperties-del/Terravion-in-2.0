@@ -45,7 +45,13 @@ export function ProjectGallery({ images }: { images: MediaImage[] }) {
               />
               {img.category && (
                 <span className="absolute left-3 top-3 rounded-full bg-slate-900/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-xs">
-                  {img.category === "render" ? "3D Render" : img.category === "site_photo" ? "Ground Photo" : "Masterplan"}
+                  {img.category === "render"
+                    ? "3D Render"
+                    : img.category === "site_photo"
+                    ? "Ground Progress"
+                    : img.category === "amenity"
+                    ? "Amenity Architecture"
+                    : "3D Masterplan"}
                 </span>
               )}
             </div>
