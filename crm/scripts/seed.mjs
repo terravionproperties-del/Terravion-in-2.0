@@ -20,7 +20,7 @@ try {
 const PROJECTS = [
   { slug: "sanctuary",       name: "Sanctuary",             location: "Julkal, Shankarpally, Hyderabad, Telangana 502285" },
   { slug: "raghunath-county",name: "Raghunath County",      location: "Shankarpally–Mominpet Road, Shankarpally, Telangana" },
-  { slug: "mansanpally",     name: "Terravion Mansanpally", location: "Mansanpally, Southern Hyderabad growth corridor" },
+  { slug: "mansanpally",     name: "Terravion Mansanpally", location: "Mansanpally, West Hyderabad growth corridor" },
 ];
 
 const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || "admin@terravionproperties.in";

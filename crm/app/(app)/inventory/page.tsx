@@ -8,6 +8,7 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { TERRAVION_SHANKARPALLY } from "@/lib/terravion-shankarpally";
 import { SANCTUARY_SHANKARPALLY } from "@/lib/sanctuary-shankarpally";
+import { RAGHUNATH_COUNTY } from "@/lib/raghunath-county";
 import type { Plot, PlotStatus, Project } from "@/lib/gis-types";
 import { PLOT_STATUS_COLORS } from "@/lib/gis-types";
 import { computeStats, formatINR, sortPlots } from "@/lib/PlotEngine";
@@ -25,6 +26,7 @@ const STATUS_LIGHT_STYLES: Record<PlotStatus, { bg: string; border: string; text
 
 const PROJECTS: { label: string; key: string; data: Project }[] = [
   { label: "Sanctuary — Shankarpally", key: "sanctuary", data: SANCTUARY_SHANKARPALLY as unknown as Project },
+  { label: "Raghunath County — Shankarpally", key: "raghunath-county", data: RAGHUNATH_COUNTY as unknown as Project },
   { label: "Terravion — Shankarpally", key: "shankarpally", data: TERRAVION_SHANKARPALLY as unknown as Project },
 ];
 

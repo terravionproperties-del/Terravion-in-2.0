@@ -222,24 +222,24 @@ export const projects: Project[] = [
     shortName: "Mansanpally",
     approval: "Approvals in progress", // [PLACEHOLDER — replace with verified approval status]
     status: "upcoming",
-    location: "Mansanpally, Southern Hyderabad growth corridor", // [PLACEHOLDER — verify exact survey location]
+    location: "Mansanpally, West Hyderabad growth corridor", // [PLACEHOLDER — verify exact survey location]
     acreage: "[Extent to be announced]", // [PLACEHOLDER — replace with verified acreage]
     plots: "[Plot count to be announced]", // [PLACEHOLDER]
     plotSizes: "[Plot sizes to be announced]", // [PLACEHOLDER]
     roads: "[Layout details to be announced]", // [PLACEHOLDER]
     priceFrom: "Pricing on request",
-    headline: "The next chapter — south of the airport, ahead of the curve.",
+    headline: "The next chapter — West Hyderabad, ahead of the curve.",
     intro:
-      "Terravion's upcoming plotted development at Mansanpally extends the portfolio into Hyderabad's southern growth corridor near the airport and the proposed Regional Ring Road alignment. Full masterplan, approvals and pricing will be announced; register your interest for launch-day access.",
+      "Terravion's upcoming plotted development at Mansanpally extends the portfolio into West Hyderabad's high-growth corridor near the proposed Regional Ring Road alignment. Full masterplan, approvals and pricing will be announced; register your interest for launch-day access.",
     narrative: [
-      "Mansanpally sits in the quadrant of Hyderabad that planners expect to move next: south of Rajiv Gandhi International Airport, threaded between the Srisailam highway and the proposed Regional Ring Road alignment, where pharma, aerospace and logistics investment is already staking ground.",
+      "Mansanpally sits in the quadrant of West Hyderabad that planners expect to move next: connected with key arterial corridors and the proposed Regional Ring Road alignment, where high-value infrastructure investment is already staking ground.",
       "Terravion is assembling this next community with the same discipline as Sanctuary and Raghunath County — clear titles, statutory approvals before launch, and infrastructure laid before the first plot is handed over.",
       "Launch details — extent, plot sizes, masterplan and pricing — will be published here first. Registered buyers receive the masterplan and pre-launch pricing before public release.",
     ],
     highlights: [
-      { label: "Corridor", value: "South Hyderabad" },
+      { label: "Corridor", value: "West Hyderabad" },
       { label: "Status", value: "Pre-launch" },
-      { label: "Access", value: "Airport & RRR" },
+      { label: "Access", value: "Arterials & RRR" },
       { label: "Titles", value: "Clear, verified" },
       { label: "Launch", value: "To be announced" },
       { label: "Registration", value: "Open" },
@@ -252,10 +252,10 @@ export const projects: Project[] = [
       "Landscaped commons planned",
     ],
     distances: [
+      { place: "Outer Ring Road (ORR)", distanceKm: 18, driveTime: "25 min" },
       { place: "Rajiv Gandhi International Airport", distanceKm: 20, driveTime: "30 min" },
-      { place: "Srisailam Highway (NH-765)", distanceKm: 6, driveTime: "10 min" },
-      { place: "TSIIC Pharma City zone", distanceKm: 15, driveTime: "22 min" },
-      { place: "LB Nagar", distanceKm: 30, driveTime: "45 min" },
+      { place: "Financial District, Nanakramguda", distanceKm: 32, driveTime: "45 min" },
+      { place: "Gachibowli", distanceKm: 35, driveTime: "50 min" },
     ],
     faqs: [
       {
@@ -264,7 +264,7 @@ export const projects: Project[] = [
       },
       {
         q: "Why is Terravion developing in Mansanpally?",
-        a: "Mansanpally sits in Hyderabad's southern growth corridor — near the airport, the Srisailam highway and the proposed Regional Ring Road — where large public and industrial investments are driving long-term land appreciation.",
+        a: "Mansanpally sits in West Hyderabad's high-growth corridor — near key arterial highways and the proposed Regional Ring Road — where large-scale infrastructure investments are driving long-term land appreciation.",
       },
       {
         q: "How do I register interest for the Mansanpally launch?",
@@ -272,13 +272,13 @@ export const projects: Project[] = [
       },
     ],
     accent: "#7d8471",
-    metaTitle: "Terravion Mansanpally — Upcoming Plots Near Hyderabad Airport",
+    metaTitle: "Terravion Mansanpally — Upcoming Plots in West Hyderabad Corridor",
     metaDescription:
-      "Terravion's upcoming plotted development at Mansanpally in South Hyderabad's airport–RRR growth corridor. Register for launch-day masterplan access and pre-launch pricing.",
+      "Terravion's upcoming plotted development at Mansanpally in West Hyderabad's growth corridor. Register for launch-day masterplan access and pre-launch pricing.",
     keywords: [
       "Mansanpally plots",
-      "plots near Hyderabad airport",
-      "upcoming plotted development Hyderabad south",
+      "West Hyderabad plots",
+      "upcoming plotted development West Hyderabad",
       "RRR corridor plots",
     ],
   },

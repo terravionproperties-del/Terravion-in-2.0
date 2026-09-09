@@ -63,8 +63,12 @@ export default async function ProjectsPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((p) => {
           const isSanctuary = p.slug === "sanctuary";
-          const acres = isSanctuary ? "22.5 Acres" : p.total_acres ? `${p.total_acres} Acres` : "20+ Acres";
-          const plotsCount = isSanctuary ? 147 : p.slug === "raghunath-county" ? 112 : 98;
+          const isRaghunath = p.slug === "raghunath-county";
+          const acres = isSanctuary ? "45 Acres" : isRaghunath ? "19 Acres" : p.total_acres ? `${p.total_acres} Acres` : "20+ Acres";
+          const plotsCount = isSanctuary ? 475 : isRaghunath ? 202 : 98;
+          const priceRate = isSanctuary ? "₹29,999/SY" : isRaghunath ? "₹22,999/SY" : "On Request";
+          const plotSizes = isSanctuary ? "202 – 750 SY" : isRaghunath ? "220 – 500 SY" : "Custom";
+          const approvalBadge = isSanctuary ? "HMDA Approved" : isRaghunath ? "DTCP Approved" : "Approvals in progress";
 
           return (
             <div
@@ -98,12 +102,12 @@ export default async function ProjectsPage() {
                     <p className="mt-0.5 text-[0.875rem] font-bold text-slate-800">{acres}</p>
                   </div>
                   <div>
-                    <p className="text-[0.6875rem] font-semibold uppercase text-slate-400">Total Plots</p>
-                    <p className="mt-0.5 text-[0.875rem] font-bold text-slate-800">{plotsCount}</p>
+                    <p className="text-[0.6875rem] font-semibold uppercase text-slate-400">Plots / Sizes</p>
+                    <p className="mt-0.5 text-[0.875rem] font-bold text-slate-800">{plotsCount} ({plotSizes})</p>
                   </div>
                   <div>
-                    <p className="text-[0.6875rem] font-semibold uppercase text-slate-400">Active Leads</p>
-                    <p className="mt-0.5 text-[0.875rem] font-bold text-[#946c0b]">{p.total_leads || 0}</p>
+                    <p className="text-[0.6875rem] font-semibold uppercase text-slate-400">Price Rate</p>
+                    <p className="mt-0.5 text-[0.875rem] font-bold text-[#946c0b]">{priceRate}</p>
                   </div>
                 </div>
 
@@ -113,10 +117,10 @@ export default async function ProjectsPage() {
                     100% Vaastu
                   </span>
                   <span className="rounded bg-slate-100 px-2.5 py-1 text-[0.6875rem] font-medium text-slate-600 border border-slate-200">
-                    DTCP Approved
+                    {approvalBadge}
                   </span>
-                  <span className="rounded bg-slate-100 px-2.5 py-1 text-[0.6875rem] font-medium text-slate-600 border border-slate-200">
-                    Clubhouse & Pool
+                  <span className="rounded bg-emerald-50 px-2.5 py-1 text-[0.6875rem] font-bold text-emerald-700 border border-emerald-200">
+                    {priceRate}
                   </span>
                 </div>
               </div>
@@ -124,10 +128,10 @@ export default async function ProjectsPage() {
               {/* Action Buttons */}
               <div className="mt-6 flex items-center gap-2.5 pt-4 border-t border-slate-100">
                 <Link
-                  href={isSanctuary ? "/inventory" : `/leads?projectId=${p.id}`}
+                  href="/inventory"
                   className="flex-1 rounded-lg bg-slate-900 px-3 py-2 text-center text-[0.75rem] font-semibold text-white transition-colors hover:bg-[#b88d23]"
                 >
-                  {isSanctuary ? "View 3D GIS Map" : "View Inventory"}
+                  View Inventory
                 </Link>
                 <Link
                   href={`/leads?projectId=${p.id}`}
