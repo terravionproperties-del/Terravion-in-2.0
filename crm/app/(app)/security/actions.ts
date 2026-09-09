@@ -6,7 +6,7 @@ import { can } from "@/lib/rbac";
 import { requestContext } from "@/lib/request-context";
 import { unlockUser } from "@/lib/repos/security";
 
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const UUID = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|[0-9a-f]{32})$/i;
 
 /**
  * Lifts a lockout.

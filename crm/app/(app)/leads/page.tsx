@@ -52,7 +52,7 @@ export default async function LeadsPage({
         : undefined,
       from: sp.from ? new Date(sp.from) : undefined,
       to: sp.to ? new Date(`${sp.to}T23:59:59.999Z`) : undefined,
-      projectId: /^[0-9a-f-]{36}$/i.test(sp.projectId ?? "") ? sp.projectId : undefined,
+      projectId: /^(?:[0-9a-f-]{36}|[0-9a-f]{32})$/i.test(sp.projectId ?? "") ? sp.projectId : undefined,
       page: sp.page ? Number(sp.page) : 1,
     },
     scope,

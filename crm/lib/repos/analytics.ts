@@ -6,6 +6,7 @@ import { query, queryOne } from "@/lib/db";
  */
 
 export interface Headline {
+  TotalLeads: number;
   LeadsToday: number;
   CallsToday: number;
   VisitsToday: number;
@@ -22,13 +23,19 @@ export function headline(
   dayStart: Date,
   dayEnd: Date,
   monthStart: Date,
-  mine: string | null
+  mine: string | null,
+  projectId?: string | null
 ) {
   return queryOne<Headline>`
     SELECT
       (SELECT COUNT(*) FROM leads
+        WHERE merged_into_id IS NULL
+          AND (${mine} IS NULL OR owner_id = ${mine})
+          AND (${projectId ?? null} IS NULL OR project_id = ${projectId ?? null})) AS TotalLeads,
+      (SELECT COUNT(*) FROM leads
         WHERE merged_into_id IS NULL AND created_at BETWEEN ${dayStart} AND ${dayEnd}
-          AND (${mine} IS NULL OR owner_id = ${mine}))                    AS LeadsToday,
+          AND (${mine} IS NULL OR owner_id = ${mine})
+          AND (${projectId ?? null} IS NULL OR project_id = ${projectId ?? null})) AS LeadsToday,
       (SELECT COUNT(*) FROM lead_activities
         WHERE type = 'CALL' AND occurred_at BETWEEN ${dayStart} AND ${dayEnd}
           AND (${mine} IS NULL OR user_id = ${mine}))                     AS CallsToday,
@@ -36,26 +43,33 @@ export function headline(
         WHERE type = 'SITE_VISIT' AND occurred_at BETWEEN ${dayStart} AND ${dayEnd}) AS VisitsToday,
       (SELECT COUNT(*) FROM leads
         WHERE merged_into_id IS NULL AND stage = 'BOOKING_AMOUNT_PAID'
-          AND updated_at BETWEEN ${dayStart} AND ${dayEnd})               AS BookingsToday,
+          AND updated_at BETWEEN ${dayStart} AND ${dayEnd}
+          AND (${projectId ?? null} IS NULL OR project_id = ${projectId ?? null})) AS BookingsToday,
       (SELECT COUNT(*) FROM leads
         WHERE merged_into_id IS NULL AND created_at >= ${monthStart}
-          AND (${mine} IS NULL OR owner_id = ${mine}))                    AS LeadsMonth,
+          AND (${mine} IS NULL OR owner_id = ${mine})
+          AND (${projectId ?? null} IS NULL OR project_id = ${projectId ?? null})) AS LeadsMonth,
       (SELECT COUNT(*) FROM leads
         WHERE merged_into_id IS NULL AND updated_at >= ${monthStart}
-          AND stage IN ('BOOKING_AMOUNT_PAID','AGREEMENT','REGISTRATION','COMPLETED')) AS BookingsMonth,
+          AND stage IN ('BOOKING_AMOUNT_PAID','AGREEMENT','REGISTRATION','COMPLETED')
+          AND (${projectId ?? null} IS NULL OR project_id = ${projectId ?? null})) AS BookingsMonth,
       (SELECT COUNT(*) FROM leads
         WHERE merged_into_id IS NULL AND updated_at >= ${monthStart}
-          AND stage IN ('LOST','CANCELLED'))                              AS LostMonth,
+          AND stage IN ('LOST','CANCELLED')
+          AND (${projectId ?? null} IS NULL OR project_id = ${projectId ?? null})) AS LostMonth,
       (SELECT COUNT(*) FROM leads
         WHERE merged_into_id IS NULL AND stage NOT IN ('COMPLETED','LOST','CANCELLED')
-          AND (${mine} IS NULL OR owner_id = ${mine}))                   AS OpenLeads,
+          AND (${mine} IS NULL OR owner_id = ${mine})
+          AND (${projectId ?? null} IS NULL OR project_id = ${projectId ?? null})) AS OpenLeads,
       (SELECT COUNT(*) FROM leads
         WHERE merged_into_id IS NULL AND next_follow_up_at IS NOT NULL
-          AND (${mine} IS NULL OR owner_id = ${mine}))                   AS PendingFollowUps,
+          AND (${mine} IS NULL OR owner_id = ${mine})
+          AND (${projectId ?? null} IS NULL OR project_id = ${projectId ?? null})) AS PendingFollowUps,
       (SELECT COUNT(*) FROM leads
         WHERE merged_into_id IS NULL AND next_follow_up_at < datetime('now')
           AND stage NOT IN ('COMPLETED','LOST','CANCELLED')
-          AND (${mine} IS NULL OR owner_id = ${mine}))                   AS OverdueFollowUps
+          AND (${mine} IS NULL OR owner_id = ${mine})
+          AND (${projectId ?? null} IS NULL OR project_id = ${projectId ?? null})) AS OverdueFollowUps
   `;
 }
 
@@ -65,7 +79,7 @@ export interface DayPoint {
   Won: number;
 }
 
-export function dailyTrend(from: Date, to: Date, mine: string | null) {
+export function dailyTrend(from: Date, to: Date, mine: string | null, projectId?: string | null) {
   const fromStr = typeof from === "string" ? from : from.toISOString().slice(0, 10);
   const toStr   = typeof to   === "string" ? to   : to.toISOString().slice(0, 10);
   return query<DayPoint>`
@@ -78,11 +92,13 @@ export function dailyTrend(from: Date, to: Date, mine: string | null) {
       days.d AS Day,
       (SELECT COUNT(*) FROM leads l
         WHERE l.merged_into_id IS NULL AND strftime('%Y-%m-%d', l.created_at) = days.d
-          AND (${mine} IS NULL OR l.owner_id = ${mine}))  AS Leads,
+          AND (${mine} IS NULL OR l.owner_id = ${mine})
+          AND (${projectId ?? null} IS NULL OR l.project_id = ${projectId ?? null}))  AS Leads,
       (SELECT COUNT(*) FROM leads l
         WHERE l.merged_into_id IS NULL AND strftime('%Y-%m-%d', l.updated_at) = days.d
           AND l.stage IN ('BOOKING_AMOUNT_PAID','AGREEMENT','REGISTRATION','COMPLETED')
-          AND (${mine} IS NULL OR l.owner_id = ${mine}))  AS Won
+          AND (${mine} IS NULL OR l.owner_id = ${mine})
+          AND (${projectId ?? null} IS NULL OR l.project_id = ${projectId ?? null}))  AS Won
     FROM days
     ORDER BY days.d
   `;
@@ -95,7 +111,7 @@ export interface SourceRow {
   Lost: number;
 }
 
-export function bySource(from: Date, mine: string | null) {
+export function bySource(from: Date, mine: string | null, projectId?: string | null) {
   return query<SourceRow>`
     SELECT source AS Source,
            COUNT(*) AS Total,
@@ -104,6 +120,7 @@ export function bySource(from: Date, mine: string | null) {
     FROM leads
     WHERE merged_into_id IS NULL AND created_at >= ${from}
       AND (${mine} IS NULL OR owner_id = ${mine})
+      AND (${projectId ?? null} IS NULL OR project_id = ${projectId ?? null})
     GROUP BY source
     ORDER BY Total DESC
   `;
@@ -143,12 +160,13 @@ export interface FunnelRow {
   Count: number;
 }
 
-export function funnel(from: Date, mine: string | null) {
+export function funnel(from: Date, mine: string | null, projectId?: string | null) {
   return query<FunnelRow>`
     SELECT stage AS Stage, COUNT(*) AS Count
     FROM leads
     WHERE merged_into_id IS NULL AND created_at >= ${from}
       AND (${mine} IS NULL OR owner_id = ${mine})
+      AND (${projectId ?? null} IS NULL OR project_id = ${projectId ?? null})
     GROUP BY stage
   `;
 }
@@ -180,7 +198,7 @@ export interface FeedRow {
   UserName: string | null;
 }
 
-export function activityFeed(limit: number, mine: string | null) {
+export function activityFeed(limit: number, mine: string | null, projectId?: string | null) {
   return query<FeedRow>`
     SELECT
       a.id AS Id, a.lead_id AS LeadId, l.reference AS Reference, l.name AS LeadName,
@@ -189,6 +207,7 @@ export function activityFeed(limit: number, mine: string | null) {
     JOIN leads AS l ON l.id = a.lead_id
     LEFT JOIN users AS u ON u.id = a.user_id
     WHERE (${mine} IS NULL OR l.owner_id = ${mine})
+      AND (${projectId ?? null} IS NULL OR l.project_id = ${projectId ?? null})
     ORDER BY a.occurred_at DESC
     LIMIT ${limit}
   `;

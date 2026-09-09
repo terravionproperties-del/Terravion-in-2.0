@@ -19,7 +19,7 @@ const FACINGS = [
   "SOUTH_WEST",
 ] as const;
 
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const UUID = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|[0-9a-f]{32})$/i;
 
 /** Blank strings arrive from every unfilled input; they are not values. */
 const blankToNull = (v: unknown) => (typeof v === "string" && v.trim() === "" ? null : v);

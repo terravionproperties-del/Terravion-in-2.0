@@ -76,7 +76,9 @@ export async function query<T = Record<string, unknown>>(
   values.forEach((value, i) => {
     let v: unknown = value === undefined ? null : value;
     if (v instanceof Date) {
-      v = v.toISOString();
+      v = v.toISOString().replace("T", " ").replace(/\.\d{3}Z$/, "").replace(/Z$/, "");
+    } else if (typeof v === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(v)) {
+      v = v.replace("T", " ").replace(/\.\d{3}Z$/, "").replace(/Z$/, "");
     } else if (typeof v === "boolean") {
       v = v ? 1 : 0;
     }

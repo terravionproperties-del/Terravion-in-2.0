@@ -13,6 +13,7 @@ import {
 } from "@/lib/repos/analytics";
 import { reportProjects } from "@/lib/repos/reports";
 import { TrendChart, BarList, Funnel, Donut } from "@/components/charts";
+import { ProjectFilter } from "@/components/project-filter";
 
 export const metadata = { title: "Admin Dashboard — Terravion OS" };
 export const dynamic = "force-dynamic";
@@ -41,22 +42,22 @@ export default async function DashboardPage({
   const trendFrom = new Date(Date.now() - 29 * 864e5);
 
   const [totals, trend, sources, execs, stages, feed, dupes, projects] = await Promise.all([
-    headline(dayStart, dayEnd, monthStart, mine),
-    dailyTrend(trendFrom, dayEnd, mine),
-    bySource(monthStart, mine),
+    headline(dayStart, dayEnd, monthStart, mine, projectId),
+    dailyTrend(trendFrom, dayEnd, mine, projectId),
+    bySource(monthStart, mine, projectId),
     can(role, "report:read") ? byExecutive(monthStart) : Promise.resolve([]),
-    funnel(monthStart, mine),
-    activityFeed(15, mine),
+    funnel(monthStart, mine, projectId),
+    activityFeed(15, mine, projectId),
     can(role, "lead:merge") ? countDuplicates() : Promise.resolve(0),
     reportProjects(),
   ]);
 
   const t = totals ?? ({} as NonNullable<typeof totals>);
   const decided = (t.BookingsMonth ?? 0) + (t.LostMonth ?? 0);
-  const conversion = decided ? Math.round(((t.BookingsMonth ?? 0) / decided) * 100) : 0.6;
+  const conversion = decided ? Math.round(((t.BookingsMonth ?? 0) / decided) * 100) : (t.BookingsToday ? 100 : 0);
   const stageMap = new Map(stages.map((s) => [s.Stage, s.Count]));
 
-  const totalLeadsCount = (t.LeadsMonth ?? 0) > 0 ? (t.LeadsMonth ?? 0) : 313;
+  const totalLeadsCount = t.TotalLeads ?? (t.LeadsMonth ?? 0);
 
   return (
     <div className="px-8 py-7 space-y-6">
@@ -77,24 +78,11 @@ export default async function DashboardPage({
         {/* Action Controls */}
         <div className="flex flex-wrap items-center gap-3">
           {/* Project Selector Dropdown */}
-          <form method="GET" className="relative">
-            <select
-              name="projectId"
-              defaultValue={projectId ?? ""}
-              className="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-[0.8125rem] text-slate-800 font-medium shadow-2xs transition-colors hover:border-[#b88d23] focus:border-[#b88d23] focus:outline-none pr-8 cursor-pointer"
-            >
-              <option value="">All Projects (Sanctuary, Raghunath, Mansanpally)</option>
-              {projects.map((p) => (
-                <option key={p.Id} value={p.Id}>
-                  {p.Name}
-                </option>
-              ))}
-            </select>
-          </form>
+          <ProjectFilter projects={projects} currentProjectId={projectId} />
 
           {/* Quick Refresh */}
           <Link
-            href="/"
+            href={projectId ? `/?projectId=${projectId}` : "/"}
             className="flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-slate-700 shadow-2xs transition-colors hover:bg-slate-50 hover:text-slate-900"
           >
             <svg className="w-3.5 h-3.5 text-[#b88d23]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -105,7 +93,7 @@ export default async function DashboardPage({
 
           {/* Export CSV */}
           <a
-            href="/api/export/leads?format=csv"
+            href={projectId ? `/api/export/leads?format=csv&projectId=${projectId}` : "/api/export/leads?format=csv"}
             className="flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-[#c59b27] to-[#a67c1e] px-4 py-2 text-[0.8125rem] font-semibold text-white shadow-sm transition-all hover:brightness-105"
           >
             <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -235,7 +223,7 @@ export default async function DashboardPage({
           <Funnel
             steps={FUNNEL_ORDER.map((s) => ({
               label: humanise(s),
-              value: stageMap.get(s) ?? (s === "NEW" ? 269 : s === "CONTACTED" ? 24 : s === "NEGOTIATION" ? 1 : s === "SITE_VISIT_SCHEDULED" ? 2 : 0),
+              value: stageMap.get(s) ?? 0,
             }))}
           />
         </section>
@@ -246,22 +234,19 @@ export default async function DashboardPage({
             <h3 className="text-[0.95rem] font-semibold text-slate-900">Leads by Acquisition Source</h3>
             <span className="text-xs font-medium text-slate-400">Campaign Performance</span>
           </div>
-          <BarList
-            rows={
-              sources.length > 0
-                ? sources.map((s) => ({
-                    label: humanise(s.Source),
-                    value: s.Total,
-                    sub: s.Total ? `${Math.round((s.Won / s.Total) * 100)}% booked` : "—",
-                  }))
-                : [
-                    { label: "Website Organic", value: 180, sub: "57%" },
-                    { label: "WhatsApp Ads", value: 135, sub: "43%" },
-                    { label: "Google Search Ads", value: 68, sub: "22%" },
-                    { label: "Channel Partners", value: 24, sub: "8%" },
-                  ]
-            }
-          />
+          {sources.length > 0 ? (
+            <BarList
+              rows={sources.map((s) => ({
+                label: humanise(s.Source),
+                value: s.Total,
+                sub: s.Total ? `${Math.round((s.Won / s.Total) * 100)}% booked` : "—",
+              }))}
+            />
+          ) : (
+            <div className="py-8 text-center text-xs text-slate-400">
+              No acquisition source data yet for this project.
+            </div>
+          )}
         </section>
       </div>
 

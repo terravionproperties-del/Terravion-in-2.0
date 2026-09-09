@@ -303,12 +303,13 @@ export async function createLead(
 
     const created = await tq<{ id: string; reference: string }>`
       INSERT INTO leads
-        (name, phone, whatsapp, email, source, project_id, budget_min, budget_max,
+        (seq, name, phone, whatsapp, email, source, project_id, budget_min, budget_max,
          preferred_facing, plot_size_min, plot_size_max, remarks, campaign,
          utm_source, utm_medium, utm_campaign, utm_term, utm_content,
          gclid, fbclid, landing_page, referrer, owner_id, last_activity_at)
       VALUES
-        (${input.name}, ${phone}, ${input.whatsapp ?? null}, ${input.email ?? null},
+        ((SELECT COALESCE(MAX(seq), 0) + 1 FROM leads),
+         ${input.name}, ${phone}, ${input.whatsapp ?? null}, ${input.email ?? null},
          ${input.source}, ${input.projectId ?? null},
          ${input.budgetMin ?? null}, ${input.budgetMax ?? null},
          ${input.preferredFacing ?? null}, ${input.plotSizeMin ?? null},

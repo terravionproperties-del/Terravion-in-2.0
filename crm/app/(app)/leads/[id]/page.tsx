@@ -54,12 +54,20 @@ const typeLabel: Record<string, string> = {
   MERGE: "Merge",
 };
 
-export default async function LeadPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function LeadPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams?: Promise<{ duplicate?: string }>;
+}) {
   const session = await auth();
   if (!session?.user) redirect("/login");
   if (!can(session.user.role, "lead:read")) redirect("/");
 
   const { id } = await params;
+  const sp = searchParams ? await searchParams : {};
+  const isDuplicate = sp.duplicate === "1";
   const lead = await getLead(id, scopeFor(session.user.role, "lead"), session.user.id);
   if (!lead) notFound();
 
@@ -84,6 +92,23 @@ export default async function LeadPage({ params }: { params: Promise<{ id: strin
 
   return (
     <div className="px-8 py-7">
+      {isDuplicate && (
+        <div className="mb-6 rounded-xl border border-amber-300 bg-amber-50/90 p-4 shadow-sm">
+          <div className="flex items-center gap-3">
+            <span className="text-xl">⚠️</span>
+            <div>
+              <p className="text-sm font-bold text-amber-900">
+                Existing Contact Record Found ({lead.Reference})
+              </p>
+              <p className="text-xs text-amber-800 mt-0.5">
+                A lead with phone number <span className="font-semibold">{lead.Phone}</span> already exists.
+                The new enquiry has been appended to this contact&apos;s activity timeline below.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <nav className="mb-5 text-[0.8125rem] text-ivory/40">
         <Link href="/leads" className="hover:text-ivory">
           Leads
