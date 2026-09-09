@@ -128,7 +128,7 @@ export default async function ProjectsPage() {
               {/* Action Buttons */}
               <div className="mt-6 flex items-center gap-2.5 pt-4 border-t border-slate-100">
                 <Link
-                  href="/inventory"
+                  href={p.slug === "mansanpally" ? "/inventory" : `/inventory?project=${p.slug}`}
                   className="flex-1 rounded-lg bg-slate-900 px-3 py-2 text-center text-[0.75rem] font-semibold text-white transition-colors hover:bg-[#b88d23]"
                 >
                   View Inventory

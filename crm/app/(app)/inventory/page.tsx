@@ -5,7 +5,8 @@
  * ADMIN / SALES_MANAGER / FINANCE can change plot status, price, assign owner.
  */
 
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { Suspense, useState, useCallback, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { SANCTUARY_SHANKARPALLY } from "@/lib/sanctuary-shankarpally";
 import { RAGHUNATH_COUNTY } from "@/lib/raghunath-county";
 import type { Plot, PlotStatus, Project } from "@/lib/gis-types";
@@ -31,10 +32,12 @@ const PROJECTS: { label: string; key: string; data: Project }[] = [
 type SortKey = "number" | "price_asc" | "price_desc" | "area_asc" | "area_desc";
 type ViewMode = "grid" | "table";
 
-
-export default function InventoryPage() {
-  const [activeProjectKey, setActiveProjectKey] = useState<string>("sanctuary");
-  const activeProject = PROJECTS.find((p) => p.key === activeProjectKey)!;
+function InventoryContent() {
+  const searchParams = useSearchParams();
+  const qProj = searchParams.get("project");
+  const initialKey = qProj === "raghunath-county" || qProj === "sanctuary" ? qProj : "sanctuary";
+  const [activeProjectKey, setActiveProjectKey] = useState<string>(initialKey);
+  const activeProject = PROJECTS.find((p) => p.key === activeProjectKey) ?? PROJECTS[0];
   const [plots, setPlots] = useState<Plot[]>(activeProject.data.plots);
   const [filterStatus, setFilterStatus] = useState<PlotStatus | "ALL">("ALL");
   const [filterFacing, setFilterFacing] = useState<string>("ALL");
@@ -42,6 +45,15 @@ export default function InventoryPage() {
   const [sortBy, setSortBy] = useState<SortKey>("number");
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [saving, setSaving] = useState<string | null>(null);
+
+  useEffect(() => {
+    const q = searchParams.get("project");
+    if (q && (q === "raghunath-county" || q === "sanctuary") && q !== activeProjectKey) {
+      setActiveProjectKey(q);
+      const proj = PROJECTS.find((p) => p.key === q);
+      if (proj) setPlots(proj.data.plots);
+    }
+  }, [searchParams, activeProjectKey]);
 
   const [editPlot, setEditPlot] = useState<Plot | null>(null);
 
@@ -169,24 +181,34 @@ export default function InventoryPage() {
         </div>
 
         <div className="flex items-center gap-2.5 flex-wrap">
-          {/* Project switcher */}
-          <select
-            value={activeProjectKey}
-            onChange={(e) => {
-              const key = e.target.value;
-              setActiveProjectKey(key);
-              const proj = PROJECTS.find((p) => p.key === key)!;
-              setPlots(proj.data.plots);
-              setFilterStatus("ALL");
-              setFilterFacing("ALL");
-              setSearchQ("");
-            }}
-            className="px-3.5 py-2 rounded-lg text-xs font-bold text-[#946c0b] bg-amber-50 border border-amber-200 outline-none cursor-pointer"
-          >
-            {PROJECTS.map((p) => (
-              <option key={p.key} value={p.key}>{p.label}</option>
-            ))}
-          </select>
+          {/* Segmented project selector tabs */}
+          <div className="flex items-center rounded-lg border border-slate-200 bg-slate-100 p-0.5 shadow-2xs">
+            {PROJECTS.map((p) => {
+              const isActive = activeProjectKey === p.key;
+              return (
+                <button
+                  key={p.key}
+                  type="button"
+                  onClick={() => {
+                    setActiveProjectKey(p.key);
+                    const proj = PROJECTS.find((pr) => pr.key === p.key)!;
+                    setPlots(proj.data.plots);
+                    setFilterStatus("ALL");
+                    setFilterFacing("ALL");
+                    setSearchQ("");
+                  }}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs transition-all ${
+                    isActive
+                      ? "bg-white text-slate-900 shadow-xs border border-slate-200/60 font-bold"
+                      : "text-slate-600 hover:text-slate-900 font-medium"
+                  }`}
+                >
+                  <span>{p.key === "sanctuary" ? "🏛️" : "🌳"}</span>
+                  <span>{p.key === "sanctuary" ? "Sanctuary (475 Plots)" : "Raghunath County (202 Plots)"}</span>
+                </button>
+              );
+            })}
+          </div>
 
           {/* Search */}
           <div className="relative">
@@ -544,5 +566,19 @@ export default function InventoryPage() {
         </>
       )}
     </div>
+  );
+}
+
+export default function InventoryPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex h-screen items-center justify-center bg-[#f8fafc] text-slate-500 text-sm font-medium">
+          Loading Plot Inventory...
+        </div>
+      }
+    >
+      <InventoryContent />
+    </Suspense>
   );
 }
