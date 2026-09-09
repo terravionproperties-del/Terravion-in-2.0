@@ -5,8 +5,8 @@
  * ADMIN / SALES_MANAGER / FINANCE can change plot status, price, assign owner.
  */
 
-import { Suspense, useState, useCallback, useMemo, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense, useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { SANCTUARY_SHANKARPALLY } from "@/lib/sanctuary-shankarpally";
 import { RAGHUNATH_COUNTY } from "@/lib/raghunath-county";
 import type { Plot, PlotStatus, Project } from "@/lib/gis-types";
@@ -33,6 +33,7 @@ type SortKey = "number" | "price_asc" | "price_desc" | "area_asc" | "area_desc";
 type ViewMode = "grid" | "table";
 
 function InventoryContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const qProj = searchParams.get("project");
   const initialKey = qProj === "raghunath-county" || qProj === "sanctuary" ? qProj : "sanctuary";
@@ -46,14 +47,18 @@ function InventoryContent() {
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [saving, setSaving] = useState<string | null>(null);
 
+  const lastSeenParamRef = useRef<string | null>(initialKey);
+
+  // Sync state only if the URL searchParam changes from browser navigation (back/forward)
   useEffect(() => {
     const q = searchParams.get("project");
-    if (q && (q === "raghunath-county" || q === "sanctuary") && q !== activeProjectKey) {
+    if (q && q !== lastSeenParamRef.current && (q === "raghunath-county" || q === "sanctuary")) {
+      lastSeenParamRef.current = q;
       setActiveProjectKey(q);
       const proj = PROJECTS.find((p) => p.key === q);
       if (proj) setPlots(proj.data.plots);
     }
-  }, [searchParams, activeProjectKey]);
+  }, [searchParams]);
 
   const [editPlot, setEditPlot] = useState<Plot | null>(null);
 
@@ -190,12 +195,17 @@ function InventoryContent() {
                   key={p.key}
                   type="button"
                   onClick={() => {
+                    lastSeenParamRef.current = p.key;
                     setActiveProjectKey(p.key);
                     const proj = PROJECTS.find((pr) => pr.key === p.key)!;
                     setPlots(proj.data.plots);
                     setFilterStatus("ALL");
                     setFilterFacing("ALL");
                     setSearchQ("");
+                    try {
+                      window.history.replaceState(null, "", `/inventory?project=${p.key}`);
+                    } catch {}
+                    router.replace(`/inventory?project=${p.key}`, { scroll: false });
                   }}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs transition-all ${
                     isActive
